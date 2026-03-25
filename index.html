@@ -1240,8 +1240,7 @@ async function submitForm() {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
+      body: JSON.stringify(payload)
     });
   } catch(e) { console.log('webhook error', e); }
 
@@ -1280,8 +1279,7 @@ async function submitEmail() {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
+      body: JSON.stringify(payload)
     });
   } catch(e) { console.log('webhook error', e); }
 
@@ -1310,8 +1308,7 @@ async function showSkip() {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
+      body: JSON.stringify(payload)
     });
   } catch(e) {}
   document.getElementById('no-path').classList.remove('active');
