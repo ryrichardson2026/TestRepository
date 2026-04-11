@@ -36,7 +36,7 @@
       {"@type":"Question","name":"When should I replace my furnace instead of repairing it?","acceptedAnswer":{"@type":"Answer","text":"If your furnace is over 15 years old or repair costs exceed 30% of replacement value, replacement usually makes more financial sense. A 12-year-old furnace needing a $600 repair is a strong candidate for replacement."}},
       {"@type":"Question","name":"How much does furnace replacement cost in Mill Creek WA?","acceptedAnswer":{"@type":"Answer","text":"Replacement costs depend on your system type and home size. Answer 5 quick questions in our calculator above to get an instant estimate specific to your home and city."}},
       {"@type":"Question","name":"Are there rebates for heat pump installation in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Yes. Snohomish County PUD offers rebates for qualifying heat pump installations. Federal tax credits may also apply. Your installer can confirm exact amounts during the free estimate."}},
-      {"@type":"Question","name":"How long does furnace replacement take?","acceptedAnswer":{"@type":"Answer","text":"Most furnace replacements in Mill Creek are completed in one day — typically 4–8 hours. Your technician will give you a realistic timeframe after the free estimate."}}
+      {"@type":"Question","name":"How long does furnace replacement take?","acceptedAnswer":{"@type":"Answer","text":"Most furnace replacements in Mill Creek are completed in one day — typically 4-8 hours. Your technician will give you a realistic timeframe after the free estimate."}}
     ]
   }
 }
@@ -101,25 +101,16 @@
     margin-left: 8px;
   }
 
-  /* HERO */
+  /* HERO — no background image, clean dark gradient */
   .hero {
-    background: url("house-bg.jpg") center center / cover no-repeat;
+    background: linear-gradient(160deg, #0A1628 0%, #0D2137 60%, #0f2a45 100%);
     position: relative;
     padding: 48px 20px 40px;
     text-align: center;
     border-bottom: 3px solid var(--orange);
   }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(10,22,40,0.78);
-    z-index: 0;
-  }
-  .hero > * {
-    position: relative;
-    z-index: 1;
-  }
+  .hero > * { position: relative; z-index: 1; }
+
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 7px;
     background: rgba(255,107,53,0.1);
@@ -166,393 +157,160 @@
   .hero-testimonial {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 14px;
-    padding: 16px 18px;
-    max-width: 420px;
-    margin: 20px auto 0;
-    text-align: left;
+    border-radius: 14px; padding: 16px 18px;
+    max-width: 420px; margin: 20px auto 0; text-align: left;
   }
   .hero-testi-text {
     font-size: 14px; font-style: italic;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.65; margin-bottom: 12px;
+    color: rgba(255,255,255,0.85); line-height: 1.65; margin-bottom: 12px;
   }
-  .hero-testi-attr {
-    display: flex; align-items: center; gap: 10px;
-  }
+  .hero-testi-attr { display: flex; align-items: center; gap: 10px; }
   .hero-testi-avatar {
     width: 32px; height: 32px; border-radius: 50%;
-    background: rgba(255,107,53,0.2);
-    border: 1px solid rgba(255,107,53,0.3);
+    background: rgba(255,107,53,0.2); border: 1px solid rgba(255,107,53,0.3);
     display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700; color: var(--orange);
-    flex-shrink: 0;
+    font-size: 11px; font-weight: 700; color: var(--orange); flex-shrink: 0;
   }
-  .hero-testi-name {
-    font-size: 13px; font-weight: 700; color: var(--white);
-  }
-  .hero-testi-detail {
-    font-size: 11px; color: var(--muted);
-  }
+  .hero-testi-name { font-size: 13px; font-weight: 700; color: var(--white); }
 
-/* GET STARTED BUTTON */
-.btn-get-started {
+  /* GET STARTED BUTTON */
+  .btn-get-started {
     display: inline-flex; align-items: center; gap: 10px;
-    background: #27AE60;
-    border: none; border-radius: 12px;
+    background: #27AE60; border: none; border-radius: 12px;
     padding: 18px 36px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px; font-weight: 800;
-    color: var(--white);
-    text-transform: uppercase; letter-spacing: 1px;
-    cursor: pointer;
+    font-size: 22px; font-weight: 800; color: var(--white);
+    text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
     transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 6px 24px rgba(39,174,96,0.35);
-    text-decoration: none;
   }
-  .btn-get-started:hover {
-    background: #219A52;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(39,174,96,0.45);
-  }
+  .btn-get-started:hover { background: #219A52; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(39,174,96,0.45); }
   .btn-get-started:active { transform: translateY(0); }
-  .btn-get-started .arrow {
-    font-size: 20px;
-    transition: transform 0.2s;
-  }
+  .btn-get-started .arrow { font-size: 20px; transition: transform 0.2s; }
   .btn-get-started:hover .arrow { transform: translateX(4px); }
 
-  .hero-sub-cta {
-    font-size: 12px; color: rgba(255,255,255,0.3);
-    margin-top: 12px; letter-spacing: 0.3px;
+  /* CALC WRAP */
+  .calc-wrap {
+    max-width: 600px; margin: 0 auto; padding: 0 16px 48px;
+    overflow: hidden; max-height: 0; opacity: 0;
+    transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, padding 0.4s ease;
   }
-
-  /* CALC WRAP — hidden by default */
- .calc-wrap {
-  max-width: 600px; margin: 0 auto;
-  padding: 16px 16px 48px;
-}
+  .calc-wrap.revealed { max-height: 2400px; opacity: 1; padding-top: 16px; }
 
   .calc-card {
-    background: var(--white);
-    border-radius: 20px;
-    overflow: hidden;
+    background: var(--white); border-radius: 20px; overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.25);
   }
 
   /* PROGRESS */
-  .progress-bar {
-    background: var(--navy2); padding: 14px 20px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .prog-seg {
-    flex: 1; height: 3px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 2px; transition: background 0.3s;
-  }
+  .progress-bar { background: var(--navy2); padding: 14px 20px; display: flex; align-items: center; gap: 6px; }
+  .prog-seg { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; transition: background 0.3s; }
   .prog-seg.done { background: rgba(255,255,255,0.3); }
   .prog-seg.active { background: var(--orange); }
-  .prog-label {
-    font-size: 11px; font-weight: 600;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.5px; margin-left: 8px; white-space: nowrap;
-  }
+  .prog-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.3); letter-spacing: 0.5px; margin-left: 8px; white-space: nowrap; }
 
   /* STEP BODY */
   .step-body { padding: 28px 22px 22px; }
   .step-panel { display: none; }
   .step-panel.active { display: block; }
-
-  .step-q {
-    font-family: 'Barlow', sans-serif;
-    font-size: 21px; font-weight: 700;
-    color: var(--dark); line-height: 1.3; margin-bottom: 6px;
-  }
-  .step-hint {
-    font-size: 13px; color: var(--muted);
-    line-height: 1.6; margin-bottom: 20px;
-  }
+  .step-q { font-family: 'Barlow', sans-serif; font-size: 21px; font-weight: 700; color: var(--dark); line-height: 1.3; margin-bottom: 6px; }
 
   /* OPTIONS */
   .options { display: grid; gap: 8px; }
   .opt {
-    border: 1.5px solid var(--border);
-    border-radius: 12px; padding: 12px 14px;
-    cursor: pointer; transition: all 0.15s;
-    background: var(--light); text-align: center;
-    display: flex; align-items: center; justify-content: center; gap: 11px;
-    width: 100%;
+    border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px;
+    cursor: pointer; transition: all 0.15s; background: var(--light); text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 11px; width: 100%;
   }
   .opt:hover { border-color: #B8D0E8; background: #EEF5FB; }
   .opt.selected { border-color: var(--orange); background: rgba(255,107,53,0.04); }
-
   .opt-label { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
-  .opt-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
 
   /* CITY SELECT */
   .city-select {
-    width: 100%; padding: 13px 14px;
-    background: var(--light); border: 1.5px solid var(--border);
-    border-radius: 12px; font-size: 14px; font-weight: 600;
-    color: var(--dark); font-family: 'Barlow', sans-serif;
-    cursor: pointer; outline: none;
+    width: 100%; padding: 13px 14px; background: var(--light);
+    border: 1.5px solid var(--border); border-radius: 12px;
+    font-size: 14px; font-weight: 600; color: var(--dark);
+    font-family: 'Barlow', sans-serif; cursor: pointer; outline: none;
     appearance: none; -webkit-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A6A8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 14px center;
-    padding-right: 36px;
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
   }
   .city-select option { background: var(--white); color: var(--dark); }
   .city-select:focus { border-color: var(--orange); }
   .city-msg { font-size: 12px; color: var(--muted); margin-top: 8px; min-height: 18px; }
 
   /* NAV BUTTONS */
-  .step-nav {
-    display: flex; gap: 8px; margin-top: 20px;
-    padding-top: 18px; border-top: 1px solid #EEF2F7;
-  }
+  .step-nav { display: flex; gap: 8px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #EEF2F7; }
   .btn-back {
-    background: none; border: 1.5px solid var(--border);
-    border-radius: 10px; padding: 11px 18px;
-    font-size: 13px; font-weight: 600; color: var(--muted);
-    cursor: pointer; font-family: 'Barlow', sans-serif;
-    transition: all 0.15s;
+    background: none; border: 1.5px solid var(--border); border-radius: 10px; padding: 11px 18px;
+    font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer;
+    font-family: 'Barlow', sans-serif; transition: all 0.15s;
   }
   .btn-back:hover { border-color: #B8D0E8; color: var(--dark); }
   .btn-continue {
-    flex: 1; background: var(--orange); border: none;
-    border-radius: 10px; padding: 13px 20px;
-    font-size: 15px; font-weight: 700; color: var(--white);
-    cursor: pointer; font-family: 'Barlow', sans-serif;
-    transition: all 0.15s; letter-spacing: 0.3px;
+    flex: 1; background: var(--orange); border: none; border-radius: 10px; padding: 13px 20px;
+    font-size: 15px; font-weight: 700; color: var(--white); cursor: pointer;
+    font-family: 'Barlow', sans-serif; transition: all 0.15s; letter-spacing: 0.3px;
   }
   .btn-continue:hover { background: var(--orange2); }
   .btn-continue:disabled { opacity: 0.3; cursor: not-allowed; }
 
   /* LOADING */
-  .loading-panel {
-    display: none; padding: 48px 22px; text-align: center;
-    background: var(--light);
-  }
+  .loading-panel { display: none; padding: 48px 22px; text-align: center; background: var(--light); }
   .loading-panel.active { display: block; }
-  .loading-msg {
-    font-size: 15px; font-weight: 600;
-    color: var(--dark); margin-bottom: 20px; line-height: 1.5;
-  }
+  .loading-msg { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 20px; line-height: 1.5; }
   .loading-msg span { color: var(--orange); }
-  .bar-track {
-    background: var(--border); border-radius: 4px; height: 4px;
-    max-width: 280px; margin: 0 auto 10px; overflow: hidden;
-  }
-  .bar-fill {
-    height: 100%; width: 0%; background: var(--orange);
-    border-radius: 4px; transition: width 0.04s linear;
-  }
+  .bar-track { background: var(--border); border-radius: 4px; height: 4px; max-width: 280px; margin: 0 auto 10px; overflow: hidden; }
+  .bar-fill { height: 100%; width: 0%; background: var(--orange); border-radius: 4px; transition: width 0.04s linear; }
   .bar-pct { font-size: 12px; color: var(--muted); font-weight: 600; }
 
   /* RESULT */
-  .result-panel {
-    display: none; padding: 26px 22px;
-    background: var(--light); border-top: 3px solid var(--orange);
-  }
+  .result-panel { display: none; padding: 26px 22px; background: var(--light); border-top: 3px solid var(--orange); }
   .result-panel.active { display: block; }
 
-  .result-intro {
-    font-size: 14px; color: #6B8299;
-    line-height: 1.75; margin-bottom: 20px;
-  }
-  .result-intro strong { color: var(--dark); }
-
   /* ESTIMATE BOXES */
-  .est-box {
-    background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 14px; padding: 18px 20px; margin-bottom: 10px;
-  }
-  .est-box.urgent { border-color: #E74C3C; background: #FFF5F5; }
-  .est-eyebrow {
-    font-size: 10px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
-  }
+  .est-box { background: var(--white); border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 10px; }
+  .est-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
   .est-sublabel { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
-  .est-range {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 44px; font-weight: 800;
-    color: var(--dark); letter-spacing: -1px;
-    line-height: 1; margin-bottom: 8px;
-  }
+  .est-range { font-family: 'Barlow Condensed', sans-serif; font-size: 44px; font-weight: 800; color: var(--dark); letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
   .est-range.repair { color: var(--blue); }
-  .est-range.urgent { color: #E74C3C; }
   .est-note { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
-  /* RULE BOX */
-  .rule-box {
-    background: rgba(255,107,53,0.04);
-    border: 1px solid rgba(255,107,53,0.15);
-    border-radius: 12px; padding: 14px 16px; margin-bottom: 18px;
-  }
-  .rule-title {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--orange); margin-bottom: 6px;
-  }
-  .rule-text { font-size: 13px; color: #6B4020; line-height: 1.65; }
-
-  .recommendation {
-    font-size: 15px; font-weight: 600;
-    color: var(--dark); line-height: 1.6; margin-bottom: 6px;
-  }
-  .caveat {
-    font-size: 12px; color: var(--muted);
-    line-height: 1.6; margin-bottom: 22px;
-  }
-
   /* CTA SECTION */
-  .cta-box {
-    background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 14px; padding: 20px; margin-bottom: 10px;
-  }
-  .cta-q {
-    font-size: 16px; font-weight: 700;
-    color: var(--dark); line-height: 1.5; margin-bottom: 16px;
-  }
-  .cta-btns { display: flex; gap: 10px; }
-  .btn-yes {
-    flex: 1; background: #27AE60; border: none;
-    border-radius: 10px; padding: 14px;
-    font-size: 15px; font-weight: 700; color: var(--white);
-    cursor: pointer; font-family: 'Barlow', sans-serif;
-    transition: all 0.15s;
-  }
-  .btn-yes:hover { background: #219A52; }
-  .btn-no {
-    flex: 1; background: none;
-    border: 1.5px solid var(--border);
-    border-radius: 10px; padding: 14px;
-    font-size: 15px; font-weight: 700; color: var(--muted);
-    cursor: pointer; font-family: 'Barlow', sans-serif;
-    transition: all 0.15s;
-  }
-  .btn-no:hover { border-color: #B8D0E8; color: var(--dark); }
+  .cta-box { background: var(--white); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 10px; }
+  .cta-q { font-size: 16px; font-weight: 700; color: var(--dark); line-height: 1.5; margin-bottom: 6px; }
+  .cta-sub { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
 
   /* FORM */
-  .form-section {
-    display: none; padding: 20px;
-    background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 14px; margin-bottom: 10px;
-  }
-  
-  .form-title {
-    font-size: 15px; font-weight: 700;
-    color: var(--dark); margin-bottom: 4px;
-  }
-  .form-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .form-section { display: none; padding: 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: 14px; margin-bottom: 10px; }
   .form-field { margin-bottom: 10px; }
-  .form-field input, .form-field select {
-    width: 100%; padding: 12px 14px;
-    border: 1.5px solid var(--border); border-radius: 10px;
-    font-size: 16px; font-family: 'Barlow', sans-serif;
-    color: var(--dark); outline: none;
+  .form-field input {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+    font-size: 16px; font-family: 'Barlow', sans-serif; color: var(--dark); outline: none;
     background: var(--light); transition: border 0.15s;
   }
-  .form-field input:focus, .form-field select:focus { border-color: var(--orange); }
-  .form-field select { appearance: none; -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A6A8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-field input:focus { border-color: var(--orange); }
+
   .btn-submit {
-    width: 100%; background: var(--orange); border: none;
-    border-radius: 10px; padding: 14px;
-    font-size: 16px; font-weight: 700; color: var(--white);
-    cursor: pointer; font-family: 'Barlow', sans-serif;
-    margin-top: 6px; transition: all 0.15s;
+    width: 100%; background: #27AE60; border: none; border-radius: 10px; padding: 14px;
+    font-size: 16px; font-weight: 700; color: var(--white); cursor: pointer;
+    font-family: 'Barlow', sans-serif; margin-top: 6px; transition: all 0.15s;
   }
-  .btn-submit:hover { background: var(--orange2); }
-  .form-guarantee {
-    font-size: 11px; color: var(--muted);
-    text-align: center; margin-top: 10px; line-height: 1.5;
-  }
-
-  /* SUCCESS */
-  .success-msg {
-    display: none; text-align: center; padding: 24px 20px;
-    background: var(--white); border: 1.5px solid #D5ECD8;
-    border-radius: 14px; margin-bottom: 10px;
-  }
-  .success-msg.active { display: block; }
-  .success-icon { font-size: 32px; margin-bottom: 10px; }
-  .success-title { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-  .success-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
-
-  /* NO PATH */
-  .no-path {
-    display: none; padding: 20px;
-    background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 14px; margin-bottom: 10px;
-  }
-  .no-path.active { display: block; }
-  .no-path-msg { font-size: 14px; color: #6B8299; line-height: 1.75; margin-bottom: 16px; }
-  .no-path-msg strong { color: var(--dark); }
-  .email-input {
-    width: 100%; padding: 12px 14px;
-    border: 1.5px solid var(--border); border-radius: 10px;
-    font-size: 16px; font-family: 'Barlow', sans-serif;
-    color: var(--dark); outline: none; margin-bottom: 8px;
-    background: var(--light);
-  }
-  .email-input:focus { border-color: var(--orange); }
-  .email-disclaimer { font-size: 11px; color: #B8C9D9; line-height: 1.6; margin-bottom: 12px; }
-  .btn-email {
-    width: 100%; background: var(--dark); border: none;
-    border-radius: 10px; padding: 13px;
-    font-size: 14px; font-weight: 700; color: var(--white);
-    cursor: pointer; font-family: 'Barlow', sans-serif; margin-bottom: 8px;
-    transition: all 0.15s;
-  }
-  .btn-email:hover { background: #1B3A6B; }
-  .btn-skip {
-    width: 100%; background: none; border: none;
-    font-size: 12px; color: #B8C9D9; cursor: pointer;
-    font-family: 'Barlow', sans-serif; padding: 6px;
-  }
-  .btn-skip:hover { color: var(--muted); }
-
-  /* SKIP FINAL */
-  .skip-final { display: none; text-align: center; padding: 20px; }
-  .skip-final.active { display: block; }
-  .skip-msg { font-size: 14px; color: var(--muted); line-height: 1.7; }
-  .skip-msg strong { color: var(--dark); }
+  .btn-submit:hover { background: #219A52; }
+  .form-guarantee { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; line-height: 1.5; }
 
   /* TRUST STRIP */
   .trust-strip {
     background: var(--navy2); border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 12px 20px; display: flex; flex-wrap: wrap;
-    gap: 4px 16px; justify-content: center;
+    padding: 12px 20px; display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: center;
   }
-  .trust-item {
-    font-size: 11px; font-weight: 600;
-    color: rgba(255,255,255,0.3);
-    text-transform: uppercase; letter-spacing: 0.5px;
-    display: flex; align-items: center; gap: 5px;
-  }
+  .trust-item { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 5px; }
   .trust-check { color: var(--orange); }
 
   /* SECTIONS */
   .section { max-width: 600px; margin: 0 auto; padding: 0 16px 28px; }
-  .section-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
   .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(22px,5vw,28px); font-weight: 800; color: var(--white); text-transform: uppercase; margin-bottom: 4px; }
-  .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
-
-  /* STATS ROW */
-  .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 8px; }
-  .stat-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px 12px; text-align: center; }
-  .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 6px; }
-  .stat-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
-
-  /* HOW IT WORKS */
-  .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .how-step { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px; }
-  .how-num { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 800; color: var(--orange); letter-spacing: 1px; margin-bottom: 4px; }
-  .how-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
-  .how-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
 
   /* SECOND CTA */
   .second-cta-box { background: rgba(255,107,53,0.07); border: 1px solid rgba(255,107,53,0.2); border-radius: 16px; padding: 28px 20px; text-align: center; }
@@ -560,24 +318,6 @@
   .second-cta-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
   .second-cta-btn { background: #27AE60; border: none; border-radius: 10px; padding: 14px 28px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); cursor: pointer; transition: background 0.15s; }
   .second-cta-btn:hover { background: #219A52; }
-
-  /* REVIEWS */
-  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 12px; }
-  .review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
-  .review-stars { color: var(--orange); font-size: 13px; letter-spacing: 2px; margin-bottom: 10px; }
-  .review-text { font-size: 13px; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: 12px; }
-  .review-attr { display: flex; align-items: center; gap: 8px; }
-  .review-avatar {
-    width: 30px; height: 30px; border-radius: 50%;
-    background: rgba(255,107,53,0.15);
-    border: 1px solid rgba(255,107,53,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 700; color: var(--orange);
-    flex-shrink: 0;
-  }
-  .review-name { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); }
-  .review-detail { font-size: 11px; color: var(--dim); margin-top: 1px; }
-  .review-author { font-size: 10px; font-weight: 800; color: var(--dim); text-transform: uppercase; letter-spacing: 1px; }
 
   /* FAQ */
   .faq-list { border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.03); }
@@ -603,26 +343,105 @@
   .footer a { color: var(--dim); text-decoration: underline; }
 
   /* RECOMMENDATION VERDICT */
-  .rec-box { background: var(--white); border: 1.5px solid var(--orange); border-radius: 14px; padding: 20px; margin-bottom: 12px; }
-  .rec-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .rec-box {
+    background: var(--white); border: 1.5px solid var(--orange);
+    border-radius: 14px; padding: 24px 24px 20px; margin-bottom: 10px;
+    text-align: center;
+  }
+  .rec-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
   .rec-verdict { font-family: 'Barlow Condensed', sans-serif; font-size: 44px; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; line-height: 1.05; margin-bottom: 8px; }
-  .rec-sub { font-size: 13px; color: #6B8299; line-height: 1.6; }
-  .rec-bullets { background: rgba(255,107,53,0.04); border: 1px solid rgba(255,107,53,0.12); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; }
-  .rec-bullet { font-size: 12px; font-weight: 600; color: var(--dark); padding: 4px 0; border-bottom: 1px solid rgba(255,107,53,0.08); line-height: 1.5; }
-  .rec-bullet:last-child { border-bottom: none; }
-  /* STACKED CTA */
+  .rec-sub { font-size: 13px; color: #6B8299; line-height: 1.6; margin-bottom: 20px; }
+
+  /* Most likely cause — inside rec container */
+  .rec-cause {
+    margin-top: 16px; padding: 16px 18px;
+    background: var(--navy); border-radius: 12px;
+  }
+  .rec-cause-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--white); margin-bottom: 6px;
+  }
+  .rec-cause-text {
+    font-size: 16px; font-weight: 700; color: var(--orange); line-height: 1.4;
+  }
+
   .btn-unlock { width: 100%; background: #27AE60; border: none; border-radius: 10px; padding: 14px; font-size: 16px; font-weight: 700; color: var(--white); cursor: pointer; font-family: 'Barlow', sans-serif; margin-bottom: 10px; transition: all 0.15s; }
   .btn-unlock:hover { background: #219A52; }
   .btn-notnow { width: 100%; background: none; border: none; font-size: 13px; color: var(--muted); cursor: pointer; font-family: 'Barlow', sans-serif; padding: 6px; }
-  /* WARM EMAIL */
-  .warm-box { background: var(--white); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 10px; display: none; }
-  /* THANK YOU */
-  .thankyou-box { display: none; text-align: center; padding: 28px 20px; background: var(--white); border: 1.5px solid #D5ECD8; border-radius: 14px; margin-bottom: 10px; }
-  .thankyou-icon { font-size: 36px; margin-bottom: 12px; }
-  .thankyou-title { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
-  .thankyou-text { font-size: 13px; color: var(--muted); line-height: 1.75; }
 
-  /* SPINNER */
+  /* PRICING BOX — always visible after recommendation */
+  .pricing-box {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 18px 20px; margin-bottom: 10px;
+    text-align: center;
+  }
+  .pricing-eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+  }
+  .pricing-rows { margin-bottom: 12px; }
+  .pricing-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--border);
+  }
+  .pricing-row:last-child { border-bottom: none; }
+  .pricing-label { font-size: 13px; font-weight: 600; color: var(--dim); }
+  .pricing-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 800; color: var(--dark);
+    letter-spacing: -0.5px;
+  }
+  .repair-color { color: var(--blue); }
+  .pricing-trust {
+    font-size: 11px; color: #9BB0C4; line-height: 1.6;
+    margin-bottom: 4px; font-style: italic;
+  }
+  .pricing-asterisk {
+    font-size: 11px; color: #9BB0C4; line-height: 1.6;
+  }
+
+  /* SPECIALIST BOX */
+  .specialist-box {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 20px; margin-bottom: 10px;
+    text-align: center;
+  }
+  .specialist-badges {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; flex-wrap: wrap; margin-bottom: 12px;
+  }
+  .spec-badge {
+    border-radius: 6px; padding: 4px 10px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.3px;
+  }
+  .spec-badge-blue { background: #E6F1FB; color: #0C447C; }
+  .spec-badge-green { background: #EAF3DE; color: #3B6D11; }
+  .spec-stars { color: #BA7517; font-size: 13px; letter-spacing: 2px; }
+  .specialist-intro {
+    font-size: 14px; font-weight: 600; color: var(--dark);
+    line-height: 1.55; margin-bottom: 14px;
+  }
+  .specialist-signals {
+    background: rgba(255,107,53,0.03); border: 1px solid rgba(255,107,53,0.1);
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 16px;
+    text-align: left;
+  }
+  .signal-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 8px;
+    text-align: center;
+  }
+  .signal-item {
+    font-size: 12px; font-weight: 600; color: var(--dark);
+    padding: 3px 0; display: flex; align-items: flex-start; gap: 7px;
+    line-height: 1.5;
+  }
+  .signal-check { color: #27AE60; flex-shrink: 0; margin-top: 1px; }
+  .antispam {
+    font-size: 11px; color: #9BB0C4; text-align: center;
+    margin-top: 10px; line-height: 1.5;
+  }
+
   .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: var(--white); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -630,8 +449,6 @@
     .nav-btn { display: none; }
     .step-body { padding: 20px 16px 18px; }
     .result-panel { padding: 20px 16px; }
-    .form-row { grid-template-columns: 1fr; }
-    .reviews-grid { grid-template-columns: 1fr; }
     .area-pills { gap: 5px; }
     .btn-get-started { font-size: 18px; padding: 16px 28px; }
   }
@@ -652,27 +469,26 @@
 <div class="hero" id="calc-top">
   <div class="hero-eyebrow"><div class="pulse"></div>Free Instant Estimates — Snohomish County 2026</div>
   <h1>Is It Time to<br><span>Repair or Replace</span><br>Your Heating System?</h1>
-  <p class="hero-sub">Answer 5 quick questions. Get an instant recommendation and free cost estimate.</p>
+  <!-- UPDATED hero-sub copy -->
+  <p class="hero-sub">Tell us what's going on — we'll help you understand the problem, what it should cost, and connect you with one trusted local pro if you want.</p>
 
- <a href="#calc-wrap" class="btn-get-started">
-  Get Started <span class="arrow">→</span>
-</a>
-  <!-- HERO TESTIMONIAL -->
+  <button class="btn-get-started" onclick="revealCalc(true)" id="hero-cta">
+    Get Started <span class="arrow">&#8594;</span>
+  </button>
+
   <div class="hero-testimonial">
     <div class="hero-testi-text">"Our furnace stopped working in January. I had no idea what anything should cost. This took 2 minutes and I finally knew what I was walking into."</div>
     <div class="hero-testi-attr">
       <div class="hero-testi-avatar">KM</div>
-      <div>
-        <div class="hero-testi-name">Mill Creek Homeowner</div>
-        
-      </div>
+      <div><div class="hero-testi-name">Mill Creek Homeowner</div></div>
     </div>
   </div>
 
+  <!-- UPDATED trust items -->
   <div class="hero-trust">
-    <div class="hero-trust-item"><span>✓</span> Licensed & insured installers only</div>
-    <div class="hero-trust-item"><span>✓</span> Free estimates</div>
-    <div class="hero-trust-item"><span>✓</span> No obligation to book</div>
+    <div class="hero-trust-item"><span>&#10003;</span> Understand before you decide</div>
+    <div class="hero-trust-item"><span>&#10003;</span> See what it should cost</div>
+    <div class="hero-trust-item"><span>&#10003;</span> No obligation to book</div>
   </div>
 </div>
 
@@ -680,7 +496,6 @@
 <div class="calc-wrap" id="calc-wrap">
   <div class="calc-card">
 
-    <!-- PERSISTENT HEADER REMINDER -->
     <div style="background:var(--orange);padding:10px 20px;text-align:center;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#fff;">Repair or Replace? <span style="opacity:0.85;">Find Out Now</span></div>
     </div>
@@ -694,43 +509,28 @@
       <div class="prog-label" id="prog-label">Question 1 of 5</div>
     </div>
 
-    <!-- STEP 1: System type -->
+    <!-- STEP 1 -->
     <div class="step-panel active" id="step-1">
       <div class="step-body">
         <div class="step-q">What type of heating system do you have?</div>
         <div class="options">
-          <button class="opt" onclick="pick(this,1,'gas','Gas Furnace')">
-            
-            <div><div class="opt-label">Gas Furnace</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,1,'electric','Electric Furnace')">
-            
-            <div><div class="opt-label">Electric Furnace</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,1,'heat-pump-ducted','Ducted Heat Pump')">
-            
-            <div><div class="opt-label">Ducted Heat Pump</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,1,'heat-pump-ductless','Ductless Heat Pump')">
-            
-            <div><div class="opt-label">Ductless Heat Pump</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,1,'not-sure','Not Sure')">
-            
-            <div><div class="opt-label">Not Sure</div></div>
-          </button>
+          <button class="opt" onclick="pick(this,1,'gas','Gas Furnace')"><div><div class="opt-label">Gas Furnace</div></div></button>
+          <button class="opt" onclick="pick(this,1,'electric','Electric Furnace')"><div><div class="opt-label">Electric Furnace</div></div></button>
+          <button class="opt" onclick="pick(this,1,'heat-pump-ducted','Ducted Heat Pump')"><div><div class="opt-label">Ducted Heat Pump</div></div></button>
+          <button class="opt" onclick="pick(this,1,'heat-pump-ductless','Ductless Heat Pump')"><div><div class="opt-label">Ductless Heat Pump</div></div></button>
+          <button class="opt" onclick="pick(this,1,'not-sure','Not Sure')"><div><div class="opt-label">Not Sure</div></div></button>
         </div>
         <div class="step-nav">
-          <button class="btn-continue" id="next-1" disabled onclick="goTo(2)">Continue →</button>
+          <button class="btn-continue" id="next-1" disabled onclick="goTo(2)">Continue &#8594;</button>
         </div>
       </div>
     </div>
 
-    <!-- STEP 2: Problem -->
+    <!-- STEP 2 -->
     <div class="step-panel" id="step-2">
       <div class="step-body">
         <div class="step-q">What's going on with your system?</div>
-        <div class="select-wrap" style="margin-bottom:10px;">
+        <div style="margin-bottom:10px;">
           <select class="city-select" id="problem-select" onchange="pickProblem(this.value)" style="font-size:16px;">
             <option value="">Select your situation...</option>
             <option value="wont-start">System won't turn on</option>
@@ -742,75 +542,48 @@
           </select>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="goTo(1)">← Back</button>
-          <button class="btn-continue" id="next-2" disabled onclick="goTo(3)">Continue →</button>
+          <button class="btn-back" onclick="goTo(1)">&#8592; Back</button>
+          <button class="btn-continue" id="next-2" disabled onclick="goTo(3)">Continue &#8594;</button>
         </div>
       </div>
     </div>
 
-    <!-- STEP 3: Home size -->
+    <!-- STEP 3 -->
     <div class="step-panel" id="step-3">
       <div class="step-body">
         <div class="step-q">How big is your home?</div>
         <div class="options">
-          <button class="opt" onclick="pick(this,3,'u1500','Under 1,500 sqft')">
-            
-            <div><div class="opt-label">Under 1,500 sqft</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,3,'1500-2500','1,500 – 2,500 sqft')">
-            
-            <div><div class="opt-label">1,500 – 2,500 sqft</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,3,'2500-3500','2,500 – 3,500 sqft')">
-            
-            <div><div class="opt-label">2,500 – 3,500 sqft</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,3,'o3500','Over 3,500 sqft')">
-            
-            <div><div class="opt-label">Over 3,500 sqft</div></div>
-          </button>
+          <button class="opt" onclick="pick(this,3,'u1500','Under 1,500 sqft')"><div><div class="opt-label">Under 1,500 sqft</div></div></button>
+          <button class="opt" onclick="pick(this,3,'1500-2500','1,500 &#8211; 2,500 sqft')"><div><div class="opt-label">1,500 &#8211; 2,500 sqft</div></div></button>
+          <button class="opt" onclick="pick(this,3,'2500-3500','2,500 &#8211; 3,500 sqft')"><div><div class="opt-label">2,500 &#8211; 3,500 sqft</div></div></button>
+          <button class="opt" onclick="pick(this,3,'o3500','Over 3,500 sqft')"><div><div class="opt-label">Over 3,500 sqft</div></div></button>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="goTo(2)">← Back</button>
-          <button class="btn-continue" id="next-3" disabled onclick="goTo(4)">Continue →</button>
+          <button class="btn-back" onclick="goTo(2)">&#8592; Back</button>
+          <button class="btn-continue" id="next-3" disabled onclick="goTo(4)">Continue &#8594;</button>
         </div>
       </div>
     </div>
 
-    <!-- STEP 4: System age -->
+    <!-- STEP 4 -->
     <div class="step-panel" id="step-4">
       <div class="step-body">
         <div class="step-q">Any idea how old your system is?</div>
         <div class="options">
-          <button class="opt" onclick="pick(this,4,'u5','Under 5 years')">
-            
-            <div><div class="opt-label">Under 5 years</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,4,'5-10','5 – 10 years')">
-            
-            <div><div class="opt-label">5 – 10 years</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,4,'10-15','10 – 15 years')">
-            
-            <div><div class="opt-label">10 – 15 years</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,4,'o15','Over 15 years')">
-            
-            <div><div class="opt-label">Over 15 years</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,4,'not-sure','Not sure')">
-            
-            <div><div class="opt-label">Not sure</div></div>
-          </button>
+          <button class="opt" onclick="pick(this,4,'u5','Under 5 years')"><div><div class="opt-label">Under 5 years</div></div></button>
+          <button class="opt" onclick="pick(this,4,'5-10','5 &#8211; 10 years')"><div><div class="opt-label">5 &#8211; 10 years</div></div></button>
+          <button class="opt" onclick="pick(this,4,'10-15','10 &#8211; 15 years')"><div><div class="opt-label">10 &#8211; 15 years</div></div></button>
+          <button class="opt" onclick="pick(this,4,'o15','Over 15 years')"><div><div class="opt-label">Over 15 years</div></div></button>
+          <button class="opt" onclick="pick(this,4,'not-sure','Not sure')"><div><div class="opt-label">Not sure</div></div></button>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="goTo(3)">← Back</button>
-          <button class="btn-continue" id="next-4" disabled onclick="goTo(5)">Continue →</button>
+          <button class="btn-back" onclick="goTo(3)">&#8592; Back</button>
+          <button class="btn-continue" id="next-4" disabled onclick="goTo(5)">Continue &#8594;</button>
         </div>
       </div>
     </div>
 
-    <!-- STEP 5: City -->
+    <!-- STEP 5 -->
     <div class="step-panel" id="step-5">
       <div class="step-body">
         <div class="step-q">Which city are you in?</div>
@@ -829,8 +602,8 @@
         </select>
         <div class="city-msg" id="city-msg"></div>
         <div class="step-nav">
-          <button class="btn-back" onclick="goTo(4)">← Back</button>
-          <button class="btn-continue" id="next-5" disabled onclick="showLoading()">Get My Recommendation →</button>
+          <button class="btn-back" onclick="goTo(4)">&#8592; Back</button>
+          <button class="btn-continue" id="next-5" disabled onclick="showLoading()">Get My Recommendation &#8594;</button>
         </div>
       </div>
     </div>
@@ -845,60 +618,88 @@
     <!-- RESULT -->
     <div class="result-panel" id="result-panel">
 
+      <!-- 1. RECOMMENDATION — single container -->
       <div class="rec-box">
-        <div class="rec-eyebrow">Our recommendation</div>
+        <div class="rec-eyebrow">Our Recommendation</div>
         <div class="rec-verdict" id="rec-verdict"></div>
         <div class="rec-sub" id="rec-sub"></div>
+        <div class="rec-cause" id="rec-cause" style="display:none;">
+          <div class="rec-cause-label">Most Likely Cause</div>
+          <div class="rec-cause-text" id="rec-cause-text"></div>
+        </div>
       </div>
 
-      <div class="rec-bullets">
-        <div class="rec-bullet" id="rec-b1"></div>
-        <div class="rec-bullet" id="rec-b2"></div>
-        <div class="rec-bullet" id="rec-b3"></div>
+      <!-- 2. UNGATED PRICING — visible immediately, no form required -->
+      <div class="pricing-box" id="pricing-box">
+        <div class="pricing-eyebrow">Typical Cost in Your Area</div>
+        <div class="pricing-rows">
+          <div class="pricing-row" id="pricing-repair" style="display:none;">
+            <span class="pricing-label">Repair</span>
+            <span class="pricing-val repair-color" id="pricing-repair-val"></span>
+          </div>
+          <div class="pricing-row" id="pricing-replace">
+            <span class="pricing-label" id="pricing-replace-label">Replace</span>
+            <span class="pricing-val" id="pricing-replace-val"></span>
+          </div>
+        </div>
+        <div class="pricing-trust">Based on recent similar jobs across Snohomish County — 2026 pricing.</div>
+        <div class="pricing-asterisk">*Includes potential rebates &amp; tax credits. Your specialist can confirm eligibility.</div>
       </div>
 
-      <!-- CTA -->
-      <div class="cta-box" id="cta-box">
-        <div class="cta-q" id="cta-q"></div>
-        <button class="btn-unlock" onclick="showForm()">Get My Instant Estimate &rarr;</button>
-        <button class="btn-notnow" onclick="showNotYet()">Not yet</button>
+      <!-- 3. LOCAL SPECIALIST SECTION -->
+      <div class="specialist-box" id="specialist-box">
+        <div class="specialist-badges">
+          <div class="spec-badge spec-badge-blue">Heating specialist available</div>
+          <div class="spec-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="spec-badge spec-badge-green">1-hr response</div>
+        </div>
+        <div class="specialist-intro" id="specialist-intro"></div>
+        <div class="specialist-signals">
+          <div class="signal-label">What customers highlight</div>
+          <div class="signal-item"><span class="signal-check">&#10003;</span> Fast response — even for urgent, no-heat situations</div>
+          <div class="signal-item"><span class="signal-check">&#10003;</span> Clear explanations, honest cost — no upselling</div>
+          <div class="signal-item"><span class="signal-check">&#10003;</span> Trusted by local real estate professionals</div>
+        </div>
+        <div id="cta-box" style="text-align:center;">
+          <button class="btn-unlock" onclick="showForm()">Connect Me &#8594;</button>
+          <button class="btn-notnow" onclick="showNotYet()">Not now</button>
+          <div class="antispam">You'll only hear from one recommended local technician &#8212; no spam, no multiple calls.</div>
+        </div>
       </div>
 
-      <!-- FORM GATE -->
+      <!-- FORM — slides in after CTA click -->
       <div class="form-section" id="form-section">
-        <div id="form-header" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--dark);text-transform:uppercase;letter-spacing:-0.3px;line-height:1.2;margin-bottom:8px;"></div>
-        <div class="form-title" style="font-size:13px;font-weight:500;color:var(--orange);margin-bottom:12px;">See my instant estimate</div>
+        <div style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:4px;">Want help from someone who's handled this before?</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">We'll connect you with one trusted local technician &#8212; no spam, no multiple calls.</div>
         <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
         <div class="form-field">
           <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" oninput="clearFErr('f-name')">
           <div id="f-name-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
         </div>
         <div class="form-field">
-          <input type="tel" id="f-phone" placeholder="Phone number" autocomplete="tel" inputmode="numeric" oninput="clearFErr('f-phone')">
+          <input type="tel" id="f-phone" placeholder="Best phone number" autocomplete="tel" inputmode="numeric" oninput="clearFErr('f-phone')">
           <div id="f-phone-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
         </div>
-               <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 14px;">
+
+        <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 14px;">
           <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
-          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">I agree to be contacted by one local licensed installer about my estimate. No obligation.</label>
+          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">By continuing, you agree to be contacted by one recommended local professional regarding your request.</label>
         </div>
-        <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()" style="background:#27AE60;width:100%;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;">Get My Verified Quote →</button>
-<div class="form-guarantee">Expect a call or text from a local licensed installer shortly.</div>
+        <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()">Yes &#8212; Connect Me &#8594;</button>
+        <div class="form-guarantee">No obligation &nbsp;&middot;&nbsp; One local pro &nbsp;&middot;&nbsp; No spam</div>
       </div>
 
-      <!-- PRICE REVEAL SECTION -->
-      <div id="price-reveal-section" style="display:none;margin-bottom:10px;">
-        <div id="reveal-confirm" style="font-size:12px;color:#4A8A5A;line-height:1.5;"></div>
+      <!-- POST-SUBMIT PRICE CONFIRMATION (already submitted — shows full breakdown) -->
+      <div id="price-confirm-section" style="display:none;margin-bottom:10px;">
         <div class="est-box" id="repair-box" style="display:none;">
           <div class="est-eyebrow">Typical repair estimate</div>
-          <div class="est-sublabel" id="repair-sublabel"></div>
           <div class="est-range repair" id="repair-range"></div>
           <div class="est-note" id="repair-note"></div>
         </div>
         <div class="est-box" id="replace-box" style="display:none;">
           <div class="est-eyebrow" id="replace-eyebrow">Replacement estimate</div>
-          <div class="est-sublabel" id="replace-sublabel"></div>
           <div class="est-range" id="replace-range"></div>
-          <div class="est-note">Based on recent installations in Greater Snohomish County &mdash; 2026 pricing.</div>
+          <div class="est-note">Based on recent installations in Greater Snohomish County &#8212; 2026 pricing.</div>
         </div>
         <div id="savings-table" style="display:none;background:#fff;border:1px solid #E8EEF4;border-radius:10px;padding:12px 14px;margin-bottom:10px;">
           <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #E8EEF4;">
@@ -920,14 +721,14 @@
 
       <!-- NOT YET / WARM EMAIL -->
       <div id="warm-box" style="display:none;background:#fff;border:1.5px solid #E8EEF4;border-radius:14px;padding:20px;margin-bottom:10px;">
-        <div style="font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:14px;">No worries &mdash; want us to email you your recommendation?</div>
+        <div style="font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:14px;">No worries &#8212; want us to email you your recommendation?</div>
         <input type="email" id="email-only" placeholder="Your email address" oninput="clearWarmErr()" style="width:100%;padding:12px 14px;border:1.5px solid #E8EEF4;border-radius:10px;font-size:16px;font-family:'Barlow',sans-serif;color:#0D1F3C;outline:none;background:#F8FAFC;margin-bottom:6px;">
         <div id="email-only-err" style="font-size:11px;color:#E74C3C;min-height:16px;margin-bottom:6px;"></div>
         <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;">
           <input type="checkbox" id="email-agree" onchange="toggleWarmSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
           <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="email-agree">I agree to receive my recommendation and occasional helpful tips from Mill Creek HVAC. Unsubscribe anytime.</label>
         </div>
-        <button id="btn-warm" disabled onclick="submitWarm()" style="width:100%;background:#27AE60;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;">Send My Recommendation &rarr;</button>
+        <button id="btn-warm" disabled onclick="submitWarm()" style="width:100%;background:#27AE60;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;">Send My Recommendation &#8594;</button>
         <button onclick="showSkip()" style="width:100%;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:6px;">I&rsquo;m all set, thanks</button>
       </div>
 
@@ -935,24 +736,23 @@
       <div id="thankyou-warm" style="display:none;text-align:center;padding:24px 20px;background:#F0FDF4;border:1px solid #D1FAE5;border-radius:14px;margin-bottom:10px;">
         <div style="font-size:32px;margin-bottom:10px;">&#10003;</div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#0D1F3C;margin-bottom:8px;">Got it.</div>
-        <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">We&rsquo;ll email your recommendation shortly.<br>Ready to move forward? Come back anytime.</div>
+        <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">We'll email your recommendation shortly.<br>Ready to move forward? Come back anytime.</div>
       </div>
 
       <!-- SKIP THANK YOU -->
       <div id="thankyou-skip" style="display:none;text-align:center;padding:24px 20px;">
-        <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">Your recommendation will still be here when you&rsquo;re ready.</div>
+        <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">Your recommendation will still be here when you're ready.</div>
       </div>
 
-      <button id="btn-restart" onclick="restartCalc()" style="display:none;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:8px;width:100%;text-align:center;">&larr; Start over</button>
+      <button id="btn-restart" onclick="restartCalc()" style="display:none;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:8px;width:100%;text-align:center;">&#8592; Start over</button>
 
     </div><!-- /result-panel -->
 
-    <!-- TRUST STRIP -->
     <div class="trust-strip">
-      <div class="trust-item"><span class="trust-check">✓</span> Licensed & Insured</div>
-      <div class="trust-item"><span class="trust-check">✓</span> Same-Day Response</div>
-      <div class="trust-item"><span class="trust-check">✓</span> Free Estimates</div>
-      <div class="trust-item"><span class="trust-check">✓</span> No Obligation</div>
+      <div class="trust-item"><span class="trust-check">&#10003;</span> Licensed & Insured</div>
+      <div class="trust-item"><span class="trust-check">&#10003;</span> Same-Day Response</div>
+      <div class="trust-item"><span class="trust-check">&#10003;</span> Free Estimates</div>
+      <div class="trust-item"><span class="trust-check">&#10003;</span> No Obligation</div>
     </div>
 
   </div><!-- /calc-card -->
@@ -961,44 +761,45 @@
 
 <!-- FAQ -->
 <div class="section" id="faq" style="padding-top:40px;">
-  <div class="section-title" style="text-align:center;">Repair or Replace — FAQ</div>
+  <div class="section-title" style="text-align:center;">Repair or Replace &#8212; FAQ</div>
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How much does heating system replacement cost in Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Replacement costs vary significantly based on your system type (gas furnace, electric furnace, heat pump) and your home size. The range across those variables is wide enough that a ballpark number without your specifics won't be useful. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use our free calculator</a> — answer 5 quick questions and get an instant estimate specific to your home and city.</div>
+      <div class="faq-a">Replacement costs vary significantly based on your system type (gas furnace, electric furnace, heat pump) and your home size. The range across those variables is wide enough that a ballpark number without your specifics won't be useful. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use our free calculator</a> &#8212; answer 5 quick questions and get an instant estimate specific to your home and city.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">What's the difference between a furnace and a heat pump?<span class="faq-icon">+</span></button>
-      <div class="faq-a">A furnace burns fuel (gas or electric resistance) to generate heat. A heat pump moves heat from outside air into your home — it's more efficient in mild climates like the Pacific Northwest and also cools your home in summer, making it a two-in-one system. Gas furnaces heat faster in very cold snaps; heat pumps cost less to run day-to-day and qualify for Snohomish PUD rebates. Which is right for your home depends on your current system, age, and situation. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Run the calculator</a> and we'll tell you which direction makes sense.</div>
+      <div class="faq-a">A furnace burns fuel (gas or electric resistance) to generate heat. A heat pump moves heat from outside air into your home &#8212; it's more efficient in mild climates like the Pacific Northwest and also cools your home in summer, making it a two-in-one system. Gas furnaces heat faster in very cold snaps; heat pumps cost less to run day-to-day and qualify for Snohomish PUD rebates. Which is right for your home depends on your current system, age, and situation. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Run the calculator</a> and we'll tell you which direction makes sense.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Can I DIY furnace repairs?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Simple maintenance like filter replacement is fine to do yourself. Anything involving gas lines, electrical connections, or the heat exchanger requires a licensed technician — both for safety and to avoid voiding your warranty. Washington State also requires permits for furnace replacement. Not sure whether your issue is a quick fix or something bigger? <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a repair vs replace recommendation first.</div>
+      <div class="faq-a">Simple maintenance like filter replacement is fine to do yourself. Anything involving gas lines, electrical connections, or the heat exchanger requires a licensed technician &#8212; both for safety and to avoid voiding your warranty. Washington State also requires permits for furnace replacement. Not sure whether your issue is a quick fix or something bigger? <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a repair vs replace recommendation first.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">When should I replace my furnace instead of repairing it?<span class="faq-icon">+</span></button>
-      <div class="faq-a">System age is the biggest factor. If your furnace is over 15 years old, replacement usually makes more long-term financial sense — especially when you factor in PUD rebates on heat pumps. A useful rule of thumb: if repair cost exceeds 30% of replacement value, replace. The right answer depends on your specific system, problem, and home size. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Run our 5-question calculator</a> for a personalized recommendation.</div>
+      <div class="faq-a">System age is the biggest factor. If your furnace is over 15 years old, replacement usually makes more long-term financial sense &#8212; especially when you factor in PUD rebates on heat pumps. A useful rule of thumb: if repair cost exceeds 30% of replacement value, replace. The right answer depends on your specific system, problem, and home size. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Run our 5-question calculator</a> for a personalized recommendation.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Are there rebates for heat pump installation in Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Yes. Snohomish County PUD offers rebates for qualifying heat pump installations, and federal tax credits may also apply depending on system type and income. Exact amounts depend on the system — your installer can confirm eligibility during the free estimate. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use the calculator</a> to see if a heat pump is the right recommendation for your home.</div>
+      <div class="faq-a">Yes. Snohomish County PUD offers rebates for qualifying heat pump installations, and federal tax credits may also apply depending on system type and income. Exact amounts depend on the system &#8212; your installer can confirm eligibility during the free estimate. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to see if a heat pump is the right recommendation for your home.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How long does furnace replacement take?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Most replacements in Mill Creek are completed in one day — typically 4–8 hours. Jobs requiring new ductwork may take 2–3 days. Your technician will give you a realistic timeframe after the free estimate. Not sure if replacement is even the right call? <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Start with the calculator</a> to find out.</div>
+      <div class="faq-a">Most replacements in Mill Creek are completed in one day &#8212; typically 4&#8211;8 hours. Jobs requiring new ductwork may take 2&#8211;3 days. Your technician will give you a realistic timeframe after the free estimate. Not sure if replacement is even the right call? <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Start with the calculator</a> to find out.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Is a permit required for furnace replacement in Washington?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees vary by city and will be included in your installer's estimate. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a free estimate and connect with a local licensed installer.</div>
+      <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees vary by city and will be included in your installer's estimate. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a free estimate and connect with a local licensed installer.</div>
     </div>
   </div>
-  </div>
+</div>
 
 <!-- SECOND CTA -->
 <div class="section">
   <div class="second-cta-box">
     <div class="second-cta-title">Get Your Free Recommendation</div>
-   <button class="second-cta-btn" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})">Get Started →</button>
+    <div class="second-cta-sub">Understand the problem, see what it should cost, then decide.</div>
+    <button class="second-cta-btn" onclick="revealCalc(true)">Get Started &#8594;</button>
   </div>
 </div>
 
@@ -1019,7 +820,7 @@
 <div class="footer">
   <p>
     heating.millcreek-hvac.com &nbsp;|&nbsp; 425.595.7972<br>
-    Licensed, insured & bonded local installers — Greater Snohomish County<br>
+    Licensed, insured &amp; bonded local installers &#8212; Greater Snohomish County<br>
     <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf" target="_blank">Privacy Policy</a>
     &nbsp;|&nbsp; Mill Creek HVAC &copy; 2026
   </p>
@@ -1067,28 +868,37 @@ const ageData = {
   'not-sure':{rec:'Without knowing the system age, a quick assessment from our team is the best next step.'}
 };
 
- 
+function revealCalc(scroll) {
+  const wrap = document.getElementById('calc-wrap');
+  if (!wrap) return;
+  wrap.classList.add('revealed');
+  const heroCta = document.getElementById('hero-cta');
+  if (heroCta) {
+    heroCta.style.opacity = '0.4';
+    heroCta.style.pointerEvents = 'none';
+    heroCta.textContent = '✓ Estimate form open below';
+    heroCta.style.cursor = 'default';
+    heroCta.style.fontSize = '14px';
+    heroCta.style.padding = '10px 24px';
+    heroCta.style.boxShadow = 'none';
+  }
+  if (scroll) {
+    setTimeout(() => { wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+  }
+}
+
 function pick(el,step,val,label){
   el.closest('.options').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
   if(step===1){state.system=val;state.systemLabel=label;document.getElementById('next-1').disabled=false;}
-  if(step===2){state.problem=val;state.problemLabel=label;document.getElementById('next-2').disabled=false;}
   if(step===3){state.size=val;state.sizeLabel=label;document.getElementById('next-3').disabled=false;}
   if(step===4){state.age=val;state.ageLabel=label;document.getElementById('next-4').disabled=false;}
 }
 
 function pickProblem(val){
   if(!val) return;
-  const labels = {
-    'wont-start':"System won't turn on",
-    'not-heating':'Not heating properly',
-    'noises':'Making unusual noises',
-    'bills':'Energy bills have increased',
-    'planning':'Just planning ahead',
-    'not-sure':'Not sure'
-  };
-  state.problem=val;
-  state.problemLabel=labels[val]||val;
+  const labels = {'wont-start':"System won't turn on",'not-heating':'Not heating properly','noises':'Making unusual noises','bills':'Energy bills have increased','planning':'Just planning ahead','not-sure':'Not sure'};
+  state.problem=val; state.problemLabel=labels[val]||val;
   document.getElementById('next-2').disabled=false;
 }
 
@@ -1106,28 +916,21 @@ function goTo(n){
     const s=document.getElementById('seg-'+i);
     if(s) s.className='prog-seg'+(i<n?' done':i===n?' active':'');
   }
-  const pl=document.getElementById('prog-label');
-  if(pl) pl.textContent='Question '+n+' of 5';
-  const sp=document.getElementById('step-'+n);
-  if(sp) sp.classList.add('active');
+  const pl=document.getElementById('prog-label'); if(pl) pl.textContent='Question '+n+' of 5';
+  const sp=document.getElementById('step-'+n); if(sp) sp.classList.add('active');
 }
 
 function showLoading(){
   document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
   const cn=document.getElementById('city-name'); if(cn) cn.textContent=state.city;
-  const loading=document.getElementById('loading');
-  if(loading) loading.classList.add('active');
-  const bar=document.getElementById('bar-fill');
-  const pct=document.getElementById('bar-pct');
+  const loading=document.getElementById('loading'); if(loading) loading.classList.add('active');
+  const bar=document.getElementById('bar-fill'), pct=document.getElementById('bar-pct');
   let progress=0;
   const timer=setInterval(()=>{
     progress=Math.min(progress+2.2,100);
     if(bar) bar.style.width=progress+'%';
     if(pct) pct.textContent=Math.round(progress)+'%';
-    if(progress>=100){
-      clearInterval(timer);
-      setTimeout(()=>{if(loading)loading.classList.remove('active');buildResult();},200);
-    }
+    if(progress>=100){clearInterval(timer);setTimeout(()=>{if(loading)loading.classList.remove('active');buildResult();},200);}
   },40);
 }
 
@@ -1139,6 +942,7 @@ function buildResult(){
   const age=ageData[state.age]||ageData['not-sure'];
   const isPlanning=state.problem==='planning';
   const heatPump=state.system==='heat-pump-ducted'||state.system==='heat-pump-ductless';
+  const isOld=state.age==='o15'||state.age==='10-15';
 
   state.repairRange=repair?repair.range:'N/A';
   state.replaceRange=replaceRange;
@@ -1151,131 +955,143 @@ function buildResult(){
   const verdicts={'u5':'Repair '+sys,'5-10':'Likely Repair First','10-15':'Consider Repair or Replace','o15':'Likely Time to Replace','not-sure':'Start With an Assessment'};
   const verdict=isPlanning?'Your System Looks Good':(verdicts[state.age]||'Start With an Assessment');
 
+  // — RECOMMENDATION —
   const rv=document.getElementById('rec-verdict'); if(rv) rv.textContent=verdict;
   const rs=document.getElementById('rec-sub'); if(rs) rs.textContent=(ageLabels[state.age]||'')+' — '+(sysLabels[state.system]||'system')+' in '+state.city;
 
-  const bullets=[];
-  if(state.age==='u5'){bullets.push('System is under 5 years old — repair almost always makes sense');bullets.push('Replacement at this age rarely pencils out financially');bullets.push('A diagnostic visit can identify the issue quickly');}
-  else if(state.age==='5-10'){bullets.push('Mid-life system — repair is usually the right first step');bullets.push('30% rule: if repair cost exceeds 30% of replacement, replace');bullets.push('Get a diagnostic estimate before committing');}
-  else if(state.age==='10-15'){bullets.push('System is approaching replacement territory');bullets.push(heatPump?'Heat pump rebates: $1,800–$2,500 via Snohomish PUD':'Heat pump upgrade may qualify for $1,800–$2,500 PUD rebate');bullets.push('Worth comparing repair vs replacement cost side by side');}
-  else if(state.age==='o15'){bullets.push('Over 15 years — replacement is usually the smarter investment');bullets.push(heatPump?'Federal tax credit up to $2,000 applies':'Heat pump upgrade qualifies for federal tax credit up to $2,000');bullets.push('Snohomish PUD rebates may also apply — ask your installer');}
-  else{bullets.push('System age is the biggest factor in this decision');bullets.push('A specialist can confirm age and condition at the free estimate');bullets.push('No obligation to proceed after the assessment');}
-  if(state.problem==='wont-start') bullets[0]='⚠️ No heat — needs same-day attention';
+  // Diagnostic: most likely cause per symptom
+  const likelyCause={
+    'wont-start':{gas:'Faulty igniter or failed control board',electric:'Faulty heating element or tripped breaker','heat-pump-ducted':'Refrigerant issue or failed capacitor','heat-pump-ductless':'Failed capacitor or low refrigerant','not-sure':'Ignition or electrical fault'},
+    'not-heating':{gas:'Dirty burners or failing heat exchanger',electric:'Worn heating element or thermostat fault','heat-pump-ducted':'Low refrigerant or reversing valve issue','heat-pump-ductless':'Refrigerant loss or sensor fault','not-sure':'Heat source or distribution issue'},
+    'noises':{gas:'Failing blower motor or loose heat exchanger panel',electric:'Blower motor bearing wear','heat-pump-ducted':'Failing blower motor or refrigerant flow noise','heat-pump-ductless':'Fan motor or debris in unit','not-sure':'Blower motor or mechanical wear'},
+    'bills':{gas:'Dirty heat exchanger or failing inducer motor',electric:'Degraded heating element efficiency','heat-pump-ducted':'Refrigerant loss reducing efficiency','heat-pump-ductless':'Refrigerant or compressor efficiency loss','not-sure':'System running harder than it should'},
+    'planning':null,
+    'not-sure':{gas:'Ignition system and heat exchanger inspection recommended',electric:'Element and thermostat check recommended','heat-pump-ducted':'Refrigerant level and capacitor check recommended','heat-pump-ductless':'Refrigerant and sensor inspection recommended','not-sure':'Full diagnostic visit to identify issue'}
+  };
 
-  ['rec-b1','rec-b2','rec-b3'].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    if(el) el.innerHTML='<span style="color:#27AE60;margin-right:6px;">✓</span>'+(bullets[i]||'');
-  });
+  // Most likely cause
+  const causeBox=document.getElementById('rec-cause');
+  const causeEl=document.getElementById('rec-cause-text');
+  const causeMap=likelyCause[state.problem];
+  if(causeMap&&causeBox&&causeEl){
+    const ct=causeMap[state.system]||causeMap['not-sure'];
+    if(ct){ causeEl.textContent=ct; causeBox.style.display='block'; }
+    else { causeBox.style.display='none'; }
+  } else if(causeBox){ causeBox.style.display='none'; }
 
-  const cq=document.getElementById('cta-q');
-  if(cq){
-    if(state.age==='u5'||state.age==='5-10')
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying for similar repairs?';
-    else if(state.age==='o15')
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying for a new system?';
-    else if(isPlanning)
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying for heating systems in 2026?';
-    else
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying to repair or replace?';
+  // — UNGATED PRICING —
+  // Repair row — use symptom-mapped diagnostic range
+  const diagPricing={
+    'wont-start':'$150 – $700','not-heating':'$200 – $800',
+    'noises':'$350 – $900','bills':'$100 – $500',
+    'planning':null,'not-sure':'$150 – $700'
+  };
+  const repairRow=document.getElementById('pricing-repair');
+  const repairVal=document.getElementById('pricing-repair-val');
+  const diagRange=diagPricing[state.problem];
+  if(diagRange&&!isPlanning){
+    if(repairRow) repairRow.style.display='flex';
+    if(repairVal) repairVal.textContent=diagRange;
+  } else {
+    if(repairRow) repairRow.style.display='none';
   }
 
+  // Replace row
+  const replaceLabel=document.getElementById('pricing-replace-label');
+  const replaceVal=document.getElementById('pricing-replace-val');
+  if(replaceLabel){
+    if(heatPump) replaceLabel.textContent='Replace (Heat Pump)';
+    else if(state.system==='gas') replaceLabel.textContent='Replace (Gas Furnace)';
+    else if(state.system==='electric') replaceLabel.textContent='Replace (Electric)';
+    else replaceLabel.textContent='Replace';
+  }
+  if(replaceVal) replaceVal.textContent=replaceRange||'';
+
+  // Pricing trust line
+  const pricingTrust=document.querySelector('.pricing-trust');
+  if(pricingTrust){
+    if(isPlanning) pricingTrust.textContent='Based on recent installations across Snohomish County — 2026 pricing.';
+    else pricingTrust.textContent='Based on recent similar jobs across Snohomish County — 2026 pricing.';
+  }
+
+  // — SPECIALIST INTRO — dynamic copy
+  const si=document.getElementById('specialist-intro');
+  if(si){
+    const jobType=(state.age==='o15'||(state.age==='10-15'&&!isPlanning))?'replacements':'repairs';
+    si.textContent='We found 1 licensed & insured specialist in your area with recent experience on similar '+jobType+'.';
+  }
+
+  // Cold lead webhook
   fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-    lead_type:'cold',session_id:sessionID,source:'heating-calc',
-    timestamp:new Date().toISOString(),
-    system_type:state.systemLabel,problem:state.problemLabel,
-    size:state.sizeLabel,age:state.ageLabel,city:state.city
+    lead_type:'cold',session_id:sessionID,source:'heating-calc',timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,size:state.sizeLabel,age:state.ageLabel,city:state.city
   })}).catch(()=>{});
 
   for(let i=1;i<=5;i++){const s=document.getElementById('seg-'+i);if(s)s.className='prog-seg done';}
   const pl=document.getElementById('prog-label'); if(pl) pl.textContent='Your recommendation';
   const rp=document.getElementById('result-panel'); if(rp) rp.classList.add('active');
   const cc=document.querySelector('.calc-card'); if(cc) cc.scrollIntoView({behavior:'smooth',block:'start'});
-
   const br=document.getElementById('btn-restart'); if(br) br.style.display='block';
 }
 
 function showForm(){
-  const cb=document.getElementById('cta-box'); if(cb) cb.style.display='none';
+  // Hide the CTA area inside specialist box, keep specialist context visible
+  const ctaBox=document.getElementById('cta-box'); if(ctaBox) ctaBox.style.display='none';
   const fs=document.getElementById('form-section'); if(fs) fs.style.display='block';
-  const fh=document.getElementById('form-header');
-  if(fh && state.city){
-    const isReplace = state.age==='o15' || (state.age==='10-15' && state.problem!=='planning');
-    const isPlanning = state.problem==='planning';
-    let action = isReplace ? 'replacements' : 'repairs';
-    if(isPlanning) action = 'new systems';
-    fh.innerHTML = 'See what people paid for similar <span style="color:var(--orange);">' + action + '</span> in ' + state.city;
-  }
   fs.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function submitForm(){
-  const nameEl=document.getElementById('f-name');
-  const phoneEl=document.getElementById('f-phone');
-
-
+  const nameEl=document.getElementById('f-name'),phoneEl=document.getElementById('f-phone');
   ['f-name','f-phone'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.style.borderColor='';
     const err=document.getElementById(id+'-err'); if(err) err.textContent='';
   });
-
   const name=(nameEl?nameEl.value.trim():'').replace(/<[^>]*>/g,'');
   const phone=(phoneEl?phoneEl.value.trim():'').replace(/<[^>]*>/g,'');
- 
-
   let valid=true;
   if(!name||name.length<2){if(nameEl)nameEl.style.borderColor='#E74C3C';const e=document.getElementById('f-name-err');if(e)e.textContent='Please enter your name';valid=false;}
   const digits=phone.replace(/[^0-9]/g,'');
   if(digits.length<10){if(phoneEl)phoneEl.style.borderColor='#E74C3C';const e=document.getElementById('f-phone-err');if(e)e.textContent='Please enter a valid 10-digit phone number';valid=false;}
-   if(!valid) return;
-
+  if(!valid) return;
   const pot=document.getElementById('h-pot'); if(pot&&pot.value!=='') return;
-
-  const btn=document.getElementById('btn-submit'); if(btn){btn.textContent='Getting your estimate...';btn.disabled=true;}
+  const btn=document.getElementById('btn-submit'); if(btn){btn.textContent='Connecting you now...';btn.disabled=true;}
 
   fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-    lead_type:'hot',session_id:sessionID,source:'heating-calc',
-    timestamp:new Date().toISOString(),
-    system_type:state.systemLabel,problem:state.problemLabel,
-    size:state.sizeLabel,age:state.ageLabel,city:state.city,
-    name:name,phone:phone,
-    repair_range:state.repairRange,replacement_range:state.replaceRange,
-    recommendation:state.recommendation
+    lead_type:'hot',session_id:sessionID,source:'heating-calc',timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,size:state.sizeLabel,age:state.ageLabel,city:state.city,
+    name:name,phone:phone,repair_range:state.repairRange,replacement_range:state.replaceRange,recommendation:state.recommendation
   })}).catch(()=>{});
 
   const fs=document.getElementById('form-section'); if(fs) fs.style.display='none';
-
-  var isHP=state.system==='heat-pump-ducted'||state.system==='heat-pump-ductless';
-  var isPlanning=state.problem==='planning';
-
-  var pr=document.getElementById('price-reveal-section');
+  const isHP=state.system==='heat-pump-ducted'||state.system==='heat-pump-ductless';
+  const isPlanning=state.problem==='planning';
+  const pr=document.getElementById('price-confirm-section');
   if(pr){
     pr.style.display='block';
-    var rc=document.getElementById('reveal-confirm');
-    if(rc) rc.style.display='none';
-    var rb=document.getElementById('repair-box');
-    if(rb) rb.style.display=(!isPlanning&&state.repairRange&&state.repairRange!=='N/A')?'block':'none';
-    var rr=document.getElementById('repair-range'); if(rr) rr.textContent=state.repairRange||'';
-    var rn=document.getElementById('repair-note'); if(rn) rn.textContent='Typical cost for this issue in '+state.city+'. A diagnostic visit will confirm.';
-    var rep=document.getElementById('replace-range'); if(rep) rep.textContent=state.replaceRange||'';
-    var re2=document.getElementById('replace-box'); if(re2) re2.style.display='block';
-    var st=document.getElementById('savings-table'); if(st) st.style.display=isHP?'block':'none';
-    var nb=document.getElementById('net-box');
+    const rb=document.getElementById('repair-box'); if(rb) rb.style.display=(!isPlanning&&state.repairRange&&state.repairRange!=='N/A')?'block':'none';
+    const rr=document.getElementById('repair-range'); if(rr) rr.textContent=state.repairRange||'';
+    const rn=document.getElementById('repair-note'); if(rn) rn.textContent='Typical cost for this issue in '+state.city+'. A diagnostic visit will confirm.';
+    const rep=document.getElementById('replace-range'); if(rep) rep.textContent=state.replaceRange||'';
+    const re2=document.getElementById('replace-box'); if(re2) re2.style.display='block';
+    const st=document.getElementById('savings-table'); if(st) st.style.display=isHP?'block':'none';
+    const nb=document.getElementById('net-box');
     if(nb&&isHP){
       nb.style.display='block';
-      var nums=(state.replaceRange||'').replace(/[$,~]/g,'').match(/\d+/g);
+      const nums=(state.replaceRange||'').replace(/[$,~]/g,'').match(/\d+/g);
       if(nums&&nums.length>=2){
-        var lo=Math.max(0,parseInt(nums[0])-2000),hi=Math.max(0,parseInt(nums[1])-2000);
-        var nr=document.getElementById('net-range'); if(nr) nr.textContent='$'+lo.toLocaleString()+' – $'+hi.toLocaleString();
-        var nn=document.getElementById('net-note'); if(nn) nn.textContent='After federal tax credit (up to $2,000) — ask your installer about additional utility rebates.';
+        const lo=Math.max(0,parseInt(nums[0])-2000),hi=Math.max(0,parseInt(nums[1])-2000);
+        const nr=document.getElementById('net-range'); if(nr) nr.textContent='$'+lo.toLocaleString()+' – $'+hi.toLocaleString();
+        const nn=document.getElementById('net-note'); if(nn) nn.textContent='After federal tax credit (up to $2,000) — ask your installer about additional utility rebates.';
       }
     } else if(nb) nb.style.display='none';
-    var sc=document.getElementById('savings-caveat'); if(sc) sc.style.display=isHP?'block':'none';
+    const sc=document.getElementById('savings-caveat'); if(sc) sc.style.display=isHP?'block':'none';
     pr.scrollIntoView({behavior:'smooth',block:'start'});
   }
 }
 
 function showNotYet(){
-  const cb=document.getElementById('cta-box'); if(cb) cb.style.display='none';
+  const sb=document.getElementById('specialist-box'); if(sb) sb.style.display='none';
   const wb=document.getElementById('warm-box'); if(wb) wb.style.display='block';
 }
 
@@ -1283,18 +1099,11 @@ function submitWarm(){
   const emailEl=document.getElementById('email-only');
   const email=(emailEl?emailEl.value.trim():'').replace(/<[^>]*>/g,'');
   const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!email||!emailRe.test(email)){
-    if(emailEl) emailEl.style.borderColor='#E74C3C';
-    const err=document.getElementById('email-only-err'); if(err) err.textContent='Please enter a valid email address';
-    return;
-  }
+  if(!email||!emailRe.test(email)){if(emailEl)emailEl.style.borderColor='#E74C3C';const err=document.getElementById('email-only-err');if(err)err.textContent='Please enter a valid email address';return;}
   const btn=document.getElementById('btn-warm'); if(btn){btn.textContent='Sending...';btn.disabled=true;}
   fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-    lead_type:'warm',session_id:sessionID,source:'heating-calc',
-    timestamp:new Date().toISOString(),
-    system_type:state.systemLabel,problem:state.problemLabel,
-    size:state.sizeLabel,age:state.ageLabel,city:state.city,
-    recommendation:state.recommendation,email:email
+    lead_type:'warm',session_id:sessionID,source:'heating-calc',timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,size:state.sizeLabel,age:state.ageLabel,city:state.city,recommendation:state.recommendation,email:email
   })}).catch(()=>{});
   const wb=document.getElementById('warm-box'); if(wb) wb.style.display='none';
   const tw=document.getElementById('thankyou-warm'); if(tw) tw.style.display='block';
@@ -1304,10 +1113,8 @@ function showSkip(){
   const wb=document.getElementById('warm-box'); if(wb) wb.style.display='none';
   const ts=document.getElementById('thankyou-skip'); if(ts) ts.style.display='block';
   fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-    lead_type:'cold',session_id:sessionID,source:'heating-calc',
-    timestamp:new Date().toISOString(),
-    system_type:state.systemLabel,problem:state.problemLabel,
-    size:state.sizeLabel,age:state.ageLabel,city:state.city
+    lead_type:'cold',session_id:sessionID,source:'heating-calc',timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,size:state.sizeLabel,age:state.ageLabel,city:state.city
   })}).catch(()=>{});
 }
 
@@ -1319,16 +1126,15 @@ function restartCalc(){
   const cm=document.getElementById('city-msg'); if(cm) cm.textContent='';
   for(let i=1;i<=5;i++){const n=document.getElementById('next-'+i);if(n)n.disabled=true;}
   const rp=document.getElementById('result-panel'); if(rp) rp.classList.remove('active');
-  const prv=document.getElementById('price-reveal-section'); if(prv) prv.style.display='none';
+  const prv=document.getElementById('price-confirm-section'); if(prv) prv.style.display='none';
   const fs=document.getElementById('form-section'); if(fs) fs.style.display='none';
+  const cb=document.getElementById('cta-box'); if(cb) cb.style.display='block';
+  const sbx=document.getElementById('specialist-box'); if(sbx) sbx.style.display='block';
   const wb=document.getElementById('warm-box'); if(wb) wb.style.display='none';
   const tw=document.getElementById('thankyou-warm'); if(tw) tw.style.display='none';
   const ts=document.getElementById('thankyou-skip'); if(ts) ts.style.display='none';
-  const cb=document.getElementById('cta-box'); if(cb) cb.style.display='block';
-  const bs=document.getElementById('btn-submit'); if(bs){bs.textContent='Get My Instant Estimate →';bs.disabled=true;}
+  const bs=document.getElementById('btn-submit'); if(bs){bs.textContent='Connect Me →';bs.disabled=true;}
   const fa=document.getElementById('f-agree'); if(fa) fa.checked=false;
-  const ea=document.getElementById('email-agree'); if(ea) ea.checked=false;
-  const eo=document.getElementById('email-only'); if(eo) eo.value='';
   goTo(1);
   const s1=document.getElementById('step-1'); if(s1) s1.classList.add('active');
   const brr=document.getElementById('btn-restart'); if(brr) brr.style.display='none';
