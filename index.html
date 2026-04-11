@@ -195,8 +195,8 @@
     font-size: 11px; color: var(--muted);
   }
 
-  /* GET STARTED BUTTON */
-  .btn-get-started {
+/* GET STARTED BUTTON */
+.btn-get-started {
     display: inline-flex; align-items: center; gap: 10px;
     background: #27AE60;
     border: none; border-radius: 12px;
@@ -208,6 +208,7 @@
     cursor: pointer;
     transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 6px 24px rgba(39,174,96,0.35);
+    text-decoration: none;
   }
   .btn-get-started:hover {
     background: #219A52;
@@ -227,21 +228,10 @@
   }
 
   /* CALC WRAP — hidden by default */
-  .calc-wrap {
-    max-width: 600px; margin: 0 auto;
-    padding: 0 16px 48px;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1),
-                opacity 0.4s ease,
-                padding 0.4s ease;
-  }
-  .calc-wrap.revealed {
-    max-height: 2400px;
-    opacity: 1;
-    padding-top: 16px;
-  }
+ .calc-wrap {
+  max-width: 600px; margin: 0 auto;
+  padding: 16px 16px 48px;
+}
 
   .calc-card {
     background: var(--white);
@@ -664,10 +654,9 @@
   <h1>Is It Time to<br><span>Repair or Replace</span><br>Your Heating System?</h1>
   <p class="hero-sub">Answer 5 quick questions. Get an instant recommendation and free cost estimate.</p>
 
-  <button class="btn-get-started" onclick="revealCalc(true)" id="hero-cta">
-    Get Started <span class="arrow">→</span>
-  </button>
-
+ <a href="#calc-wrap" class="btn-get-started">
+  Get Started <span class="arrow">→</span>
+</a>
   <!-- HERO TESTIMONIAL -->
   <div class="hero-testimonial">
     <div class="hero-testi-text">"Our furnace stopped working in January. I had no idea what anything should cost. This took 2 minutes and I finally knew what I was walking into."</div>
@@ -976,39 +965,40 @@
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How much does heating system replacement cost in Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Replacement costs vary significantly based on your system type (gas furnace, electric furnace, heat pump) and your home size. The range across those variables is wide enough that a ballpark number without your specifics won't be useful. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use our free calculator</a> — answer 5 quick questions and get an instant estimate specific to your home and city.</div>
+      <div class="faq-a">Replacement costs vary significantly based on your system type (gas furnace, electric furnace, heat pump) and your home size. The range across those variables is wide enough that a ballpark number without your specifics won't be useful. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use our free calculator</a> — answer 5 quick questions and get an instant estimate specific to your home and city.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">What's the difference between a furnace and a heat pump?<span class="faq-icon">+</span></button>
-      <div class="faq-a">A furnace burns fuel (gas or electric resistance) to generate heat. A heat pump moves heat from outside air into your home — it's more efficient in mild climates like the Pacific Northwest and also cools your home in summer, making it a two-in-one system. Gas furnaces heat faster in very cold snaps; heat pumps cost less to run day-to-day and qualify for Snohomish PUD rebates. Which is right for your home depends on your current system, age, and situation. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Run the calculator</a> and we'll tell you which direction makes sense.</div>
+      <div class="faq-a">A furnace burns fuel (gas or electric resistance) to generate heat. A heat pump moves heat from outside air into your home — it's more efficient in mild climates like the Pacific Northwest and also cools your home in summer, making it a two-in-one system. Gas furnaces heat faster in very cold snaps; heat pumps cost less to run day-to-day and qualify for Snohomish PUD rebates. Which is right for your home depends on your current system, age, and situation. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Run the calculator</a> and we'll tell you which direction makes sense.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Can I DIY furnace repairs?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Simple maintenance like filter replacement is fine to do yourself. Anything involving gas lines, electrical connections, or the heat exchanger requires a licensed technician — both for safety and to avoid voiding your warranty. Washington State also requires permits for furnace replacement. Not sure whether your issue is a quick fix or something bigger? <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a repair vs replace recommendation first.</div>
+      <div class="faq-a">Simple maintenance like filter replacement is fine to do yourself. Anything involving gas lines, electrical connections, or the heat exchanger requires a licensed technician — both for safety and to avoid voiding your warranty. Washington State also requires permits for furnace replacement. Not sure whether your issue is a quick fix or something bigger? <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a repair vs replace recommendation first.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">When should I replace my furnace instead of repairing it?<span class="faq-icon">+</span></button>
-      <div class="faq-a">System age is the biggest factor. If your furnace is over 15 years old, replacement usually makes more long-term financial sense — especially when you factor in PUD rebates on heat pumps. A useful rule of thumb: if repair cost exceeds 30% of replacement value, replace. The right answer depends on your specific system, problem, and home size. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Run our 5-question calculator</a> for a personalized recommendation.</div>
+      <div class="faq-a">System age is the biggest factor. If your furnace is over 15 years old, replacement usually makes more long-term financial sense — especially when you factor in PUD rebates on heat pumps. A useful rule of thumb: if repair cost exceeds 30% of replacement value, replace. The right answer depends on your specific system, problem, and home size. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Run our 5-question calculator</a> for a personalized recommendation.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Are there rebates for heat pump installation in Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Yes. Snohomish County PUD offers rebates for qualifying heat pump installations, and federal tax credits may also apply depending on system type and income. Exact amounts depend on the system — your installer can confirm eligibility during the free estimate. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to see if a heat pump is the right recommendation for your home.</div>
+      <div class="faq-a">Yes. Snohomish County PUD offers rebates for qualifying heat pump installations, and federal tax credits may also apply depending on system type and income. Exact amounts depend on the system — your installer can confirm eligibility during the free estimate. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use the calculator</a> to see if a heat pump is the right recommendation for your home.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How long does furnace replacement take?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Most replacements in Mill Creek are completed in one day — typically 4–8 hours. Jobs requiring new ductwork may take 2–3 days. Your technician will give you a realistic timeframe after the free estimate. Not sure if replacement is even the right call? <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Start with the calculator</a> to find out.</div>
+      <div class="faq-a">Most replacements in Mill Creek are completed in one day — typically 4–8 hours. Jobs requiring new ductwork may take 2–3 days. Your technician will give you a realistic timeframe after the free estimate. Not sure if replacement is even the right call? <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Start with the calculator</a> to find out.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Is a permit required for furnace replacement in Washington?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees vary by city and will be included in your installer's estimate. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a free estimate and connect with a local licensed installer.</div>
+      <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees vary by city and will be included in your installer's estimate. <a href="#calc-wrap" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a free estimate and connect with a local licensed installer.</div>
     </div>
+  </div>
   </div>
 
 <!-- SECOND CTA -->
 <div class="section">
   <div class="second-cta-box">
     <div class="second-cta-title">Get Your Free Recommendation</div>
-    <button class="second-cta-btn" onclick="revealCalc(true)">Get Started →</button>
+   <button class="second-cta-btn" onclick="document.getElementById('calc-wrap').scrollIntoView({behavior:'smooth'})">Get Started →</button>
   </div>
 </div>
 
@@ -1077,27 +1067,7 @@ const ageData = {
   'not-sure':{rec:'Without knowing the system age, a quick assessment from our team is the best next step.'}
 };
 
-function revealCalc(scroll) {
-  const wrap = document.getElementById('calc-wrap');
-  if (!wrap) return;
-  wrap.classList.add('revealed');
-  const heroCta = document.getElementById('hero-cta');
-  if (heroCta) {
-    heroCta.style.opacity = '0.4';
-    heroCta.style.pointerEvents = 'none';
-    heroCta.textContent = '✓ Estimate form open below';
-    heroCta.style.cursor = 'default';
-    heroCta.style.fontSize = '14px';
-    heroCta.style.padding = '10px 24px';
-    heroCta.style.boxShadow = 'none';
-  }
-  if (scroll) {
-    setTimeout(() => {
-      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  }
-}
-
+ 
 function pick(el,step,val,label){
   el.closest('.options').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
