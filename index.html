@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HVAC Install Costs — Local AC Installation Estimate</title>
+  <title>AC Installation Cost Calculator</title>
   <meta
     name="description"
     content="Get a local AC installation estimate based on real pricing patterns in King and Snohomish County."
@@ -16,21 +16,24 @@
   />
   <style>
     :root {
-      --navy: #1f2a44;
-      --navy-soft: #42506d;
+      --navy: #14213d;
+      --navy-soft: #52607a;
       --accent: #540d6e;
       --accent-2: #ee4266;
       --highlight: #ffd23f;
-      --bg: #ffffff;
-      --bg-soft: #f8f8fb;
-      --bg-tint: #fff8eb;
+      --bg: #f7f9fc;
+      --bg-soft: #fbfcff;
+      --bg-tint: #fff7e8;
       --card: #ffffff;
-      --border: rgba(31, 42, 68, 0.06);
-      --shadow: 0 10px 28px rgba(31, 42, 68, 0.07), 0 2px 6px rgba(31, 42, 68, 0.03);
-      --shadow-soft: 0 6px 18px rgba(31, 42, 68, 0.05), 0 1px 3px rgba(31, 42, 68, 0.03);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
+      --border: rgba(20, 33, 61, 0.05);
+      --border-strong: rgba(20, 33, 61, 0.08);
+      --shadow-soft: 0 6px 20px rgba(20, 33, 61, 0.06), 0 1px 2px rgba(20, 33, 61, 0.04);
+      --shadow-card: 0 12px 34px rgba(20, 33, 61, 0.08), 0 2px 8px rgba(20, 33, 61, 0.04);
+      --shadow-hover: 0 16px 38px rgba(20, 33, 61, 0.1), 0 3px 10px rgba(20, 33, 61, 0.06);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
       --radius-md: 18px;
+      --radius-sm: 16px;
       --max: 1120px;
     }
 
@@ -61,26 +64,30 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+    }
+
     .container {
       width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
     }
 
     .nav {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(31, 42, 68, 0.06);
       position: sticky;
       top: 0;
       z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
-      min-height: 78px;
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 18px;
     }
 
     .brand {
@@ -90,10 +97,22 @@
       min-width: 0;
     }
 
-    .brand img {
-      height: 38px;
-      width: auto;
-      object-fit: contain;
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255, 210, 63, 0.28), rgba(255, 210, 63, 0.12));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+    }
+
+    .brand-mark svg {
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
     }
 
     .brand-copy {
@@ -106,8 +125,8 @@
     .brand-title {
       font-size: 15px;
       font-weight: 800;
-      letter-spacing: 0.01em;
       color: var(--navy);
+      letter-spacing: 0.01em;
       white-space: nowrap;
     }
 
@@ -124,15 +143,16 @@
     }
 
     .hero {
-      padding: 54px 0 28px;
+      padding: 56px 0 24px;
       background:
-        radial-gradient(circle at top right, rgba(255, 210, 63, 0.12), transparent 24%),
-        linear-gradient(to bottom, #ffffff, #ffffff);
+        radial-gradient(circle at top right, rgba(255, 210, 63, 0.14), transparent 25%),
+        radial-gradient(circle at top left, rgba(238, 66, 102, 0.07), transparent 20%),
+        linear-gradient(180deg, #ffffff, #fbfcff);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 40px;
       align-items: center;
     }
@@ -141,11 +161,11 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--bg-tint);
-      border: 1px solid rgba(255, 210, 63, 0.35);
-      color: var(--accent);
-      border-radius: 999px;
       padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--bg-tint);
+      border: 1px solid rgba(255, 210, 63, 0.42);
+      color: var(--accent);
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.08em;
@@ -155,106 +175,37 @@
 
     .hero h1 {
       font-family: "Fraunces", serif;
-      font-size: clamp(2.35rem, 5vw, 4.45rem);
-      line-height: 0.97;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 0.98;
       letter-spacing: -0.035em;
-      margin-bottom: 18px;
       color: var(--navy);
-    }
-
-    .hero h1 .accent {
-      color: var(--accent-2);
+      margin-bottom: 14px;
+      max-width: 680px;
     }
 
     .hero-sub {
-      font-size: 1.12rem;
-      line-height: 1.6;
+      font-size: 1.08rem;
       color: var(--navy-soft);
-      max-width: 640px;
       margin-bottom: 10px;
+      max-width: 620px;
+      line-height: 1.65;
     }
 
     .hero-note {
-      font-size: 0.98rem;
-      color: var(--navy-soft);
-      font-weight: 500;
-      margin-bottom: 24px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      appearance: none;
-      border: none;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 17px 24px;
-      font-size: 15px;
-      font-weight: 800;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--accent-2);
-      color: white;
-      box-shadow: 0 8px 20px rgba(238, 66, 102, 0.18);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: var(--navy);
-      border: 1px solid rgba(31, 42, 68, 0.06);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .proof-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .proof-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(31, 42, 68, 0.05);
-      border-radius: 999px;
-      padding: 12px 16px;
-      background: white;
-      color: var(--navy);
-      box-shadow: var(--shadow-soft);
-      font-size: 14px;
+      font-size: 1rem;
       font-weight: 600;
-    }
-
-    .proof-chip .dot {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 210, 63, 0.22);
-      color: var(--accent);
-      flex-shrink: 0;
+      color: var(--navy);
+      margin-bottom: 24px;
+      max-width: 620px;
     }
 
     .hero-card {
-      position: relative;
       background: linear-gradient(180deg, #ffffff, #fcfcff);
-      border: 1px solid rgba(31, 42, 68, 0.05);
-      border-radius: 36px;
-      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      border-radius: 30px;
       padding: 22px;
+      box-shadow: var(--shadow-card);
+      position: relative;
       overflow: hidden;
     }
 
@@ -262,24 +213,26 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(238, 66, 102, 0.07), transparent 38%);
+      background: radial-gradient(circle at top right, rgba(238, 66, 102, 0.08), transparent 38%);
       pointer-events: none;
     }
 
     .estimate-panel {
-      border-radius: 28px;
-      border: 1px solid rgba(84, 13, 110, 0.06);
-      background: white;
-      padding: 22px;
+      position: relative;
+      z-index: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
       box-shadow: var(--shadow-soft);
     }
 
     .estimate-label {
       font-size: 12px;
       font-weight: 800;
+      color: var(--accent-2);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--accent-2);
       margin-bottom: 10px;
     }
 
@@ -294,6 +247,7 @@
 
     .estimate-range {
       font-size: 30px;
+      line-height: 1;
       font-weight: 800;
       color: var(--accent);
       margin-bottom: 10px;
@@ -319,20 +273,20 @@
       font-weight: 600;
     }
 
-    .estimate-item .mini {
+    .estimate-mini {
       width: 24px;
       height: 24px;
       border-radius: 999px;
-      background: rgba(255, 210, 63, 0.22);
-      display: inline-flex;
+      flex-shrink: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
+      background: rgba(255, 210, 63, 0.22);
       color: var(--accent);
-      flex-shrink: 0;
     }
 
     .section {
-      padding: 28px 0 18px;
+      padding: 24px 0 18px;
     }
 
     .section-head {
@@ -353,23 +307,23 @@
     .section h2 {
       font-family: "Fraunces", serif;
       font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.02;
+      line-height: 1.03;
       letter-spacing: -0.03em;
       color: var(--navy);
     }
 
     .section-lead {
-      max-width: 720px;
       color: var(--navy-soft);
+      max-width: 700px;
       font-size: 1.02rem;
       line-height: 1.65;
     }
 
     .flow-wrap {
-      background: linear-gradient(180deg, #f8f9fc, #ffffff);
-      border-top: 1px solid rgba(31, 42, 68, 0.05);
-      border-bottom: 1px solid rgba(31, 42, 68, 0.05);
-      padding: 34px 0 44px;
+      padding: 36px 0 42px;
+      background: linear-gradient(180deg, #fbfcff, #f7f9fc);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .steps-grid {
@@ -380,11 +334,11 @@
     }
 
     .step-card {
-      background: white;
-      border: 1px solid rgba(31, 42, 68, 0.05);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-soft);
       padding: 28px 22px;
+      box-shadow: var(--shadow-soft);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -393,31 +347,32 @@
     .step-card::after {
       content: "";
       position: absolute;
-      inset: auto -40px -60px auto;
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
+      right: -36px;
+      bottom: -70px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(255, 210, 63, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(255, 210, 63, 0.14), transparent 72%);
       pointer-events: none;
     }
 
     .step-icon {
-      width: 88px;
-      height: 88px;
+      width: 92px;
+      height: 92px;
       border-radius: 999px;
       margin: 0 auto 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(180deg, rgba(255, 210, 63, 0.24), rgba(255, 210, 63, 0.1));
-      box-shadow: 0 8px 22px rgba(84, 13, 110, 0.06);
+      background: linear-gradient(180deg, rgba(255, 210, 63, 0.24), rgba(255, 210, 63, 0.08));
+      box-shadow: var(--shadow-soft);
     }
 
     .step-index {
       font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--accent-2);
       margin-bottom: 6px;
     }
@@ -427,8 +382,8 @@
       font-size: 24px;
       line-height: 1.04;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
       color: var(--navy);
+      margin-bottom: 8px;
     }
 
     .step-copy {
@@ -438,17 +393,17 @@
     }
 
     .question-wrap {
-      padding: 46px 0 18px;
+      padding: 46px 0 20px;
     }
 
     .question-card {
-      max-width: 840px;
+      max-width: 860px;
       margin: 0 auto;
-      background: white;
-      border: 1px solid rgba(31, 42, 68, 0.05);
-      border-radius: 36px;
-      box-shadow: var(--shadow);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 34px;
       padding: 34px;
+      box-shadow: var(--shadow-card);
     }
 
     .question-top {
@@ -467,22 +422,21 @@
       width: 12px;
       height: 12px;
       border-radius: 999px;
-      background: #e4e6ef;
+      background: #e6e9f1;
     }
 
     .dot-step.active {
       width: 34px;
-      border-radius: 999px;
       background: var(--accent-2);
     }
 
     .question-title {
       font-family: "Fraunces", serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-size: clamp(1.85rem, 3vw, 2.6rem);
       line-height: 1.04;
       letter-spacing: -0.03em;
-      color: var(--navy);
       margin-bottom: 8px;
+      color: var(--navy);
     }
 
     .question-sub {
@@ -498,31 +452,31 @@
     }
 
     .answer-card {
-      border: 1px solid rgba(31, 42, 68, 0.05);
-      border-radius: 26px;
-      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--card);
       padding: 22px 18px 18px;
       cursor: pointer;
-      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
       text-align: center;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
       box-shadow: var(--shadow-soft);
     }
 
     .answer-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(238, 66, 102, 0.22);
-      box-shadow: 0 10px 24px rgba(31, 42, 68, 0.08), 0 2px 6px rgba(31, 42, 68, 0.03);
+      border-color: rgba(238, 66, 102, 0.28);
+      box-shadow: var(--shadow-hover);
     }
 
     .answer-card.selected {
-      border-color: rgba(238, 66, 102, 0.32);
-      box-shadow: 0 0 0 3px rgba(238, 66, 102, 0.08), 0 10px 24px rgba(31, 42, 68, 0.08);
-      background: #fffafa;
+      border-color: rgba(238, 66, 102, 0.5);
+      box-shadow: 0 0 0 4px rgba(238, 66, 102, 0.08), var(--shadow-card);
+      background: #fffdfd;
     }
 
     .answer-icon {
-      width: 104px;
-      height: 104px;
+      width: 108px;
+      height: 108px;
       margin: 0 auto 14px;
       display: flex;
       align-items: center;
@@ -532,14 +486,14 @@
     .answer-title {
       font-size: 18px;
       font-weight: 800;
-      line-height: 1.25;
       color: var(--navy);
+      line-height: 1.28;
       margin-bottom: 6px;
     }
 
     .answer-sub {
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--navy-soft);
     }
 
@@ -548,36 +502,69 @@
       justify-content: center;
     }
 
-    .why-grid {
+    .btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 16px 24px;
+      font-size: 15px;
+      font-weight: 800;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent-2);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(238, 66, 102, 0.2);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .factors-wrap {
+      padding: 16px 0 8px;
+    }
+
+    .factors-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
-    .why-card {
-      background: white;
-      border: 1px solid rgba(31, 42, 68, 0.05);
-      border-radius: 26px;
+    .factor-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
       padding: 24px 22px;
       box-shadow: var(--shadow-soft);
     }
 
-    .why-card h3 {
+    .factor-card h3 {
       font-family: "Fraunces", serif;
       font-size: 24px;
       line-height: 1.04;
-      margin-bottom: 10px;
+      letter-spacing: -0.03em;
       color: var(--navy);
+      margin-bottom: 10px;
     }
 
-    .why-card p {
-      color: var(--navy-soft);
+    .factor-card p {
       font-size: 15px;
+      color: var(--navy-soft);
       line-height: 1.6;
     }
 
     .faq-wrap {
-      padding: 24px 0 66px;
+      padding: 20px 0 66px;
     }
 
     .faq-list {
@@ -588,9 +575,9 @@
     }
 
     .faq-item {
-      background: white;
-      border: 1px solid rgba(31, 42, 68, 0.05);
-      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
       padding: 20px 22px;
       box-shadow: var(--shadow-soft);
     }
@@ -603,14 +590,14 @@
     }
 
     .faq-a {
-      color: var(--navy-soft);
       font-size: 15px;
+      color: var(--navy-soft);
       line-height: 1.6;
     }
 
     .footer {
-      border-top: 1px solid rgba(31, 42, 68, 0.05);
-      background: white;
+      background: #fff;
+      border-top: 1px solid var(--border);
       padding: 24px 0 40px;
     }
 
@@ -626,7 +613,7 @@
     @media (max-width: 1040px) {
       .hero-grid,
       .steps-grid,
-      .why-grid {
+      .factors-grid {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -635,7 +622,7 @@
       }
 
       .hero-card {
-        max-width: 700px;
+        max-width: 720px;
       }
 
       .answer-grid {
@@ -659,7 +646,7 @@
 
       .hero-grid,
       .steps-grid,
-      .why-grid {
+      .factors-grid {
         grid-template-columns: 1fr;
       }
 
@@ -680,19 +667,56 @@
         flex-direction: column;
       }
     }
+
+    .proof-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .proof-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 12px 16px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .proof-chip .dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 210, 63, 0.22);
+      color: var(--accent);
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#">
-        <img src="logo.jpeg" alt="HVAC Install Costs" />
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M8.5 13.5 11 16l4.5-5" stroke="#ee4266" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div class="brand-copy">
           <div class="brand-title">HVAC Install Costs</div>
           <div class="brand-sub">Local AC installation estimate</div>
         </div>
       </a>
-      <div class="nav-right">Based on real local pricing</div>
+      <div class="nav-right">Real local pricing</div>
     </div>
   </header>
 
@@ -700,24 +724,18 @@
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">Local AC installation estimate</div>
-        <h1>What should AC installation cost for <span class="accent">your home</span>?</h1>
+        <h1>Get a local AC installation estimate</h1>
         <p class="hero-sub">
-          See what AC installation typically costs for homes like yours.<br />
-          Based on real installs in King &amp; Snohomish County.
+          AC installation quotes can vary by thousands for the same home.
         </p>
         <p class="hero-note">
-          No personal info required · See cost ranges instantly
+          Get a tighter local estimate based on installs across King &amp; Snohomish County.
         </p>
-
-        <div class="hero-actions">
-          <a href="#question-flow" class="btn btn-primary">Start Estimate →</a>
-          <a href="#how-it-works" class="btn btn-secondary">How it works</a>
-        </div>
 
         <div class="proof-chips">
           <div class="proof-chip">
             <span class="dot">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
               </svg>
@@ -726,7 +744,7 @@
           </div>
           <div class="proof-chip">
             <span class="dot">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -735,57 +753,48 @@
           </div>
           <div class="proof-chip">
             <span class="dot">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
               </svg>
             </span>
             No contact info needed
-          </div>
-          <div class="proof-chip">
-            <span class="dot">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M12 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Refine your estimate later
           </div>
         </div>
       </div>
 
       <div class="hero-card">
         <div class="estimate-panel">
-          <div class="estimate-label">Sample result</div>
-          <div class="estimate-title">Ducted Heat Pump</div>
-          <div class="estimate-range">$8,400 – $9,100</div>
+          <div class="estimate-label">Sample estimate</div>
+          <div class="estimate-title">Central AC Install</div>
+          <div class="estimate-range">$8,200 – $8,900</div>
           <div class="estimate-copy">
-            Typical install range for a mid-size home with existing ductwork.
+            Most homes like yours fall in this range.
           </div>
 
           <div class="estimate-list">
             <div class="estimate-item">
-              <span class="mini">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <span class="estimate-mini">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              Works with existing vents
+              Based on recent local installs
             </div>
             <div class="estimate-item">
-              <span class="mini">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <span class="estimate-mini">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              Heating + cooling in one system
+              Existing ductwork lowers cost
             </div>
             <div class="estimate-item">
-              <span class="mini">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <span class="estimate-mini">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
-              Common fit for full replacement
+              Good fit for full replacement
             </div>
           </div>
         </div>
@@ -796,66 +805,66 @@
   <section class="flow-wrap" id="how-it-works">
     <div class="container">
       <div class="section-head">
-        <div class="section-kicker">Instant local estimate</div>
-        <h2>Simple steps. Clear range. No pressure.</h2>
+        <div class="section-kicker">How it works</div>
+        <h2>Simple steps. Fast estimate.</h2>
         <p class="section-lead">
-          No personal info required · See cost ranges instantly
+          Start with a few quick details, then get a tighter local range before you ever talk to anyone.
         </p>
       </div>
 
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-icon">
-            <svg width="54" height="54" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-              <rect x="12" y="20" width="56" height="36" rx="8" stroke="#1f2a44" stroke-width="3"/>
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+              <rect x="12" y="20" width="56" height="36" rx="8" stroke="#14213d" stroke-width="3"/>
               <path d="M22 60h36" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
               <path d="M27 36h26" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
               <circle cx="22" cy="38" r="4" fill="#ffd23f"/>
             </svg>
           </div>
           <div class="step-index">Step 1</div>
-          <div class="step-title">Choose your situation</div>
-          <div class="step-copy">Tell us whether you’re replacing a system, adding AC, or still unsure.</div>
+          <div class="step-title">Pick your situation</div>
+          <div class="step-copy">Tell us if you're replacing a system, adding AC, or not sure yet.</div>
         </div>
 
         <div class="step-card">
           <div class="step-icon">
-            <svg width="54" height="54" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-              <path d="M18 58V33l22-15 22 15v25" stroke="#1f2a44" stroke-width="3" stroke-linejoin="round"/>
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+              <path d="M18 58V33l22-15 22 15v25" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
               <path d="M31 58V43h18v15" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/>
               <path d="M20 33h40" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="step-index">Step 2</div>
           <div class="step-title">Answer quick home questions</div>
-          <div class="step-copy">We use home size, ductwork, and location to narrow to the most likely fit.</div>
+          <div class="step-copy">We use home size, ductwork, and location to narrow the estimate.</div>
         </div>
 
         <div class="step-card">
           <div class="step-icon">
-            <svg width="54" height="54" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-              <rect x="18" y="14" width="44" height="52" rx="10" stroke="#1f2a44" stroke-width="3"/>
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+              <rect x="18" y="14" width="44" height="52" rx="10" stroke="#14213d" stroke-width="3"/>
               <path d="M28 30h24" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
               <path d="M28 42h18" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
               <path d="M28 54h12" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="step-index">Step 3</div>
-          <div class="step-title">See your estimated range</div>
-          <div class="step-copy">Get a typical installation range and the option that usually makes sense.</div>
+          <div class="step-title">See your range</div>
+          <div class="step-copy">Get a tighter local estimate and the option that usually makes sense.</div>
         </div>
 
         <div class="step-card">
           <div class="step-icon">
-            <svg width="54" height="54" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-              <circle cx="40" cy="40" r="22" stroke="#1f2a44" stroke-width="3"/>
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="22" stroke="#14213d" stroke-width="3"/>
               <path d="M31 41l6 6 12-14" stroke="#ee4266" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M16 62c7-5 13-6 24-6 11 0 17 1 24 6" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="step-index">Step 4</div>
-          <div class="step-title">Refine if you want</div>
-          <div class="step-copy">If you need a tighter number, you can keep going after you’ve seen value first.</div>
+          <div class="step-title">Refine if needed</div>
+          <div class="step-copy">Only after value is delivered can you continue for a more exact number.</div>
         </div>
       </div>
     </div>
@@ -872,27 +881,27 @@
             <span class="dot-step"></span>
           </div>
           <div class="question-title">What best describes your situation?</div>
-          <div class="question-sub">Pick the one closest to where you are right now.</div>
+          <div class="question-sub">Choose the one closest to where you are right now.</div>
         </div>
 
         <div class="answer-grid">
           <button class="answer-card selected" type="button">
             <div class="answer-icon">
-              <svg width="96" height="96" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-                <rect x="28" y="24" width="64" height="56" rx="10" stroke="#1f2a44" stroke-width="3"/>
+              <svg width="98" height="98" viewBox="0 0 120 120" fill="none">
+                <rect x="28" y="24" width="64" height="56" rx="10" stroke="#14213d" stroke-width="3"/>
                 <path d="M22 88h76" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
                 <path d="M42 48h36" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
                 <circle cx="40" cy="60" r="6" fill="#ffd23f"/>
               </svg>
             </div>
             <div class="answer-title">My AC needs to be replaced</div>
-            <div class="answer-sub">Best for homes swapping out an older or failing system.</div>
+            <div class="answer-sub">For homes swapping out an older or failing system.</div>
           </button>
 
           <button class="answer-card" type="button">
             <div class="answer-icon">
-              <svg width="96" height="96" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-                <path d="M20 84V46l40-24 40 24v38" stroke="#1f2a44" stroke-width="3" stroke-linejoin="round"/>
+              <svg width="98" height="98" viewBox="0 0 120 120" fill="none">
+                <path d="M20 84V46l40-24 40 24v38" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
                 <rect x="46" y="60" width="28" height="24" rx="4" stroke="#540d6e" stroke-width="3"/>
                 <path d="M36 48h48" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
               </svg>
@@ -903,15 +912,15 @@
 
           <button class="answer-card" type="button">
             <div class="answer-icon">
-              <svg width="96" height="96" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-                <circle cx="60" cy="60" r="34" stroke="#1f2a44" stroke-width="3"/>
+              <svg width="98" height="98" viewBox="0 0 120 120" fill="none">
+                <circle cx="60" cy="60" r="34" stroke="#14213d" stroke-width="3"/>
                 <path d="M60 42v20" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
                 <circle cx="60" cy="78" r="4" fill="#ee4266"/>
                 <path d="M24 94c10-8 21-10 36-10 15 0 26 2 36 10" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
               </svg>
             </div>
             <div class="answer-title">I’m not sure what I need</div>
-            <div class="answer-sub">Good if you want a starting point before talking to anyone.</div>
+            <div class="answer-sub">A good starting point if you want clarity before talking to anyone.</div>
           </button>
         </div>
 
@@ -922,26 +931,26 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section factors-wrap">
     <div class="container">
       <div class="section-head">
         <div class="section-kicker">What changes cost</div>
         <h2>The same home can get very different quotes.</h2>
         <p class="section-lead">
-          Pricing changes based on system type, home size, and whether you already have usable ductwork.
+          These are the biggest factors behind price changes.
         </p>
       </div>
 
-      <div class="why-grid">
-        <div class="why-card">
+      <div class="factors-grid">
+        <div class="factor-card">
           <h3>Home size</h3>
-          <p>Larger homes typically need larger systems, which changes both equipment and labor cost.</p>
+          <p>Larger homes usually need larger equipment, which changes both material and labor cost.</p>
         </div>
-        <div class="why-card">
+        <div class="factor-card">
           <h3>Ductwork</h3>
-          <p>Existing ducts can lower installation cost. Starting from scratch usually increases the range.</p>
+          <p>Existing ducts can lower the install range. Starting from scratch usually costs more.</p>
         </div>
-        <div class="why-card">
+        <div class="factor-card">
           <h3>System type</h3>
           <p>Central AC, heat pumps, and mini splits solve different problems and price differently.</p>
         </div>
@@ -959,7 +968,7 @@
       <div class="faq-list">
         <div class="faq-item">
           <div class="faq-q">Is this an exact quote?</div>
-          <div class="faq-a">No. This shows a typical installation range based on homes and setups similar to yours.</div>
+          <div class="faq-a">No. This shows a tighter local range based on homes and installs similar to yours.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">Why can quotes vary so much?</div>
@@ -967,7 +976,7 @@
         </div>
         <div class="faq-item">
           <div class="faq-q">Will I need to talk to someone right away?</div>
-          <div class="faq-a">No. The goal is to show value first. Refining your estimate can come later as an optional next step.</div>
+          <div class="faq-a">No. The goal is to show value first. A more exact estimate can come later as an optional step.</div>
         </div>
       </div>
     </div>
