@@ -309,6 +309,7 @@
     .faq-q { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
 
     .bottom-cta { padding: 8px 0 44px; display: flex; justify-content: center; }
+    .is-hidden-after-start { display: none !important; }
     .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px; }
 
@@ -845,11 +846,19 @@
       });
     };
 
+    const updateSecondarySections = (id) => {
+      const hide = id !== 'step1';
+      document.querySelectorAll('.factors-wrap, .faq-wrap, .bottom-cta').forEach(section => {
+        section.classList.toggle('is-hidden-after-start', hide);
+      });
+    };
+
     const showStep = (id) => {
       document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       const map = { step1:1, step2:2, step3:3, step4:4, loadingStep:4, resultsStep:4 };
       if (map[id]) progress(map[id]);
+      updateSecondarySections(id);
     };
 
     // Card selections
