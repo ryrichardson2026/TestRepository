@@ -4,99 +4,471 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AC Installation Cost Estimate</title>
-  <meta name="description" content="Get an accurate AC installation estimate instantly based on real local pricing from King and Snohomish County." />
+  <meta name="description" content="Check what AC installation should cost based on local pricing patterns." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy: #14213d; --navy-soft: #5f6f89; --accent: #ee4266; --accent-dark: #c72b4f;
-      --highlight: #ffd23f; --purple: #540d6e; --bg: #f7f9fc; --bg-soft: #fcfcff; --white: #ffffff;
-      --border: rgba(20, 33, 61, 0.06); --border-strong: rgba(20, 33, 61, 0.1);
+      --navy: #14213d;
+      --navy-soft: #5f6f89;
+      --accent: #ee4266;
+      --accent-dark: #c72b4f;
+      --highlight: #ffd23f;
+      --purple: #540d6e;
+      --bg: #f7f9fc;
+      --bg-soft: #fcfcff;
+      --white: #ffffff;
+      --border: rgba(20, 33, 61, 0.06);
+      --border-strong: rgba(20, 33, 61, 0.1);
       --shadow-soft: 0 8px 24px rgba(20, 33, 61, 0.05), 0 2px 6px rgba(20, 33, 61, 0.04);
       --shadow-card: 0 16px 36px rgba(20, 33, 61, 0.08), 0 3px 10px rgba(20, 33, 61, 0.05);
       --shadow-hover: 0 18px 40px rgba(20, 33, 61, 0.1), 0 4px 12px rgba(20, 33, 61, 0.06);
-      --radius-xl: 30px; --radius-lg: 24px; --radius-md: 20px; --radius-sm: 16px; --max: 1120px;
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 20px;
+      --radius-sm: 16px;
+      --max: 1120px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: "Inter", sans-serif; background: var(--white); color: var(--navy); line-height: 1.5; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
     img { display: block; max-width: 100%; }
     button { font: inherit; }
     a { color: inherit; text-decoration: none; }
     .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-    .nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-    .nav-inner { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
     .brand { display: flex; align-items: center; gap: 12px; }
     .brand-copy { display: flex; flex-direction: column; gap: 2px; }
     .brand-title { font-size: 15px; font-weight: 800; letter-spacing: 0.01em; }
     .brand-sub { font-size: 12px; color: var(--navy-soft); }
-    .nav-back { font-size: 14px; font-weight: 600; color: var(--navy-soft); cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .nav-back {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy-soft);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
     .nav-back:hover { color: var(--navy); }
 
-    .question-flow { padding: 40px 0 20px; }
-    .flow-card { max-width: 860px; margin: 0 auto; background: var(--white); border: 1px solid var(--border); border-radius: 34px; box-shadow: var(--shadow-card); padding: 32px; }
-    .progress { display: flex; justify-content: center; gap: 10px; margin-bottom: 18px; }
-    .progress-pill { width: 12px; height: 12px; border-radius: 999px; background: #e7ebf3; transition: all 0.22s ease; }
-    .progress-pill.active { width: 34px; background: var(--accent); }
+    .question-flow {
+      padding: 30px 0 18px;
+      background: linear-gradient(180deg, #ffffff, #fbfcff);
+    }
+    .flow-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      box-shadow: var(--shadow-card);
+      padding: 26px;
+    }
+
+    .progress {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .progress-pill {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #e7ebf3;
+      transition: all 0.22s ease;
+    }
+    .progress-pill.active {
+      width: 34px;
+      background: var(--accent);
+    }
+
     .flow-step { display: none; }
     .flow-step.active { display: block; }
-    .flow-title { font-family: "Fraunces", serif; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.04; letter-spacing: -0.03em; text-align: center; margin-bottom: 8px; }
-    .flow-sub { text-align: center; color: var(--navy-soft); font-size: 1rem; margin-bottom: 22px; }
 
-    .answers-grid { display: grid; gap: 18px; }
+    .flow-title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .flow-sub {
+      text-align: center;
+      color: var(--navy-soft);
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .answers-grid {
+      display: grid;
+      gap: 14px;
+    }
     .answers-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .answer-card { border: 1px solid var(--border); border-radius: 24px; background: var(--white); padding: 22px 18px 18px; cursor: pointer; text-align: center; transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease; box-shadow: var(--shadow-soft); }
-    .answer-card:hover { transform: translateY(-2px); border-color: rgba(238,66,102,0.28); box-shadow: var(--shadow-hover); }
-    .answer-card.selected { border-color: var(--accent); border-width: 2px; box-shadow: 0 0 0 5px rgba(238,66,102,0.18), var(--shadow-card); background: #fff0f3; }
-    .answer-icon { width: 106px; height: 106px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
-    .answer-title { font-size: 18px; font-weight: 800; line-height: 1.28; margin-bottom: 6px; }
-    .answer-sub { font-size: 14px; color: var(--navy-soft); line-height: 1.55; }
 
-    .step-actions { display: flex; justify-content: center; gap: 12px; margin-top: 22px; }
-    .btn { appearance: none; border: none; cursor: pointer; border-radius: 999px; padding: 16px 24px; font-size: 15px; font-weight: 800; transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease; }
+    .answer-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--white);
+      padding: 16px 14px 14px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      box-shadow: var(--shadow-soft);
+      min-height: 184px;
+    }
+    .answer-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(238,66,102,0.28);
+      box-shadow: var(--shadow-hover);
+    }
+    .answer-card.selected {
+      border-color: var(--accent);
+      border-width: 2px;
+      box-shadow: 0 0 0 5px rgba(238,66,102,0.16), var(--shadow-card);
+      background: #fff0f3;
+    }
+    .answer-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .answer-title {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.22;
+      margin-bottom: 5px;
+    }
+    .answer-sub {
+      font-size: 13px;
+      color: var(--navy-soft);
+      line-height: 1.5;
+    }
+
+    .step-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 15px 24px;
+      font-size: 15px;
+      font-weight: 800;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
     .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 12px 26px rgba(238,66,102,0.2); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(238,66,102,0.2);
+    }
     .btn-primary:hover { background: var(--accent-dark); }
-    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-    .btn-ghost { background: #fff; border: 1px solid var(--border); color: var(--navy); box-shadow: var(--shadow-soft); }
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-ghost {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      box-shadow: var(--shadow-soft);
+    }
 
-    .loading-block { text-align: center; padding: 8px 8px 4px; }
-    .loading-title { font-family: "Fraunces", serif; font-size: 2rem; line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 8px; }
-    .loading-sub { color: var(--navy-soft); margin-bottom: 22px; }
-    .loading-bar { max-width: 380px; margin: 0 auto; height: 10px; background: #edf1f7; border-radius: 999px; overflow: hidden; }
-    .loading-fill { height: 100%; width: 40%; border-radius: 999px; background: linear-gradient(90deg, var(--highlight), var(--accent)); animation: shimmer 1.25s ease-in-out infinite; }
-    @keyframes shimmer { 0% { transform: translateX(-80%); } 100% { transform: translateX(220%); } }
+    .loading-block {
+      text-align: center;
+      padding: 8px 8px 4px;
+    }
+    .loading-title {
+      font-family: "Fraunces", serif;
+      font-size: 1.95rem;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .loading-sub {
+      color: var(--navy-soft);
+      margin-bottom: 22px;
+    }
+    .loading-bar {
+      max-width: 380px;
+      margin: 0 auto;
+      height: 10px;
+      background: #edf1f7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .loading-fill {
+      height: 100%;
+      width: 40%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--highlight), var(--accent));
+      animation: shimmer 1.25s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-80%); }
+      100% { transform: translateX(220%); }
+    }
 
-    .results-card { background: linear-gradient(180deg, #ffffff, #fcfcff); border: 1px solid var(--border); border-radius: 30px; box-shadow: var(--shadow-card); padding: 28px; }
-    .results-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
-    .results-type { font-family: "Fraunces", serif; font-size: 34px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 10px; }
-    .results-range { font-size: 36px; font-weight: 800; line-height: 1; color: var(--purple); margin-bottom: 10px; }
-    .results-copy { color: var(--navy-soft); font-size: 15px; margin-bottom: 18px; }
-    .results-reasons { display: grid; gap: 10px; margin-bottom: 24px; }
-    .reason { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--navy); }
-    .reason-mini { width: 24px; height: 24px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,210,63,0.22); color: var(--purple); flex-shrink: 0; }
+    .results-stack {
+      display: grid;
+      gap: 18px;
+    }
 
-    .factors-wrap, .faq-wrap { padding: 20px 0 22px; background: var(--white); }
-    .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
-    .section-kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
-    .section-head h2 { font-family: "Fraunces", serif; font-size: clamp(1.8rem, 3vw, 2.75rem); line-height: 1.03; letter-spacing: -0.03em; }
-    .section-lead { max-width: 720px; color: var(--navy-soft); font-size: 1rem; line-height: 1.65; }
-    .factors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .factor-card, .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow-soft); padding: 22px; }
-    .factor-card h3 { font-family: "Fraunces", serif; font-size: 24px; line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 10px; }
-    .factor-card p, .faq-a { color: var(--navy-soft); font-size: 15px; line-height: 1.6; }
-    .faq-list { display: grid; gap: 14px; max-width: 860px; margin: 0 auto; }
-    .faq-q { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
-    .bottom-cta { padding: 8px 0 44px; display: flex; justify-content: center; }
-    .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px; }
+    .results-card {
+      background: linear-gradient(180deg, #ffffff, #fcfcff);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow-card);
+      padding: 24px;
+    }
+    .results-label {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .results-type {
+      font-family: "Fraunces", serif;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+    .results-range {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--purple);
+      margin-bottom: 10px;
+    }
+    .results-copy {
+      color: var(--navy-soft);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+    .mini-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .results-reasons {
+      display: grid;
+      gap: 10px;
+    }
+    .reason {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .reason-mini {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(84,13,110,0.12);
+      color: var(--purple);
+      flex-shrink: 0;
+    }
 
-    @media (max-width: 1040px) { .factors-grid { grid-template-columns: 1fr 1fr; } .answers-grid.cols-3 { grid-template-columns: 1fr; } }
+    .quote-bridge {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+      padding: 20px;
+    }
+    .quote-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .quote-copy {
+      font-size: 14px;
+      color: var(--navy-soft);
+      margin-bottom: 14px;
+    }
+    .quote-points {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .quote-point {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .quote-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(84,13,110,0.12);
+      color: var(--purple);
+      flex-shrink: 0;
+    }
+    .quote-note {
+      font-size: 12px;
+      color: var(--navy-soft);
+      margin-top: 10px;
+    }
+
+    .factors-wrap, .faq-wrap {
+      padding: 18px 0 22px;
+      background: var(--white);
+    }
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .section-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+    .section-head h2 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 3vw, 2.75rem);
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+    }
+    .section-lead {
+      max-width: 720px;
+      color: var(--navy-soft);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .factors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .factor-card, .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      padding: 22px;
+    }
+    .factor-card h3 {
+      font-family: "Fraunces", serif;
+      font-size: 24px;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+    .factor-card p, .faq-a {
+      color: var(--navy-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-q {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .bottom-cta {
+      padding: 8px 0 44px;
+      display: flex;
+      justify-content: center;
+    }
+    .footer {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 24px 0 40px;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--navy-soft);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1040px) {
+      .factors-grid { grid-template-columns: 1fr 1fr; }
+      .answers-grid.cols-3 { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 720px) {
-      .nav-inner { min-height: 70px; } .brand-sub { display: none; }
-      .flow-card { padding: 24px 18px; } .footer-inner { flex-direction: column; }
+      .nav-inner { min-height: 68px; }
+      .brand-sub { display: none; }
+      .flow-card { padding: 20px 16px; border-radius: 24px; }
+      .answer-card { min-height: auto; }
+      .answer-icon { width: 62px; height: 62px; }
+      .answer-icon svg { width: 62px; height: 62px; }
+      .results-card { padding: 20px; }
+      .results-type { font-size: 28px; }
+      .results-range { font-size: 30px; }
       .factors-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
     }
   </style>
 </head>
@@ -130,25 +502,48 @@
 
         <!-- Step 1 -->
         <div class="flow-step active" id="step1">
-          <div class="flow-title">What best describes your situation?</div>
-          <div class="flow-sub">Pick the one closest to where you are right now.</div>
+          <div class="flow-title">What best matches your situation?</div>
+          <div class="flow-sub">Pick the one that feels closest to where you are right now.</div>
           <div class="answers-grid cols-3">
             <button class="answer-card flow-intent" type="button" data-value="replace">
-              <div class="answer-icon"><svg width="98" height="98" viewBox="0 0 120 120" fill="none"><rect x="28" y="24" width="64" height="56" rx="10" stroke="#14213d" stroke-width="3"/><path d="M22 88h76" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/><path d="M42 48h36" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/><circle cx="40" cy="60" r="6" fill="#ffd23f"/></svg></div>
-              <div class="answer-title">My AC needs to be replaced</div>
-              <div class="answer-sub">For homes swapping out an older or failing system.</div>
+              <div class="answer-icon">
+                <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+                  <rect x="28" y="24" width="64" height="56" rx="10" stroke="#14213d" stroke-width="3"/>
+                  <path d="M22 88h76" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M42 48h36" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
+                  <circle cx="40" cy="60" r="6" fill="#ffd23f"/>
+                </svg>
+              </div>
+              <div class="answer-title">Replace my AC</div>
+              <div class="answer-sub">Swap out an older or failing system.</div>
             </button>
+
             <button class="answer-card flow-intent" type="button" data-value="add">
-              <div class="answer-icon"><svg width="98" height="98" viewBox="0 0 120 120" fill="none"><path d="M20 84V46l40-24 40 24v38" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/><rect x="46" y="60" width="28" height="24" rx="4" stroke="#540d6e" stroke-width="3"/><path d="M36 48h48" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/></svg></div>
-              <div class="answer-title">I want to add AC to my home</div>
-              <div class="answer-sub">For homes adding cooling for the first time.</div>
+              <div class="answer-icon">
+                <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+                  <path d="M20 84V46l40-24 40 24v38" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
+                  <rect x="46" y="60" width="28" height="24" rx="4" stroke="#540d6e" stroke-width="3"/>
+                  <path d="M36 48h48" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="answer-title">Add AC</div>
+              <div class="answer-sub">Put cooling into a home that does not have it now.</div>
             </button>
+
             <button class="answer-card flow-intent" type="button" data-value="unsure">
-              <div class="answer-icon"><svg width="98" height="98" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="34" stroke="#14213d" stroke-width="3"/><path d="M60 42v20" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/><circle cx="60" cy="78" r="4" fill="#ee4266"/><path d="M24 94c10-8 21-10 36-10 15 0 26 2 36 10" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/></svg></div>
-              <div class="answer-title">I'm not sure what I need</div>
-              <div class="answer-sub">A good starting point if you want clarity before talking to anyone.</div>
+              <div class="answer-icon">
+                <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+                  <circle cx="60" cy="60" r="34" stroke="#14213d" stroke-width="3"/>
+                  <path d="M60 42v20" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
+                  <circle cx="60" cy="78" r="4" fill="#ee4266"/>
+                  <path d="M24 94c10-8 21-10 36-10 15 0 26 2 36 10" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="answer-title">Not sure yet</div>
+              <div class="answer-sub">Get a starting point before talking to anyone.</div>
             </button>
           </div>
+
           <div class="step-actions">
             <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue →</button>
           </div>
@@ -157,24 +552,42 @@
         <!-- Step 2 -->
         <div class="flow-step" id="step2">
           <div class="flow-title">How big is your home?</div>
-          <div class="flow-sub">This helps narrow the most likely system size and estimate range.</div>
+          <div class="flow-sub">This helps narrow the system size and your price range.</div>
           <div class="answers-grid cols-3">
             <button class="answer-card flow-size" type="button" data-value="small">
-              <div class="answer-icon"><svg width="92" height="92" viewBox="0 0 120 120" fill="none"><path d="M28 88V50l32-20 32 20v38" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/><path d="M42 88V62h36v26" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/></svg></div>
+              <div class="answer-icon">
+                <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
+                  <path d="M28 88V50l32-20 32 20v38" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
+                  <path d="M42 88V62h36v26" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/>
+                </svg>
+              </div>
               <div class="answer-title">Small</div>
               <div class="answer-sub">Under 1,500 sq ft</div>
             </button>
+
             <button class="answer-card flow-size" type="button" data-value="medium">
-              <div class="answer-icon"><svg width="92" height="92" viewBox="0 0 120 120" fill="none"><path d="M20 88V48l40-24 40 24v40" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/><path d="M36 88V60h48v28" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/></svg></div>
+              <div class="answer-icon">
+                <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
+                  <path d="M20 88V48l40-24 40 24v40" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
+                  <path d="M36 88V60h48v28" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/>
+                </svg>
+              </div>
               <div class="answer-title">Medium</div>
               <div class="answer-sub">1,500–2,500 sq ft</div>
             </button>
+
             <button class="answer-card flow-size" type="button" data-value="large">
-              <div class="answer-icon"><svg width="92" height="92" viewBox="0 0 120 120" fill="none"><path d="M14 90V42l46-28 46 28v48" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/><path d="M28 90V58h64v32" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/></svg></div>
+              <div class="answer-icon">
+                <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
+                  <path d="M14 90V42l46-28 46 28v48" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
+                  <path d="M28 90V58h64v32" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/>
+                </svg>
+              </div>
               <div class="answer-title">Large</div>
               <div class="answer-sub">Over 2,500 sq ft</div>
             </button>
           </div>
+
           <div class="step-actions">
             <button class="btn btn-ghost" type="button" data-back="1">Back</button>
             <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue →</button>
@@ -183,25 +596,46 @@
 
         <!-- Step 3 -->
         <div class="flow-step" id="step3">
-          <div class="flow-title">Does your home have existing ductwork?</div>
-          <div class="flow-sub">This helps determine whether central AC or a ductless setup makes more sense.</div>
+          <div class="flow-title">Does your home have ductwork?</div>
+          <div class="flow-sub">This helps show whether central AC or ductless may fit better.</div>
           <div class="answers-grid cols-3">
             <button class="answer-card flow-ducts" type="button" data-value="yes">
-              <div class="answer-icon"><svg width="92" height="92" viewBox="0 0 120 120" fill="none"><rect x="18" y="40" width="84" height="24" rx="8" stroke="#14213d" stroke-width="3"/><path d="M32 52h56" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/><path d="M44 64v18M60 64v18M76 64v18" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/></svg></div>
+              <div class="answer-icon">
+                <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
+                  <rect x="18" y="40" width="84" height="24" rx="8" stroke="#14213d" stroke-width="3"/>
+                  <path d="M32 52h56" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M44 64v18M60 64v18M76 64v18" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
               <div class="answer-title">Yes</div>
               <div class="answer-sub">My home already has vents</div>
             </button>
+
             <button class="answer-card flow-ducts" type="button" data-value="no">
-              <div class="answer-icon"><svg width="92" height="92" viewBox="0 0 120 120" fill="none"><rect x="18" y="40" width="84" height="24" rx="8" stroke="#14213d" stroke-width="3"/><path d="M32 52h56" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/><path d="M30 30l60 60" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/></svg></div>
+              <div class="answer-icon">
+                <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
+                  <rect x="18" y="40" width="84" height="24" rx="8" stroke="#14213d" stroke-width="3"/>
+                  <path d="M32 52h56" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M30 30l60 60" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </div>
               <div class="answer-title">No</div>
-              <div class="answer-sub">I don't have existing ductwork</div>
+              <div class="answer-sub">I do not have existing ductwork</div>
             </button>
+
             <button class="answer-card flow-ducts" type="button" data-value="unsure">
-              <div class="answer-icon"><svg width="92" height="92" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="34" stroke="#14213d" stroke-width="3"/><path d="M60 44v22" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/><circle cx="60" cy="80" r="4" fill="#ee4266"/></svg></div>
+              <div class="answer-icon">
+                <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
+                  <circle cx="60" cy="60" r="34" stroke="#14213d" stroke-width="3"/>
+                  <path d="M60 44v22" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
+                  <circle cx="60" cy="80" r="4" fill="#ee4266"/>
+                </svg>
+              </div>
               <div class="answer-title">Not sure</div>
               <div class="answer-sub">I need help figuring that out</div>
             </button>
           </div>
+
           <div class="step-actions">
             <button class="btn btn-ghost" type="button" data-back="2">Back</button>
             <button class="btn btn-primary" type="button" id="seeResults" disabled>See My Results →</button>
@@ -211,22 +645,64 @@
         <!-- Loading -->
         <div class="flow-step" id="loadingStep">
           <div class="loading-block">
-            <div class="loading-title">Checking similar installs…</div>
-            <div class="loading-sub">Looking at local patterns for homes like yours</div>
+            <div class="loading-title">Building your local price range...</div>
+            <div class="loading-sub">Looking at home size, system type, and setup</div>
             <div class="loading-bar"><div class="loading-fill"></div></div>
           </div>
         </div>
 
         <!-- Results -->
         <div class="flow-step" id="resultsStep">
-          <div class="results-card">
-            <div class="results-label">Typical local estimate</div>
-            <div class="results-type" id="resultType">Central AC</div>
-            <div class="results-range" id="resultRange">$8,200 – $8,900</div>
-            <div class="results-copy" id="resultCopy">Most homes like yours fall in this range.</div>
-            <div class="results-reasons" id="resultReasons"></div>
+          <div class="results-stack">
+            <div class="results-card">
+              <div class="results-label">Typical local estimate</div>
+              <div class="results-type" id="resultType">Central AC</div>
+              <div class="results-range" id="resultRange">$8,200 – $8,900</div>
+              <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
+
+              <div class="mini-kicker">Why this range fits your home</div>
+              <div class="results-reasons" id="resultReasons"></div>
+            </div>
+
+            <div class="quote-bridge">
+              <div class="quote-title">Most homeowners get 3–5 quotes</div>
+              <div class="quote-copy">This helps you compare pricing and avoid overpaying.</div>
+
+              <div class="quote-points">
+                <div class="quote-point">
+                  <span class="quote-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  Compare local pricing
+                </div>
+
+                <div class="quote-point">
+                  <span class="quote-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  Spot high and low quotes
+                </div>
+
+                <div class="quote-point">
+                  <span class="quote-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  Feel more sure before you choose
+                </div>
+              </div>
+
+              <button class="btn btn-primary" type="button">Get a Quote →</button>
+              <div class="quote-note">No pressure. Just compare.</div>
+            </div>
+
             <div class="step-actions" style="justify-content:flex-start;">
-              <button class="btn btn-primary" type="button">Get My Exact Estimate →</button>
+              <button class="btn btn-ghost" type="button" onclick="restartFlow()">Start Over</button>
             </div>
           </div>
         </div>
@@ -242,9 +718,18 @@
         <p class="section-lead">These are the biggest drivers behind price changes.</p>
       </div>
       <div class="factors-grid">
-        <div class="factor-card"><h3>Home size</h3><p>Larger homes usually need larger equipment, which changes both material and labor cost.</p></div>
-        <div class="factor-card"><h3>Ductwork</h3><p>Existing ducts can lower install cost. Starting from scratch usually raises the range.</p></div>
-        <div class="factor-card"><h3>System type</h3><p>Central AC, heat pumps, and mini splits solve different problems and price differently.</p></div>
+        <div class="factor-card">
+          <h3>Home size</h3>
+          <p>Larger homes usually need larger equipment, which changes both material and labor cost.</p>
+        </div>
+        <div class="factor-card">
+          <h3>Ductwork</h3>
+          <p>Existing ducts can lower install cost. Starting from scratch usually raises the range.</p>
+        </div>
+        <div class="factor-card">
+          <h3>System type</h3>
+          <p>Central AC, heat pumps, and mini splits solve different problems and price differently.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -256,16 +741,28 @@
         <h2>Quick answers before you start.</h2>
       </div>
       <div class="faq-list">
-        <div class="faq-item"><div class="faq-q">Is this an exact quote?</div><div class="faq-a">No. This shows a tighter local range based on homes and installs similar to yours.</div></div>
-        <div class="faq-item"><div class="faq-q">Why can quotes vary so much?</div><div class="faq-a">System size, layout, ductwork, labor, and installer approach can change the number by thousands.</div></div>
-        <div class="faq-item"><div class="faq-q">Will I need to talk to someone right away?</div><div class="faq-a">No. The goal is to show value first. A more exact estimate can come later as an optional step.</div></div>
-        <div class="faq-item"><div class="faq-q">Do I need more than one quote?</div><div class="faq-a">Usually yes. Even after getting a baseline, comparing a couple of local quotes is still smart.</div></div>
+        <div class="faq-item">
+          <div class="faq-q">Is this an exact quote?</div>
+          <div class="faq-a">No. This shows a tighter local range based on homes and installs similar to yours.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why can quotes vary so much?</div>
+          <div class="faq-a">System size, layout, ductwork, labor, and installer approach can change the number by thousands.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Will I need to talk to someone right away?</div>
+          <div class="faq-a">No. The goal is to show value first. A more exact quote can come later as an optional step.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do I need more than one quote?</div>
+          <div class="faq-a">Usually yes. Getting a few local quotes helps you compare pricing and feel more confident.</div>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="bottom-cta">
-    <button class="btn btn-primary" type="button">Get My Estimate →</button>
+    <button class="btn btn-primary" type="button">Get a Quote →</button>
   </div>
 
   <footer class="footer">
@@ -280,50 +777,111 @@
 
     const resultMap = {
       replace: {
-        small: { type: "Central AC", range: "$8,200 – $8,900", copy: "Most homes like yours fall in this range.", reasons: ["Works with existing ductwork","Good fit for full replacement","Common for homes this size"] },
-        medium: { type: "Central AC", range: "$8,900 – $9,700", copy: "Most homes like yours fall in this range.", reasons: ["Typical replacement path","Fits mid-size homes well","Common if ducts are usable"] },
-        large: { type: "Ducted Heat Pump", range: "$10,400 – $11,700", copy: "This is a common upgrade path for larger homes.", reasons: ["Covers more square footage","Heating and cooling in one system","Common for larger replacements"] }
+        small: {
+          type: "Central AC",
+          range: "$8,200 – $8,900",
+          copy: "This is a common range for homes like yours.",
+          reasons: ["Works with existing ductwork", "Good fit for full replacement", "Common for homes this size"]
+        },
+        medium: {
+          type: "Central AC",
+          range: "$8,900 – $9,700",
+          copy: "This is a common range for homes like yours.",
+          reasons: ["Typical replacement path", "Fits mid-size homes well", "Common if ducts are usable"]
+        },
+        large: {
+          type: "Ducted Heat Pump",
+          range: "$10,400 – $11,700",
+          copy: "This is a common upgrade path for larger homes.",
+          reasons: ["Covers more square footage", "Heating and cooling in one system", "Common for larger replacements"]
+        }
       },
       add: {
         small: {
-          yes: { type: "Central AC", range: "$7,900 – $8,600", copy: "Most homes like yours fall in this range.", reasons: ["Uses existing ductwork","Clean add-on for cooling","Good fit for smaller homes"] },
-          no: { type: "Ductless Mini Split", range: "$6,400 – $7,100", copy: "This is often the simplest path without ducts.", reasons: ["No ductwork required","Strong fit for smaller homes","Lower install complexity"] },
-          unsure: { type: "Ductless Mini Split", range: "$6,600 – $7,300", copy: "This is a common starting point when ducts are unclear.", reasons: ["Works without full ductwork","Flexible for retrofits","Common first recommendation"] }
+          yes: {
+            type: "Central AC",
+            range: "$7,900 – $8,600",
+            copy: "This is a common range for homes like yours.",
+            reasons: ["Uses existing ductwork", "Clean add-on for cooling", "Good fit for smaller homes"]
+          },
+          no: {
+            type: "Ductless Mini Split",
+            range: "$6,400 – $7,100",
+            copy: "This is often the simplest path without ducts.",
+            reasons: ["No ductwork required", "Strong fit for smaller homes", "Lower install complexity"]
+          },
+          unsure: {
+            type: "Ductless Mini Split",
+            range: "$6,600 – $7,300",
+            copy: "This is a common starting point when ducts are unclear.",
+            reasons: ["Works without full ductwork", "Flexible for retrofits", "Common first recommendation"]
+          }
         },
         medium: {
-          yes: { type: "Central AC", range: "$8,700 – $9,500", copy: "Most homes like yours fall in this range.", reasons: ["Uses existing ductwork","Good fit for mid-size homes","Common cooling add-on"] },
-          no: { type: "Ductless Mini Split", range: "$8,900 – $9,800", copy: "This is a common solution when central ducts are not available.", reasons: ["No ductwork required","Flexible room coverage","Common retrofit option"] },
-          unsure: { type: "Ducted Heat Pump", range: "$9,800 – $10,700", copy: "A common recommendation when central coverage may be needed.", reasons: ["Can handle broader coverage","Heating and cooling in one system","Often considered for whole-home comfort"] }
+          yes: {
+            type: "Central AC",
+            range: "$8,700 – $9,500",
+            copy: "This is a common range for homes like yours.",
+            reasons: ["Uses existing ductwork", "Good fit for mid-size homes", "Common cooling add-on"]
+          },
+          no: {
+            type: "Ductless Mini Split",
+            range: "$8,900 – $9,800",
+            copy: "This is a common solution when central ducts are not available.",
+            reasons: ["No ductwork required", "Flexible room coverage", "Common retrofit option"]
+          },
+          unsure: {
+            type: "Ducted Heat Pump",
+            range: "$9,800 – $10,700",
+            copy: "A common recommendation when central coverage may be needed.",
+            reasons: ["Can handle broader coverage", "Heating and cooling in one system", "Often considered for whole-home comfort"]
+          }
         },
         large: {
-          yes: { type: "Ducted Heat Pump", range: "$11,200 – $12,400", copy: "This is a common fit for larger homes with ducts.", reasons: ["Supports larger square footage","Heating and cooling in one system","Common for whole-home coverage"] },
-          no: { type: "Ductless Mini Split", range: "$11,400 – $12,600", copy: "Multi-zone ductless is often considered here.", reasons: ["No ductwork required","Can cover multiple areas","Common retrofit solution"] },
-          unsure: { type: "Ducted Heat Pump", range: "$11,000 – $12,200", copy: "This is a common starting point for larger homes.", reasons: ["Whole-home coverage","Heating and cooling in one system","Often fits larger layouts"] }
+          yes: {
+            type: "Ducted Heat Pump",
+            range: "$11,200 – $12,400",
+            copy: "This is a common fit for larger homes with ducts.",
+            reasons: ["Supports larger square footage", "Heating and cooling in one system", "Common for whole-home coverage"]
+          },
+          no: {
+            type: "Ductless Mini Split",
+            range: "$11,400 – $12,600",
+            copy: "Multi-zone ductless is often considered here.",
+            reasons: ["No ductwork required", "Can cover multiple areas", "Common retrofit solution"]
+          },
+          unsure: {
+            type: "Ducted Heat Pump",
+            range: "$11,000 – $12,200",
+            copy: "This is a common starting point for larger homes.",
+            reasons: ["Whole-home coverage", "Heating and cooling in one system", "Often fits larger layouts"]
+          }
         }
       },
       unsure: {
-        small: { type: "Ductless Mini Split", range: "$6,800 – $7,500", copy: "This is a common starting point for smaller homes.", reasons: ["No ductwork required","Flexible installation path","Good fit when needs are still unclear"] },
-        medium: { type: "Central AC", range: "$8,800 – $9,600", copy: "This is a common baseline for homes like yours.", reasons: ["Strong general fit","Common for mid-size homes","Good starting point before refining"] },
-        large: { type: "Ducted Heat Pump", range: "$10,900 – $12,100", copy: "This is a common baseline for larger homes.", reasons: ["Covers more square footage","Heating and cooling in one system","Good fit before deeper sizing"] }
+        small: {
+          type: "Ductless Mini Split",
+          range: "$6,800 – $7,500",
+          copy: "This is a common starting point for smaller homes.",
+          reasons: ["No ductwork required", "Flexible installation path", "Good fit when needs are still unclear"]
+        },
+        medium: {
+          type: "Central AC",
+          range: "$8,800 – $9,600",
+          copy: "This is a common baseline for homes like yours.",
+          reasons: ["Strong general fit", "Common for mid-size homes", "Good starting point before refining"]
+        },
+        large: {
+          type: "Ducted Heat Pump",
+          range: "$10,900 – $12,100",
+          copy: "This is a common baseline for larger homes.",
+          reasons: ["Covers more square footage", "Heating and cooling in one system", "Good fit before deeper sizing"]
+        }
       }
     };
 
-    // Read intent from URL and pre-select
     const params = new URLSearchParams(window.location.search);
     const preIntent = params.get('intent');
-    if (preIntent) {
-      state.intent = preIntent;
-      // Pre-select the matching card and jump to step 2
-      document.addEventListener('DOMContentLoaded', () => {});
-      window.addEventListener('load', () => {
-        document.querySelectorAll('.flow-intent').forEach(c => {
-          if (c.dataset.value === preIntent) c.classList.add('selected');
-        });
-        document.getElementById('toStep2').disabled = false;
-        // Auto-advance to step 2
-        showStep('step2');
-      });
-    }
 
     const progress = (step) => {
       ['p1','p2','p3'].forEach((id, i) => {
@@ -366,11 +924,15 @@
       });
     });
 
-    document.getElementById('toStep2').addEventListener('click', () => { if (state.intent) showStep('step2'); });
+    document.getElementById('toStep2').addEventListener('click', () => {
+      if (state.intent) showStep('step2');
+    });
+
     document.getElementById('toStep3').addEventListener('click', () => {
       if (!state.size) return;
       state.intent === 'add' ? showStep('step3') : runLoadingThenResults();
     });
+
     document.getElementById('seeResults').addEventListener('click', () => {
       if (state.intent === 'add' && !state.ducts) return;
       runLoadingThenResults();
@@ -381,14 +943,21 @@
 
     function runLoadingThenResults() {
       showStep('loadingStep');
-      setTimeout(() => { buildResults(); showStep('resultsStep'); }, 1200);
+      setTimeout(() => {
+        buildResults();
+        showStep('resultsStep');
+      }, 1200);
     }
 
     function buildResults() {
       let result;
-      if (state.intent === 'replace') result = resultMap.replace[state.size];
-      else if (state.intent === 'add') result = resultMap.add[state.size][state.ducts || 'unsure'];
-      else result = resultMap.unsure[state.size];
+      if (state.intent === 'replace') {
+        result = resultMap.replace[state.size];
+      } else if (state.intent === 'add') {
+        result = resultMap.add[state.size][state.ducts || 'unsure'];
+      } else {
+        result = resultMap.unsure[state.size];
+      }
 
       document.getElementById('resultType').textContent = result.type;
       document.getElementById('resultRange').textContent = result.range;
@@ -399,10 +968,41 @@
       result.reasons.forEach(r => {
         const el = document.createElement('div');
         el.className = 'reason';
-        el.innerHTML = `<span class="reason-mini"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>${r}`;
+        el.innerHTML = `
+          <span class="reason-mini">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          ${r}
+        `;
         wrap.appendChild(el);
       });
     }
+
+    function restartFlow() {
+      state.intent = null;
+      state.size = null;
+      state.ducts = null;
+
+      document.querySelectorAll('.answer-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById('toStep2').disabled = true;
+      document.getElementById('toStep3').disabled = true;
+      document.getElementById('seeResults').disabled = true;
+      showStep('step1');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('load', () => {
+      if (preIntent) {
+        state.intent = preIntent;
+        document.querySelectorAll('.flow-intent').forEach(c => {
+          if (c.dataset.value === preIntent) c.classList.add('selected');
+        });
+        document.getElementById('toStep2').disabled = false;
+        showStep('step2');
+      }
+    });
   </script>
 </body>
 </html>
