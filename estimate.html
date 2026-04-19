@@ -16,18 +16,15 @@
       --accent-dark: #c72b4f;
       --highlight: #ffd23f;
       --purple: #540d6e;
+      --green: #16a34a;
       --bg: #f7f9fc;
       --bg-soft: #fcfcff;
       --white: #ffffff;
       --border: rgba(20, 33, 61, 0.06);
       --border-strong: rgba(20, 33, 61, 0.1);
-      --shadow-soft: 0 8px 24px rgba(20, 33, 61, 0.05), 0 2px 6px rgba(20, 33, 61, 0.04);
-      --shadow-card: 0 16px 36px rgba(20, 33, 61, 0.08), 0 3px 10px rgba(20, 33, 61, 0.05);
-      --shadow-hover: 0 18px 40px rgba(20, 33, 61, 0.1), 0 4px 12px rgba(20, 33, 61, 0.06);
-      --radius-xl: 30px;
-      --radius-lg: 24px;
-      --radius-md: 20px;
-      --radius-sm: 16px;
+      --shadow-soft: 0 8px 24px rgba(20,33,61,0.05), 0 2px 6px rgba(20,33,61,0.04);
+      --shadow-card: 0 16px 36px rgba(20,33,61,0.08), 0 3px 10px rgba(20,33,61,0.05);
+      --shadow-hover: 0 18px 40px rgba(20,33,61,0.1), 0 4px 12px rgba(20,33,61,0.06);
       --max: 1120px;
     }
 
@@ -46,67 +43,43 @@
     a { color: inherit; text-decoration: none; }
     .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
 
+    /* NAV */
     .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.92);
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.96);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(20,33,61,0.05);
     }
     .nav-inner {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      min-height: 64px; display: flex;
+      align-items: center; justify-content: space-between; gap: 16px;
     }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand-copy { display: flex; flex-direction: column; gap: 2px; }
-    .brand-title { font-size: 15px; font-weight: 800; letter-spacing: 0.01em; }
-    .brand-sub { font-size: 12px; color: var(--navy-soft); }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .nav-logo svg { display: block; }
     .nav-back {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--navy-soft);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--navy-soft);
+      display: flex; align-items: center; gap: 6px;
     }
     .nav-back:hover { color: var(--navy); }
 
+    /* FLOW */
     .question-flow {
       padding: 30px 0 18px;
       background: linear-gradient(180deg, #ffffff, #fbfcff);
     }
     .flow-card {
-      max-width: 860px;
-      margin: 0 auto;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      box-shadow: var(--shadow-card);
-      padding: 26px;
+      max-width: 860px; margin: 0 auto;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 30px; box-shadow: var(--shadow-card); padding: 26px;
     }
 
-    .progress {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
+    /* PROGRESS */
+    .progress { display: flex; justify-content: center; gap: 10px; margin-bottom: 16px; }
     .progress-pill {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: #e7ebf3;
-      transition: all 0.22s ease;
+      width: 12px; height: 12px; border-radius: 999px;
+      background: #e7ebf3; transition: all 0.22s ease;
     }
-    .progress-pill.active {
-      width: 34px;
-      background: var(--accent);
-    }
+    .progress-pill.active { width: 34px; background: var(--accent); }
 
     .flow-step { display: none; }
     .flow-step.active { display: block; }
@@ -114,37 +87,28 @@
     .flow-title {
       font-family: "Fraunces", serif;
       font-size: clamp(1.7rem, 3vw, 2.4rem);
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-      text-align: center;
-      margin-bottom: 8px;
+      line-height: 1.04; letter-spacing: -0.03em;
+      text-align: center; margin-bottom: 8px;
     }
     .flow-sub {
-      text-align: center;
-      color: var(--navy-soft);
-      font-size: 0.98rem;
-      margin-bottom: 20px;
-      max-width: 620px;
-      margin-left: auto;
-      margin-right: auto;
+      text-align: center; color: var(--navy-soft);
+      font-size: 0.98rem; margin-bottom: 20px;
+      max-width: 620px; margin-left: auto; margin-right: auto;
+    }
+    .flow-micro {
+      text-align: center; font-size: 13px; font-weight: 700;
+      color: var(--accent); margin-bottom: 16px; letter-spacing: 0.01em;
     }
 
-    .answers-grid {
-      display: grid;
-      gap: 14px;
-    }
+    /* ANSWER CARDS */
+    .answers-grid { display: grid; gap: 14px; }
     .answers-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-
     .answer-card {
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--white);
-      padding: 16px 14px 14px;
-      cursor: pointer;
-      text-align: center;
+      border: 1px solid var(--border); border-radius: 20px;
+      background: var(--white); padding: 16px 14px 14px;
+      cursor: pointer; text-align: center;
       transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-      box-shadow: var(--shadow-soft);
-      min-height: 184px;
+      box-shadow: var(--shadow-soft); min-height: 184px;
     }
     .answer-card:hover {
       transform: translateY(-2px);
@@ -152,314 +116,176 @@
       box-shadow: var(--shadow-hover);
     }
     .answer-card.selected {
-      border-color: var(--accent);
-      border-width: 2px;
+      border-color: var(--accent); border-width: 2px;
       box-shadow: 0 0 0 5px rgba(238,66,102,0.16), var(--shadow-card);
       background: #fff0f3;
     }
-    .answer-icon {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .answer-title {
-      font-size: 17px;
-      font-weight: 800;
-      line-height: 1.22;
-      margin-bottom: 5px;
-    }
-    .answer-sub {
-      font-size: 13px;
-      color: var(--navy-soft);
-      line-height: 1.5;
-    }
+    .answer-icon { width: 76px; height: 76px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
+    .answer-title { font-size: 17px; font-weight: 800; line-height: 1.22; margin-bottom: 5px; }
+    .answer-sub { font-size: 13px; color: var(--navy-soft); line-height: 1.5; }
 
-    .step-actions {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 18px;
+    /* CITY SELECT */
+    .city-select-wrap { margin-bottom: 18px; }
+    .city-select {
+      width: 100%; padding: 16px 20px;
+      font-size: 16px; font-weight: 600;
+      font-family: "Inter", sans-serif; color: var(--navy);
+      background: var(--white); border: 1.5px solid var(--border-strong);
+      border-radius: 16px; box-shadow: var(--shadow-soft);
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%235f6f89' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center;
     }
+    .city-select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(238,66,102,0.12); }
+    .city-select.selected-val { border-color: var(--accent); border-width: 2px; box-shadow: 0 0 0 5px rgba(238,66,102,0.16); }
 
+    /* ACTIONS */
+    .step-actions { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
     .btn {
-      appearance: none;
-      border: none;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 15px 24px;
-      font-size: 15px;
-      font-weight: 800;
+      appearance: none; border: none; cursor: pointer;
+      border-radius: 999px; padding: 15px 24px;
+      font-size: 15px; font-weight: 800;
       transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
     }
     .btn:hover { transform: translateY(-1px); }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 12px 26px rgba(238,66,102,0.2);
-    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 12px 26px rgba(238,66,102,0.2); }
     .btn-primary:hover { background: var(--accent-dark); }
-    .btn-primary:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      transform: none;
-    }
-    .btn-ghost {
-      background: #fff;
-      border: 1px solid var(--border);
-      color: var(--navy);
-      box-shadow: var(--shadow-soft);
-    }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-ghost { background: #fff; border: 1px solid var(--border); color: var(--navy); box-shadow: var(--shadow-soft); }
 
-    .loading-block {
-      text-align: center;
-      padding: 8px 8px 4px;
-    }
+    /* LOADING */
+    .loading-block { text-align: center; padding: 24px 8px; }
     .loading-title {
       font-family: "Fraunces", serif;
-      font-size: 1.95rem;
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      font-size: 1.95rem; line-height: 1.04;
+      letter-spacing: -0.03em; margin-bottom: 22px;
     }
-    .loading-sub {
-      color: var(--navy-soft);
-      margin-bottom: 22px;
+    .loading-cycle { min-height: 28px; margin-bottom: 28px; }
+    .loading-cycle-text {
+      font-size: 15px; color: var(--navy-soft);
+      font-weight: 600; opacity: 0; transition: opacity 0.4s ease;
     }
-    .loading-bar {
-      max-width: 380px;
-      margin: 0 auto;
-      height: 10px;
-      background: #edf1f7;
-      border-radius: 999px;
-      overflow: hidden;
-    }
+    .loading-cycle-text.visible { opacity: 1; }
+    .loading-bar { max-width: 380px; margin: 0 auto; height: 10px; background: #edf1f7; border-radius: 999px; overflow: hidden; }
     .loading-fill {
-      height: 100%;
-      width: 40%;
-      border-radius: 999px;
+      height: 100%; width: 40%; border-radius: 999px;
       background: linear-gradient(90deg, var(--highlight), var(--accent));
       animation: shimmer 1.25s ease-in-out infinite;
     }
-    @keyframes shimmer {
-      0% { transform: translateX(-80%); }
-      100% { transform: translateX(220%); }
-    }
+    @keyframes shimmer { 0% { transform: translateX(-80%); } 100% { transform: translateX(220%); } }
 
-    .results-stack {
-      display: grid;
-      gap: 18px;
-    }
-
+    /* RESULTS */
+    .results-stack { display: grid; gap: 18px; }
     .results-card {
       background: linear-gradient(180deg, #ffffff, #fcfcff);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: var(--shadow-card);
-      padding: 24px;
+      border: 1px solid var(--border); border-radius: 28px;
+      box-shadow: var(--shadow-card); padding: 24px;
     }
-    .results-label {
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .results-type {
-      font-family: "Fraunces", serif;
-      font-size: 32px;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-    .results-range {
-      font-size: 34px;
-      font-weight: 800;
-      line-height: 1;
-      color: var(--purple);
-      margin-bottom: 10px;
-    }
-    .results-copy {
-      color: var(--navy-soft);
-      font-size: 15px;
-      margin-bottom: 18px;
-    }
-    .mini-kicker {
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .results-reasons {
-      display: grid;
-      gap: 10px;
-    }
-    .reason {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--navy);
-    }
-    .reason-mini {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(84,13,110,0.12);
-      color: var(--purple);
-      flex-shrink: 0;
-    }
+    .results-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
+    .results-type { font-family: "Fraunces", serif; font-size: 32px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 10px; }
+    .results-range { font-size: 34px; font-weight: 800; line-height: 1; color: var(--purple); margin-bottom: 10px; }
+    .results-copy { color: var(--navy-soft); font-size: 15px; margin-bottom: 18px; }
+    .mini-kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
+    .results-reasons { display: grid; gap: 10px; }
+    .reason { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--navy); }
+    /* GREEN plain checkmark — no background */
+    .reason-check { width: 18px; height: 18px; flex-shrink: 0; }
 
+    /* QUOTE BRIDGE */
     .quote-bridge {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: var(--shadow-soft);
-      padding: 20px;
+      background: #ffffff; border: 1px solid var(--border);
+      border-radius: 22px; box-shadow: var(--shadow-soft); padding: 20px;
     }
-    .quote-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-    .quote-copy {
-      font-size: 14px;
-      color: var(--navy-soft);
-      margin-bottom: 14px;
-    }
-    .quote-points {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-    .quote-point {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--navy);
-    }
-    .quote-check {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(84,13,110,0.12);
-      color: var(--purple);
-      flex-shrink: 0;
-    }
-    .quote-note {
-      font-size: 12px;
-      color: var(--navy-soft);
-      margin-top: 10px;
-    }
+    .quote-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .quote-copy { font-size: 14px; color: var(--navy-soft); margin-bottom: 14px; }
+    .quote-points { display: grid; gap: 10px; margin-bottom: 18px; }
+    .quote-point { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--navy); }
+    /* Arrow marker */
+    .quote-arrow { font-size: 15px; font-weight: 800; color: var(--accent); flex-shrink: 0; line-height: 1; }
+    .quote-note { font-size: 12px; color: var(--navy-soft); margin-top: 10px; }
 
-    .factors-wrap, .faq-wrap {
-      padding: 18px 0 22px;
-      background: var(--white);
+    /* LEAD FORM */
+    .lead-form-wrap {
+      display: none; background: var(--white);
+      border: 1.5px solid var(--accent); border-radius: 24px;
+      padding: 24px; box-shadow: 0 0 0 5px rgba(238,66,102,0.08), var(--shadow-card);
+      margin-top: 16px;
     }
-    .section-head {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 22px;
+    .lead-form-wrap.visible { display: block; }
+    .lead-form-title {
+      font-family: "Fraunces", serif;
+      font-size: 1.5rem; line-height: 1.04;
+      letter-spacing: -0.03em; color: var(--navy); margin-bottom: 6px;
     }
-    .section-kicker {
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
+    .lead-form-sub { font-size: 14px; color: var(--navy-soft); margin-bottom: 20px; line-height: 1.5; }
+    .lead-fields { display: grid; gap: 12px; margin-bottom: 14px; }
+    .lead-field { display: flex; flex-direction: column; gap: 6px; }
+    .lead-label { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .lead-optional { font-weight: 400; color: var(--navy-soft); }
+    .lead-input {
+      padding: 14px 16px; font-size: 15px;
+      font-family: "Inter", sans-serif; color: var(--navy);
+      background: #f7f9fc; border: 1.5px solid var(--border-strong);
+      border-radius: 12px; transition: border-color 0.16s ease, box-shadow 0.16s ease;
     }
+    .lead-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(238,66,102,0.1); background: #fff; }
+    .consent-wrap { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+    .consent-check { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; accent-color: var(--accent); cursor: pointer; }
+    .consent-text { font-size: 13px; color: var(--navy-soft); line-height: 1.5; }
+    .lead-submit {
+      width: 100%; appearance: none; border: none; cursor: pointer;
+      border-radius: 999px; padding: 15px; font-size: 15px; font-weight: 800;
+      font-family: "Inter", sans-serif; background: var(--accent); color: #fff;
+      box-shadow: 0 12px 26px rgba(238,66,102,0.22);
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+    .lead-submit:hover { transform: translateY(-1px); background: var(--accent-dark); }
+    .lead-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    /* THANK YOU */
+    .thankyou-wrap { display: none; text-align: center; padding: 16px 0; }
+    .thankyou-wrap.visible { display: block; }
+    .thankyou-icon {
+      width: 56px; height: 56px; border-radius: 999px;
+      background: rgba(22,163,74,0.1); display: flex;
+      align-items: center; justify-content: center; margin: 0 auto 14px;
+    }
+    .thankyou-title { font-family: "Fraunces", serif; font-size: 1.9rem; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 8px; }
+    .thankyou-body { font-size: 15px; color: var(--navy-soft); line-height: 1.6; max-width: 480px; margin: 0 auto; }
+
+    /* SECTIONS */
+    .factors-wrap, .faq-wrap { padding: 18px 0 22px; background: var(--white); }
+    .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+    .section-kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
     .section-head h2 {
       font-family: "Fraunces", serif;
       font-size: clamp(1.8rem, 3vw, 2.75rem);
-      line-height: 1.03;
-      letter-spacing: -0.03em;
+      line-height: 1.03; letter-spacing: -0.03em;
     }
-    .section-lead {
-      max-width: 720px;
-      color: var(--navy-soft);
-      font-size: 1rem;
-      line-height: 1.65;
-    }
-
-    .factors-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+    .section-lead { max-width: 720px; color: var(--navy-soft); font-size: 1rem; line-height: 1.65; }
+    .factors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .factor-card, .faq-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: var(--shadow-soft);
-      padding: 22px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 24px; box-shadow: var(--shadow-soft); padding: 22px;
     }
     .factor-card h3 {
-      font-family: "Fraunces", serif;
-      font-size: 24px;
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
+      font-family: "Fraunces", serif; font-size: 24px;
+      line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 10px;
     }
-    .factor-card p, .faq-a {
-      color: var(--navy-soft);
-      font-size: 15px;
-      line-height: 1.6;
-    }
+    .factor-card p, .faq-a { color: var(--navy-soft); font-size: 15px; line-height: 1.6; }
+    .faq-list { display: grid; gap: 14px; max-width: 860px; margin: 0 auto; }
+    .faq-q { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
 
-    .faq-list {
-      display: grid;
-      gap: 14px;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-    .faq-q {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .bottom-cta {
-      padding: 8px 0 44px;
-      display: flex;
-      justify-content: center;
-    }
-    .footer {
-      background: #fff;
-      border-top: 1px solid var(--border);
-      padding: 24px 0 40px;
-    }
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--navy-soft);
-      font-size: 14px;
-    }
+    .bottom-cta { padding: 8px 0 44px; display: flex; justify-content: center; }
+    .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px; }
 
     @media (max-width: 1040px) {
       .factors-grid { grid-template-columns: 1fr 1fr; }
       .answers-grid.cols-3 { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 720px) {
-      .nav-inner { min-height: 68px; }
-      .brand-sub { display: none; }
+      .nav-inner { min-height: 64px; }
       .flow-card { padding: 20px 16px; border-radius: 24px; }
       .answer-card { min-height: auto; }
       .answer-icon { width: 62px; height: 62px; }
@@ -473,19 +299,35 @@
   </style>
 </head>
 <body>
+
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="index.html">
-        <div style="width:42px;height:42px;border-radius:14px;background:linear-gradient(180deg,rgba(255,210,63,0.28),rgba(255,210,63,0.12));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:#540d6e">
-            <path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M8.5 13.5 11 16l4.5-5" stroke="#ee4266" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="brand-copy">
-          <div class="brand-title">HVAC Install Costs</div>
-          <div class="brand-sub">Local AC installation estimate</div>
-        </div>
+      <a class="nav-logo" href="index.html" aria-label="HVAC Cost Guide">
+        <svg height="38" viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#7b2ff7"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+            <linearGradient id="swooshGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#c026d3"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+            <linearGradient id="swoosh2Grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#9333ea"/>
+              <stop offset="100%" stop-color="#ec4899"/>
+            </linearGradient>
+          </defs>
+          <rect x="4" y="36" width="8" height="12" rx="2" fill="url(#barGrad)"/>
+          <rect x="15" y="28" width="8" height="20" rx="2" fill="url(#barGrad)"/>
+          <rect x="26" y="20" width="8" height="28" rx="2" fill="url(#barGrad)"/>
+          <rect x="37" y="12" width="8" height="36" rx="2" fill="url(#barGrad)"/>
+          <path d="M48 6 Q56 6 56 14 L56 48 L48 48 Z" fill="url(#barGrad)"/>
+          <path d="M2 34 Q18 20 46 26" stroke="url(#swoosh2Grad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+          <path d="M8 26 Q28 4 52 10 Q58 11 56 6" stroke="url(#swooshGrad)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <circle cx="55" cy="6" r="3" fill="#f97316"/>
+          <text x="70" y="37" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.3" fill="#2d3a55">HVAC Cost Guide</text>
+        </svg>
       </a>
       <a class="nav-back" href="index.html">← Back</a>
     </div>
@@ -498,9 +340,10 @@
           <span class="progress-pill active" id="p1"></span>
           <span class="progress-pill" id="p2"></span>
           <span class="progress-pill" id="p3"></span>
+          <span class="progress-pill" id="p4"></span>
         </div>
 
-        <!-- Step 1 -->
+        <!-- STEP 1: Intent -->
         <div class="flow-step active" id="step1">
           <div class="flow-title">What best matches your situation?</div>
           <div class="flow-sub">Pick the one that feels closest to where you are right now.</div>
@@ -508,49 +351,66 @@
             <button class="answer-card flow-intent" type="button" data-value="replace">
               <div class="answer-icon">
                 <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-                  <rect x="28" y="24" width="64" height="56" rx="10" stroke="#14213d" stroke-width="3"/>
-                  <path d="M22 88h76" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M42 48h36" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
-                  <circle cx="40" cy="60" r="6" fill="#ffd23f"/>
+                  <rect x="18" y="32" width="64" height="44" rx="8" stroke="#14213d" stroke-width="3" fill="none"/>
+                  <line x1="30" y1="46" x2="30" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="40" y1="46" x2="40" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="50" y1="46" x2="50" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="66" cy="54" r="6" fill="#ee4266"/>
+                  <line x1="12" y1="82" x2="88" y2="82" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M88 54 L104 54" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M97 46 L106 54 L97 62" stroke="#ee4266" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <path d="M22 38 L26 44" stroke="#52607a" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M26 38 L22 44" stroke="#52607a" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
               </div>
               <div class="answer-title">Replace my AC</div>
               <div class="answer-sub">Swap out an older or failing system.</div>
             </button>
-
             <button class="answer-card flow-intent" type="button" data-value="add">
               <div class="answer-icon">
                 <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-                  <path d="M20 84V46l40-24 40 24v38" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
-                  <rect x="46" y="60" width="28" height="24" rx="4" stroke="#540d6e" stroke-width="3"/>
-                  <path d="M36 48h48" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M20 58 L60 22 L100 58" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <path d="M30 52 L30 90 L90 90 L90 52" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <rect x="42" y="60" width="36" height="22" rx="5" stroke="#540d6e" stroke-width="2.5" fill="none"/>
+                  <line x1="50" y1="68" x2="50" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="57" y1="68" x2="57" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="68" cy="71" r="4" fill="#ffd23f"/>
+                  <circle cx="94" cy="30" r="14" fill="#ffd23f" opacity="0.25"/>
+                  <line x1="94" y1="22" x2="94" y2="38" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="86" y1="30" x2="102" y2="30" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
                 </svg>
               </div>
               <div class="answer-title">Add AC</div>
               <div class="answer-sub">Put cooling into a home that does not have it now.</div>
             </button>
-
             <button class="answer-card flow-intent" type="button" data-value="unsure">
               <div class="answer-icon">
                 <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-                  <circle cx="60" cy="60" r="34" stroke="#14213d" stroke-width="3"/>
-                  <path d="M60 42v20" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
-                  <circle cx="60" cy="78" r="4" fill="#ee4266"/>
-                  <path d="M24 94c10-8 21-10 36-10 15 0 26 2 36 10" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+                  <rect x="8" y="38" width="36" height="22" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+                  <line x1="16" y1="46" x2="16" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="22" y1="46" x2="22" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="36" cy="49" r="3.5" fill="#ffd23f"/>
+                  <rect x="76" y="36" width="36" height="26" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+                  <circle cx="94" cy="49" r="8" stroke="#540d6e" stroke-width="2" fill="none"/>
+                  <circle cx="94" cy="49" r="3" fill="#540d6e"/>
+                  <line x1="60" y1="30" x2="60" y2="90" stroke="#e0e8ee" stroke-width="2" stroke-dasharray="4 4"/>
+                  <text x="60" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#ee4266">?</text>
+                  <line x1="8" y1="72" x2="44" y2="72" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="76" y1="72" x2="112" y2="72" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
               <div class="answer-title">Not sure yet</div>
               <div class="answer-sub">Get a starting point before talking to anyone.</div>
             </button>
           </div>
-
           <div class="step-actions">
             <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue →</button>
           </div>
         </div>
 
-        <!-- Step 2 -->
+        <!-- STEP 2: Home size -->
         <div class="flow-step" id="step2">
+          <div class="flow-micro" id="step2Micro"></div>
           <div class="flow-title">How big is your home?</div>
           <div class="flow-sub">This helps narrow the system size and your price range.</div>
           <div class="answers-grid cols-3">
@@ -564,7 +424,6 @@
               <div class="answer-title">Small</div>
               <div class="answer-sub">Under 1,500 sq ft</div>
             </button>
-
             <button class="answer-card flow-size" type="button" data-value="medium">
               <div class="answer-icon">
                 <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
@@ -575,7 +434,6 @@
               <div class="answer-title">Medium</div>
               <div class="answer-sub">1,500–2,500 sq ft</div>
             </button>
-
             <button class="answer-card flow-size" type="button" data-value="large">
               <div class="answer-icon">
                 <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
@@ -587,15 +445,15 @@
               <div class="answer-sub">Over 2,500 sq ft</div>
             </button>
           </div>
-
           <div class="step-actions">
             <button class="btn btn-ghost" type="button" data-back="1">Back</button>
             <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue →</button>
           </div>
         </div>
 
-        <!-- Step 3 -->
+        <!-- STEP 3: Ductwork (add intent only) -->
         <div class="flow-step" id="step3">
+          <div class="flow-micro">Good — one more thing about your home.</div>
           <div class="flow-title">Does your home have ductwork?</div>
           <div class="flow-sub">This helps show whether central AC or ductless may fit better.</div>
           <div class="answers-grid cols-3">
@@ -610,7 +468,6 @@
               <div class="answer-title">Yes</div>
               <div class="answer-sub">My home already has vents</div>
             </button>
-
             <button class="answer-card flow-ducts" type="button" data-value="no">
               <div class="answer-icon">
                 <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
@@ -622,7 +479,6 @@
               <div class="answer-title">No</div>
               <div class="answer-sub">I do not have existing ductwork</div>
             </button>
-
             <button class="answer-card flow-ducts" type="button" data-value="unsure">
               <div class="answer-icon">
                 <svg width="72" height="72" viewBox="0 0 120 120" fill="none">
@@ -635,31 +491,58 @@
               <div class="answer-sub">I need help figuring that out</div>
             </button>
           </div>
-
           <div class="step-actions">
             <button class="btn btn-ghost" type="button" data-back="2">Back</button>
+            <button class="btn btn-primary" type="button" id="toStep4" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: City -->
+        <div class="flow-step" id="step4">
+          <div class="flow-micro">Almost there — last question.</div>
+          <div class="flow-title">Where is your home located?</div>
+          <div class="flow-sub">Local labor rates vary by city. This keeps your estimate accurate.</div>
+          <div class="city-select-wrap">
+            <select class="city-select" id="citySelect" onchange="onCitySelect(this)">
+              <option value="">Select your city...</option>
+              <option value="mill-creek">Mill Creek</option>
+              <option value="everett">Everett</option>
+              <option value="bothell">Bothell</option>
+              <option value="lynnwood">Lynnwood</option>
+              <option value="mukilteo">Mukilteo</option>
+              <option value="snohomish">Snohomish</option>
+              <option value="marysville">Marysville</option>
+              <option value="monroe">Monroe</option>
+              <option value="woodinville">Woodinville</option>
+              <option value="kenmore">Kenmore</option>
+              <option value="other">Other / Not listed</option>
+            </select>
+          </div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" id="step4Back">Back</button>
             <button class="btn btn-primary" type="button" id="seeResults" disabled>See My Results →</button>
           </div>
         </div>
 
-        <!-- Loading -->
+        <!-- LOADING -->
         <div class="flow-step" id="loadingStep">
           <div class="loading-block">
             <div class="loading-title">Building your local price range...</div>
-            <div class="loading-sub">Looking at home size, system type, and setup</div>
+            <div class="loading-cycle">
+              <div class="loading-cycle-text" id="loadingCycleText">Analyzing your inputs…</div>
+            </div>
             <div class="loading-bar"><div class="loading-fill"></div></div>
           </div>
         </div>
 
-        <!-- Results -->
+        <!-- RESULTS -->
         <div class="flow-step" id="resultsStep">
           <div class="results-stack">
             <div class="results-card">
-              <div class="results-label">Typical local estimate</div>
+              <div class="results-label">Typical local estimate — <span id="resultCity"></span></div>
               <div class="results-type" id="resultType">Central AC</div>
               <div class="results-range" id="resultRange">$8,200 – $8,900</div>
               <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
-
               <div class="mini-kicker">Why this range fits your home</div>
               <div class="results-reasons" id="resultReasons"></div>
             </div>
@@ -667,38 +550,55 @@
             <div class="quote-bridge">
               <div class="quote-title">Most homeowners get 3–5 quotes</div>
               <div class="quote-copy">This helps you compare pricing and avoid overpaying.</div>
-
               <div class="quote-points">
                 <div class="quote-point">
-                  <span class="quote-check">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
+                  <span class="quote-arrow">→</span>
                   Compare local pricing
                 </div>
-
                 <div class="quote-point">
-                  <span class="quote-check">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
+                  <span class="quote-arrow">→</span>
                   Spot high and low quotes
                 </div>
-
                 <div class="quote-point">
-                  <span class="quote-check">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
+                  <span class="quote-arrow">→</span>
                   Feel more sure before you choose
                 </div>
               </div>
+              <button class="btn btn-primary" type="button" onclick="showLeadForm()">Get a Quote →</button>
 
-              <button class="btn btn-primary" type="button">Get a Quote →</button>
-              <div class="quote-note">No pressure. Just compare.</div>
+              <!-- Lead form -->
+              <div class="lead-form-wrap" id="leadFormWrap">
+                <div class="lead-form-title">Get a real quote — no obligation.</div>
+                <div class="lead-form-sub">We'll connect you with one local AC professional. No spam. No multiple calls.</div>
+                <div class="lead-fields">
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadName">First name</label>
+                    <input class="lead-input" type="text" id="leadName" placeholder="Your first name" autocomplete="given-name" oninput="updateSubmit()" />
+                  </div>
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadPhone">Phone number</label>
+                    <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" oninput="updateSubmit()" />
+                  </div>
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadEmail">Email <span class="lead-optional">(optional)</span></label>
+                    <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" />
+                  </div>
+                </div>
+                <div class="consent-wrap">
+                  <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
+                  <label class="consent-text" for="consentCheck">I agree to be contacted by one local AC professional to discuss my project and estimate.</label>
+                </div>
+                <button class="lead-submit" id="leadSubmit" type="button" disabled onclick="submitLead()">Send My Request →</button>
+              </div>
+
+              <!-- Thank you -->
+              <div class="thankyou-wrap" id="thankyouWrap">
+                <div class="thankyou-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="thankyou-title">You're all set.</div>
+                <div class="thankyou-body">A local pro will reach out shortly to discuss your project. Ask them whether the quote includes permits, startup, and removal of the old unit.</div>
+              </div>
             </div>
 
             <div class="step-actions" style="justify-content:flex-start;">
@@ -706,6 +606,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -718,18 +619,9 @@
         <p class="section-lead">These are the biggest drivers behind price changes.</p>
       </div>
       <div class="factors-grid">
-        <div class="factor-card">
-          <h3>Home size</h3>
-          <p>Larger homes usually need larger equipment, which changes both material and labor cost.</p>
-        </div>
-        <div class="factor-card">
-          <h3>Ductwork</h3>
-          <p>Existing ducts can lower install cost. Starting from scratch usually raises the range.</p>
-        </div>
-        <div class="factor-card">
-          <h3>System type</h3>
-          <p>Central AC, heat pumps, and mini splits solve different problems and price differently.</p>
-        </div>
+        <div class="factor-card"><h3>Home size</h3><p>Larger homes usually need larger equipment, which changes both material and labor cost.</p></div>
+        <div class="factor-card"><h3>Ductwork</h3><p>Existing ducts can lower install cost. Starting from scratch usually raises the range.</p></div>
+        <div class="factor-card"><h3>System type</h3><p>Central AC, heat pumps, and mini splits solve different problems and price differently.</p></div>
       </div>
     </div>
   </section>
@@ -744,6 +636,10 @@
         <div class="faq-item">
           <div class="faq-q">Is this an exact quote?</div>
           <div class="faq-a">No. This shows a tighter local range based on homes and installs similar to yours.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do you build your pricing estimates?</div>
+          <div class="faq-a">Our pricing ranges are built from contractor quotes, pricing conversations shared on social media, and research from our local pricing team. The goal is to give homeowners a realistic starting point before they compare local quotes.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q">Why can quotes vary so much?</div>
@@ -762,129 +658,58 @@
   </section>
 
   <div class="bottom-cta">
-    <button class="btn btn-primary" type="button">Get a Quote →</button>
+    <button class="btn btn-primary" type="button" onclick="showLeadForm(); window.scrollTo({top:0,behavior:'smooth'})">Get a Quote →</button>
   </div>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div>© 2026 HVAC Install Costs</div>
-      <div>Informational estimates only · Privacy Policy</div>
+      <div>© 2026 HVAC Cost Guide</div>
+      <div>Informational estimates only · <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf">Privacy Policy</a></div>
     </div>
   </footer>
 
   <script>
-    const state = { intent: null, size: null, ducts: null };
+    const state = { intent: null, size: null, ducts: null, city: null };
+
+    const microCopy = {
+      replace: 'Replacing — good to know.',
+      add: 'Adding AC for the first time — noted.',
+      unsure: 'No problem — we\'ll help narrow it down.'
+    };
 
     const resultMap = {
       replace: {
-        small: {
-          type: "Central AC",
-          range: "$8,200 – $8,900",
-          copy: "This is a common range for homes like yours.",
-          reasons: ["Works with existing ductwork", "Good fit for full replacement", "Common for homes this size"]
-        },
-        medium: {
-          type: "Central AC",
-          range: "$8,900 – $9,700",
-          copy: "This is a common range for homes like yours.",
-          reasons: ["Typical replacement path", "Fits mid-size homes well", "Common if ducts are usable"]
-        },
-        large: {
-          type: "Ducted Heat Pump",
-          range: "$10,400 – $11,700",
-          copy: "This is a common upgrade path for larger homes.",
-          reasons: ["Covers more square footage", "Heating and cooling in one system", "Common for larger replacements"]
-        }
+        small: { type: "Central AC", range: "$8,200 – $8,900", copy: "This is a common range for homes like yours.", reasons: ["Works with existing ductwork", "Good fit for full replacement", "Common for homes this size"] },
+        medium: { type: "Central AC", range: "$8,900 – $9,700", copy: "This is a common range for homes like yours.", reasons: ["Typical replacement path", "Fits mid-size homes well", "Common if ducts are usable"] },
+        large: { type: "Ducted Heat Pump", range: "$10,400 – $11,700", copy: "This is a common upgrade path for larger homes.", reasons: ["Covers more square footage", "Heating and cooling in one system", "Common for larger replacements"] }
       },
       add: {
         small: {
-          yes: {
-            type: "Central AC",
-            range: "$7,900 – $8,600",
-            copy: "This is a common range for homes like yours.",
-            reasons: ["Uses existing ductwork", "Clean add-on for cooling", "Good fit for smaller homes"]
-          },
-          no: {
-            type: "Ductless Mini Split",
-            range: "$6,400 – $7,100",
-            copy: "This is often the simplest path without ducts.",
-            reasons: ["No ductwork required", "Strong fit for smaller homes", "Lower install complexity"]
-          },
-          unsure: {
-            type: "Ductless Mini Split",
-            range: "$6,600 – $7,300",
-            copy: "This is a common starting point when ducts are unclear.",
-            reasons: ["Works without full ductwork", "Flexible for retrofits", "Common first recommendation"]
-          }
+          yes: { type: "Central AC", range: "$7,900 – $8,600", copy: "This is a common range for homes like yours.", reasons: ["Uses existing ductwork", "Clean add-on for cooling", "Good fit for smaller homes"] },
+          no: { type: "Ductless Mini Split", range: "$6,400 – $7,100", copy: "This is often the simplest path without ducts.", reasons: ["No ductwork required", "Strong fit for smaller homes", "Lower install complexity"] },
+          unsure: { type: "Ductless Mini Split", range: "$6,600 – $7,300", copy: "This is a common starting point when ducts are unclear.", reasons: ["Works without full ductwork", "Flexible for retrofits", "Common first recommendation"] }
         },
         medium: {
-          yes: {
-            type: "Central AC",
-            range: "$8,700 – $9,500",
-            copy: "This is a common range for homes like yours.",
-            reasons: ["Uses existing ductwork", "Good fit for mid-size homes", "Common cooling add-on"]
-          },
-          no: {
-            type: "Ductless Mini Split",
-            range: "$8,900 – $9,800",
-            copy: "This is a common solution when central ducts are not available.",
-            reasons: ["No ductwork required", "Flexible room coverage", "Common retrofit option"]
-          },
-          unsure: {
-            type: "Ducted Heat Pump",
-            range: "$9,800 – $10,700",
-            copy: "A common recommendation when central coverage may be needed.",
-            reasons: ["Can handle broader coverage", "Heating and cooling in one system", "Often considered for whole-home comfort"]
-          }
+          yes: { type: "Central AC", range: "$8,700 – $9,500", copy: "This is a common range for homes like yours.", reasons: ["Uses existing ductwork", "Good fit for mid-size homes", "Common cooling add-on"] },
+          no: { type: "Ductless Mini Split", range: "$8,900 – $9,800", copy: "A common solution when central ducts are not available.", reasons: ["No ductwork required", "Flexible room coverage", "Common retrofit option"] },
+          unsure: { type: "Ducted Heat Pump", range: "$9,800 – $10,700", copy: "A common recommendation when central coverage may be needed.", reasons: ["Can handle broader coverage", "Heating and cooling in one system", "Often considered for whole-home comfort"] }
         },
         large: {
-          yes: {
-            type: "Ducted Heat Pump",
-            range: "$11,200 – $12,400",
-            copy: "This is a common fit for larger homes with ducts.",
-            reasons: ["Supports larger square footage", "Heating and cooling in one system", "Common for whole-home coverage"]
-          },
-          no: {
-            type: "Ductless Mini Split",
-            range: "$11,400 – $12,600",
-            copy: "Multi-zone ductless is often considered here.",
-            reasons: ["No ductwork required", "Can cover multiple areas", "Common retrofit solution"]
-          },
-          unsure: {
-            type: "Ducted Heat Pump",
-            range: "$11,000 – $12,200",
-            copy: "This is a common starting point for larger homes.",
-            reasons: ["Whole-home coverage", "Heating and cooling in one system", "Often fits larger layouts"]
-          }
+          yes: { type: "Ducted Heat Pump", range: "$11,200 – $12,400", copy: "A common fit for larger homes with ducts.", reasons: ["Supports larger square footage", "Heating and cooling in one system", "Common for whole-home coverage"] },
+          no: { type: "Ductless Mini Split", range: "$11,400 – $12,600", copy: "Multi-zone ductless is often considered here.", reasons: ["No ductwork required", "Can cover multiple areas", "Common retrofit solution"] },
+          unsure: { type: "Ducted Heat Pump", range: "$11,000 – $12,200", copy: "A common starting point for larger homes.", reasons: ["Whole-home coverage", "Heating and cooling in one system", "Often fits larger layouts"] }
         }
       },
       unsure: {
-        small: {
-          type: "Ductless Mini Split",
-          range: "$6,800 – $7,500",
-          copy: "This is a common starting point for smaller homes.",
-          reasons: ["No ductwork required", "Flexible installation path", "Good fit when needs are still unclear"]
-        },
-        medium: {
-          type: "Central AC",
-          range: "$8,800 – $9,600",
-          copy: "This is a common baseline for homes like yours.",
-          reasons: ["Strong general fit", "Common for mid-size homes", "Good starting point before refining"]
-        },
-        large: {
-          type: "Ducted Heat Pump",
-          range: "$10,900 – $12,100",
-          copy: "This is a common baseline for larger homes.",
-          reasons: ["Covers more square footage", "Heating and cooling in one system", "Good fit before deeper sizing"]
-        }
+        small: { type: "Ductless Mini Split", range: "$6,800 – $7,500", copy: "A common starting point for smaller homes.", reasons: ["No ductwork required", "Flexible installation path", "Good fit when needs are still unclear"] },
+        medium: { type: "Central AC", range: "$8,800 – $9,600", copy: "A common baseline for homes like yours.", reasons: ["Strong general fit", "Common for mid-size homes", "Good starting point before refining"] },
+        large: { type: "Ducted Heat Pump", range: "$10,900 – $12,100", copy: "A common baseline for larger homes.", reasons: ["Covers more square footage", "Heating and cooling in one system", "Good fit before deeper sizing"] }
       }
     };
 
-    const params = new URLSearchParams(window.location.search);
-    const preIntent = params.get('intent');
-
+    // Progress
     const progress = (step) => {
-      ['p1','p2','p3'].forEach((id, i) => {
+      ['p1','p2','p3','p4'].forEach((id, i) => {
         document.getElementById(id).classList.toggle('active', i === step - 1);
       });
     };
@@ -892,11 +717,11 @@
     const showStep = (id) => {
       document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      if (id === 'step1') progress(1);
-      if (id === 'step2') progress(2);
-      if (['step3','loadingStep','resultsStep'].includes(id)) progress(3);
+      const map = { step1:1, step2:2, step3:3, step4:4, loadingStep:4, resultsStep:4 };
+      if (map[id]) progress(map[id]);
     };
 
+    // Card selections
     document.querySelectorAll('.flow-intent').forEach(card => {
       card.addEventListener('click', () => {
         document.querySelectorAll('.flow-intent').forEach(c => c.classList.remove('selected'));
@@ -920,45 +745,85 @@
         document.querySelectorAll('.flow-ducts').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         state.ducts = card.dataset.value;
-        document.getElementById('seeResults').disabled = false;
+        document.getElementById('toStep4').disabled = false;
       });
     });
 
+    function onCitySelect(el) {
+      if (el.value) {
+        state.city = el.value;
+        el.classList.add('selected-val');
+        document.getElementById('seeResults').disabled = false;
+      }
+    }
+
+    // Navigation
     document.getElementById('toStep2').addEventListener('click', () => {
-      if (state.intent) showStep('step2');
+      if (!state.intent) return;
+      document.getElementById('step2Micro').textContent = microCopy[state.intent] || '';
+      showStep('step2');
     });
 
     document.getElementById('toStep3').addEventListener('click', () => {
       if (!state.size) return;
-      state.intent === 'add' ? showStep('step3') : runLoadingThenResults();
+      state.intent === 'add' ? showStep('step3') : showStep('step4');
+    });
+
+    document.getElementById('toStep4').addEventListener('click', () => {
+      if (state.intent === 'add' && !state.ducts) return;
+      showStep('step4');
+    });
+
+    document.getElementById('step4Back').addEventListener('click', () => {
+      state.intent === 'add' ? showStep('step3') : showStep('step2');
     });
 
     document.getElementById('seeResults').addEventListener('click', () => {
-      if (state.intent === 'add' && !state.ducts) return;
+      if (!state.city) return;
       runLoadingThenResults();
     });
 
     document.querySelectorAll('[data-back="1"]').forEach(btn => btn.addEventListener('click', () => showStep('step1')));
     document.querySelectorAll('[data-back="2"]').forEach(btn => btn.addEventListener('click', () => showStep('step2')));
 
+    // Loading with cycling text
     function runLoadingThenResults() {
       showStep('loadingStep');
+      const messages = [
+        'Analyzing your inputs…',
+        'Reviewing recent installs in your area…',
+        'Matching to similar homes…',
+        'Calculating your local range…'
+      ];
+      const el = document.getElementById('loadingCycleText');
+      let i = 0;
+
+      function showMessage(index) {
+        el.classList.remove('visible');
+        setTimeout(() => { el.textContent = messages[index]; el.classList.add('visible'); }, 400);
+      }
+      showMessage(0);
+      const interval = setInterval(() => {
+        i++;
+        if (i < messages.length) { showMessage(i); } else { clearInterval(interval); }
+      }, 1400);
+
       setTimeout(() => {
+        clearInterval(interval);
         buildResults();
         showStep('resultsStep');
-      }, 1200);
+      }, 5600);
     }
 
     function buildResults() {
       let result;
-      if (state.intent === 'replace') {
-        result = resultMap.replace[state.size];
-      } else if (state.intent === 'add') {
-        result = resultMap.add[state.size][state.ducts || 'unsure'];
-      } else {
-        result = resultMap.unsure[state.size];
-      }
+      if (state.intent === 'replace') result = resultMap.replace[state.size];
+      else if (state.intent === 'add') result = resultMap.add[state.size][state.ducts || 'unsure'];
+      else result = resultMap.unsure[state.size];
 
+      const cityEl = document.getElementById('citySelect');
+      const cityText = cityEl ? cityEl.options[cityEl.selectedIndex].text : '';
+      document.getElementById('resultCity').textContent = cityText;
       document.getElementById('resultType').textContent = result.type;
       document.getElementById('resultRange').textContent = result.range;
       document.getElementById('resultCopy').textContent = result.copy;
@@ -968,31 +833,50 @@
       result.reasons.forEach(r => {
         const el = document.createElement('div');
         el.className = 'reason';
-        el.innerHTML = `
-          <span class="reason-mini">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12l4 4L19 6" stroke="#540d6e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          ${r}
-        `;
+        el.innerHTML = `<svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>${r}`;
         wrap.appendChild(el);
       });
     }
 
-    function restartFlow() {
-      state.intent = null;
-      state.size = null;
-      state.ducts = null;
+    // Lead form
+    function showLeadForm() {
+      document.getElementById('leadFormWrap').classList.add('visible');
+      setTimeout(() => {
+        document.getElementById('leadFormWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
 
+    function updateSubmit() {
+      const name = document.getElementById('leadName').value.trim();
+      const phone = document.getElementById('leadPhone').value.trim();
+      const consent = document.getElementById('consentCheck').checked;
+      document.getElementById('leadSubmit').disabled = !(name && phone && consent);
+    }
+
+    function submitLead() {
+      document.getElementById('leadFormWrap').classList.remove('visible');
+      document.getElementById('thankyouWrap').classList.add('visible');
+      document.getElementById('thankyouWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function restartFlow() {
+      state.intent = null; state.size = null; state.ducts = null; state.city = null;
       document.querySelectorAll('.answer-card').forEach(c => c.classList.remove('selected'));
+      const cs = document.getElementById('citySelect');
+      if (cs) { cs.value = ''; cs.classList.remove('selected-val'); }
       document.getElementById('toStep2').disabled = true;
       document.getElementById('toStep3').disabled = true;
+      document.getElementById('toStep4').disabled = true;
       document.getElementById('seeResults').disabled = true;
+      document.getElementById('leadFormWrap').classList.remove('visible');
+      document.getElementById('thankyouWrap').classList.remove('visible');
       showStep('step1');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Read intent from URL
+    const params = new URLSearchParams(window.location.search);
+    const preIntent = params.get('intent');
     window.addEventListener('load', () => {
       if (preIntent) {
         state.intent = preIntent;
@@ -1000,6 +884,7 @@
           if (c.dataset.value === preIntent) c.classList.add('selected');
         });
         document.getElementById('toStep2').disabled = false;
+        document.getElementById('step2Micro').textContent = microCopy[preIntent] || '';
         showStep('step2');
       }
     });
