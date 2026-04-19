@@ -187,6 +187,19 @@
 
     /* RESULTS */
     .results-stack { display: grid; gap: 18px; }
+    .results-summary {
+      font-size: 12px; font-weight: 700; color: var(--navy-soft);
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 14px; padding: 8px 12px;
+      background: #f7f9fc; border-radius: 8px;
+      display: inline-block;
+    }
+    .results-labor { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .results-divider { height: 1px; background: var(--border); margin: 16px 0; }
+    .results-includes-head { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy-soft); margin-bottom: 10px; }
+    .results-includes { display: grid; gap: 8px; margin-bottom: 12px; }
+    .results-include-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--navy); }
+    .results-not-included { font-size: 13px; color: var(--navy-soft); line-height: 1.5; }
     .results-card {
       background: linear-gradient(180deg, #ffffff, #fcfcff);
       border: 1px solid var(--border); border-radius: 28px;
@@ -291,6 +304,20 @@
     .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px; }
 
+    /* PAGE HEADER */
+    .page-header {
+      padding: 28px 0 0;
+      background: linear-gradient(180deg, #ffffff, #fbfcff);
+    }
+    .page-title {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      max-width: 700px;
+    }
+
     @media (max-width: 1040px) {
       .factors-grid { grid-template-columns: 1fr 1fr; }
       .answers-grid.cols-3 { grid-template-columns: 1fr; }
@@ -343,6 +370,12 @@
       <a class="nav-back" href="index.html">← Back</a>
     </div>
   </header>
+
+  <section class="page-header" id="pageHeader">
+    <div class="container">
+      <h1 class="page-title" id="pageTitle">Build your estimate</h1>
+    </div>
+  </section>
 
   <section class="question-flow" id="estimateFlow">
     <div class="container">
@@ -550,17 +583,28 @@
         <div class="flow-step" id="resultsStep">
           <div class="results-stack">
             <div class="results-card">
+              <div class="results-summary" id="resultSummary"></div>
               <div class="results-label">Typical local estimate — <span id="resultCity"></span></div>
               <div class="results-type" id="resultType">Central AC</div>
               <div class="results-range" id="resultRange">$8,200 – $8,900</div>
+              <div class="results-labor" id="resultLabor">Estimated labor: $2,400 – $2,900</div>
               <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
+              <div class="results-divider"></div>
               <div class="mini-kicker">Why this range fits your home</div>
               <div class="results-reasons" id="resultReasons"></div>
+              <div class="results-divider"></div>
+              <div class="results-includes-head">Usually includes</div>
+              <div class="results-includes">
+                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Equipment and materials</div>
+                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Standard installation labor</div>
+                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>System startup and testing</div>
+                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1–2 days</div>
+              </div>
+              <div class="results-not-included">Not typically included: permit fees · duct repairs · electrical upgrades</div>
             </div>
 
             <div class="quote-bridge">
               <div class="quote-title">Most homeowners get 3–5 quotes</div>
-              <div class="quote-copy">This helps you compare pricing and avoid overpaying.</div>
               <div class="quote-points">
                 <div class="quote-point">
                   <span class="quote-arrow">→</span>
@@ -690,31 +734,91 @@
 
     const resultMap = {
       replace: {
-        small: { type: "Central AC", range: "$8,200 – $8,900", copy: "This is a common range for homes like yours.", reasons: ["Works with existing ductwork", "Good fit for full replacement", "Common for homes this size"] },
-        medium: { type: "Central AC", range: "$8,900 – $9,700", copy: "This is a common range for homes like yours.", reasons: ["Typical replacement path", "Fits mid-size homes well", "Common if ducts are usable"] },
-        large: { type: "Ducted Heat Pump", range: "$10,400 – $11,700", copy: "This is a common upgrade path for larger homes.", reasons: ["Covers more square footage", "Heating and cooling in one system", "Common for larger replacements"] }
+        small: {
+          type: "Central AC", range: "$8,200 – $8,900", labor: "$2,100 – $2,600",
+          copy: "A common replacement range for smaller homes with existing ductwork.",
+          reasons: ["Existing ducts keep install cost lower", "Sized for homes under 1,500 sq ft", "Standard replacement — no duct work needed"]
+        },
+        medium: {
+          type: "Central AC", range: "$8,900 – $9,700", labor: "$2,400 – $2,900",
+          copy: "A typical replacement range for mid-size homes.",
+          reasons: ["Sized for 1,500–2,500 sq ft", "Uses existing ductwork", "Most common replacement path in this area"]
+        },
+        large: {
+          type: "Ducted Heat Pump", range: "$10,400 – $11,700", labor: "$2,800 – $3,400",
+          copy: "A common upgrade path for larger homes — handles both heating and cooling.",
+          reasons: ["Covers homes over 2,500 sq ft", "Replaces heating and cooling in one system", "More efficient than central AC for larger spaces"]
+        }
       },
       add: {
         small: {
-          yes: { type: "Central AC", range: "$7,900 – $8,600", copy: "This is a common range for homes like yours.", reasons: ["Uses existing ductwork", "Clean add-on for cooling", "Good fit for smaller homes"] },
-          no: { type: "Ductless Mini Split", range: "$6,400 – $7,100", copy: "This is often the simplest path without ducts.", reasons: ["No ductwork required", "Strong fit for smaller homes", "Lower install complexity"] },
-          unsure: { type: "Ductless Mini Split", range: "$6,600 – $7,300", copy: "This is a common starting point when ducts are unclear.", reasons: ["Works without full ductwork", "Flexible for retrofits", "Common first recommendation"] }
+          yes: {
+            type: "Central AC", range: "$7,900 – $8,600", labor: "$2,000 – $2,500",
+            copy: "Adding central AC to a smaller home with existing ducts is straightforward.",
+            reasons: ["Existing ductwork avoids a major cost", "Sized for homes under 1,500 sq ft", "Cleaner install with ducts already in place"]
+          },
+          no: {
+            type: "Ductless Mini Split", range: "$6,400 – $7,100", labor: "$1,600 – $2,100",
+            copy: "Without ducts, a ductless mini split is the most common solution for smaller homes.",
+            reasons: ["No ductwork required — significant savings", "Well suited for homes under 1,500 sq ft", "Lower install complexity than running new ducts"]
+          },
+          unsure: {
+            type: "Ductless Mini Split", range: "$6,600 – $7,300", labor: "$1,700 – $2,200",
+            copy: "When duct status is unclear, ductless is often the safest starting recommendation.",
+            reasons: ["Works with or without existing ducts", "Good fit for smaller homes", "Avoids potential duct repair costs"]
+          }
         },
         medium: {
-          yes: { type: "Central AC", range: "$8,700 – $9,500", copy: "This is a common range for homes like yours.", reasons: ["Uses existing ductwork", "Good fit for mid-size homes", "Common cooling add-on"] },
-          no: { type: "Ductless Mini Split", range: "$8,900 – $9,800", copy: "A common solution when central ducts are not available.", reasons: ["No ductwork required", "Flexible room coverage", "Common retrofit option"] },
-          unsure: { type: "Ducted Heat Pump", range: "$9,800 – $10,700", copy: "A common recommendation when central coverage may be needed.", reasons: ["Can handle broader coverage", "Heating and cooling in one system", "Often considered for whole-home comfort"] }
+          yes: {
+            type: "Central AC", range: "$8,700 – $9,500", labor: "$2,300 – $2,800",
+            copy: "Adding central AC to a mid-size home with existing ducts is the most cost-effective path.",
+            reasons: ["Existing ductwork keeps cost manageable", "Good fit for 1,500–2,500 sq ft", "Central system covers whole home evenly"]
+          },
+          no: {
+            type: "Ductless Mini Split", range: "$8,900 – $9,800", labor: "$2,200 – $2,700",
+            copy: "A multi-zone ductless system is common for mid-size homes without ducts.",
+            reasons: ["No ductwork required", "Multi-zone setup covers key areas", "Avoids cost of running new ducts"]
+          },
+          unsure: {
+            type: "Ducted Heat Pump", range: "$9,800 – $10,700", labor: "$2,600 – $3,100",
+            copy: "When duct status is unclear, a ducted heat pump is a common recommendation for mid-size homes.",
+            reasons: ["Covers whole home with one system", "Handles heating and cooling", "Works with existing or new ductwork"]
+          }
         },
         large: {
-          yes: { type: "Ducted Heat Pump", range: "$11,200 – $12,400", copy: "A common fit for larger homes with ducts.", reasons: ["Supports larger square footage", "Heating and cooling in one system", "Common for whole-home coverage"] },
-          no: { type: "Ductless Mini Split", range: "$11,400 – $12,600", copy: "Multi-zone ductless is often considered here.", reasons: ["No ductwork required", "Can cover multiple areas", "Common retrofit solution"] },
-          unsure: { type: "Ducted Heat Pump", range: "$11,000 – $12,200", copy: "A common starting point for larger homes.", reasons: ["Whole-home coverage", "Heating and cooling in one system", "Often fits larger layouts"] }
+          yes: {
+            type: "Ducted Heat Pump", range: "$11,200 – $12,400", labor: "$2,900 – $3,500",
+            copy: "For larger homes with ducts, a ducted heat pump is a common choice for whole-home coverage.",
+            reasons: ["Sized for homes over 2,500 sq ft", "Existing ducts support the install", "Handles heating and cooling in one system"]
+          },
+          no: {
+            type: "Ductless Mini Split", range: "$11,400 – $12,600", labor: "$2,900 – $3,600",
+            copy: "A multi-zone ductless system is typically considered for larger homes without ducts.",
+            reasons: ["No ductwork required", "Multiple zones cover larger spaces", "Avoids major duct installation cost"]
+          },
+          unsure: {
+            type: "Ducted Heat Pump", range: "$11,000 – $12,200", labor: "$2,800 – $3,400",
+            copy: "For larger homes where duct status is unknown, a ducted heat pump is a common starting point.",
+            reasons: ["Sized for homes over 2,500 sq ft", "Flexible — works with existing or new ducts", "Heating and cooling in one system"]
+          }
         }
       },
       unsure: {
-        small: { type: "Ductless Mini Split", range: "$6,800 – $7,500", copy: "A common starting point for smaller homes.", reasons: ["No ductwork required", "Flexible installation path", "Good fit when needs are still unclear"] },
-        medium: { type: "Central AC", range: "$8,800 – $9,600", copy: "A common baseline for homes like yours.", reasons: ["Strong general fit", "Common for mid-size homes", "Good starting point before refining"] },
-        large: { type: "Ducted Heat Pump", range: "$10,900 – $12,100", copy: "A common baseline for larger homes.", reasons: ["Covers more square footage", "Heating and cooling in one system", "Good fit before deeper sizing"] }
+        small: {
+          type: "Ductless Mini Split", range: "$6,800 – $7,500", labor: "$1,700 – $2,200",
+          copy: "For smaller homes where needs are still unclear, ductless is a common starting point.",
+          reasons: ["No ductwork required", "Lower cost entry point for smaller homes", "Easy to expand if needs change"]
+        },
+        medium: {
+          type: "Central AC", range: "$8,800 – $9,600", labor: "$2,300 – $2,800",
+          copy: "Central AC is the most common baseline for mid-size homes in this area.",
+          reasons: ["Covers 1,500–2,500 sq ft well", "Standard system with broad contractor availability", "Good starting point before finalizing"]
+        },
+        large: {
+          type: "Ducted Heat Pump", range: "$10,900 – $12,100", labor: "$2,800 – $3,400",
+          copy: "For larger homes where needs are still forming, a ducted heat pump covers the most ground.",
+          reasons: ["Sized for homes over 2,500 sq ft", "Handles heating and cooling", "Most flexible option before deciding"]
+        }
       }
     };
 
@@ -848,6 +952,15 @@
       }, 5600);
     }
 
+    const intentLabels = { replace: 'Replacing AC', add: 'Adding AC', unsure: 'Exploring options' };
+    const sizeLabels = { small: 'Small home', medium: 'Mid-size home', large: 'Large home' };
+    const ductLabels = { yes: 'Has ductwork', no: 'No ductwork', unsure: 'Duct status unknown' };
+    const intentHeaders = {
+      replace: "Replacing your AC — here's what to expect.",
+      add: "Adding AC for the first time — here's a starting range.",
+      unsure: "Still figuring it out — here's a useful baseline."
+    };
+
     function buildResults() {
       let result;
       if (state.intent === 'replace') result = resultMap.replace[state.size];
@@ -856,9 +969,21 @@
 
       const cityEl = document.getElementById('citySelect');
       const cityText = cityEl ? cityEl.options[cityEl.selectedIndex].text : '';
+
+      // Dynamic page header
+      const header = document.getElementById('pageTitle');
+      if (header) header.textContent = intentHeaders[state.intent] || 'Your local AC cost estimate';
+
+      // Summary bar
+      const summaryParts = [intentLabels[state.intent], sizeLabels[state.size]];
+      if (state.intent === 'add' && state.ducts) summaryParts.push(ductLabels[state.ducts]);
+      if (cityText) summaryParts.push(cityText);
+      document.getElementById('resultSummary').textContent = summaryParts.join(' · ');
+
       document.getElementById('resultCity').textContent = cityText;
       document.getElementById('resultType').textContent = result.type;
       document.getElementById('resultRange').textContent = result.range;
+      document.getElementById('resultLabor').textContent = 'Estimated labor: ' + result.labor;
       document.getElementById('resultCopy').textContent = result.copy;
 
       const wrap = document.getElementById('resultReasons');
