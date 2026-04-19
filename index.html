@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AC Installation Cost Calculator</title>
-  <meta name="description" content="Get a local AC installation estimate based on real pricing patterns in King and Snohomish County." />
+  <title>What Should It Cost? — AC Installation Cost Guide</title>
+  <meta name="description" content="Get an accurate AC installation estimate instantly based on real local pricing from King and Snohomish County." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- GA4 — replace YOUR_GA4_ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA4_ID');
+  </script>
+
   <style>
     :root {
       --navy: #14213d;
@@ -17,49 +27,166 @@
       --highlight: #ffd23f;
       --bg: #f7f9fc;
       --bg-soft: #fbfcff;
-      --bg-tint: #fff7e8;
       --card: #ffffff;
       --border: rgba(20, 33, 61, 0.05);
       --border-strong: rgba(20, 33, 61, 0.08);
-      --shadow-soft: 0 6px 20px rgba(20, 33, 61, 0.06), 0 1px 2px rgba(20, 33, 61, 0.04);
-      --shadow-card: 0 12px 34px rgba(20, 33, 61, 0.08), 0 2px 8px rgba(20, 33, 61, 0.04);
-      --shadow-hover: 0 16px 38px rgba(20, 33, 61, 0.1), 0 3px 10px rgba(20, 33, 61, 0.06);
-      --radius-xl: 28px; --radius-lg: 22px; --radius-md: 18px; --radius-sm: 16px; --max: 1120px;
+      --shadow-soft: 0 6px 20px rgba(20,33,61,0.06), 0 1px 2px rgba(20,33,61,0.04);
+      --shadow-card: 0 12px 34px rgba(20,33,61,0.08), 0 2px 8px rgba(20,33,61,0.04);
+      --shadow-hover: 0 16px 38px rgba(20,33,61,0.1), 0 3px 10px rgba(20,33,61,0.06);
+      --max: 1120px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: "Inter", sans-serif; color: var(--navy); background: #ffffff; line-height: 1.5; }
+    body { font-family: "Inter", sans-serif; color: var(--navy); background: #fff; line-height: 1.5; }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
     .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-    .nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-    .nav-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
-    .brand-mark { width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(180deg, rgba(255,210,63,0.28), rgba(255,210,63,0.12)); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); flex-shrink: 0; }
-    .brand-mark svg { width: 24px; height: 24px; color: var(--accent); }
-    .brand-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-    .brand-title { font-size: 15px; font-weight: 800; color: var(--navy); letter-spacing: 0.01em; white-space: nowrap; }
-    .brand-sub { font-size: 12px; color: var(--navy-soft); white-space: nowrap; }
-    .nav-right { font-size: 14px; font-weight: 600; color: var(--navy-soft); }
-    .hero { padding: 56px 0 32px; background: radial-gradient(circle at top right, rgba(255,210,63,0.14), transparent 25%), radial-gradient(circle at top left, rgba(238,66,102,0.07), transparent 20%), linear-gradient(180deg, #ffffff, #fbfcff); }
-    .hero h1 { font-family: "Fraunces", serif; font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: 0.98; letter-spacing: -0.035em; color: var(--navy); margin-bottom: 14px; max-width: 780px; }
-    .hero-sub { font-size: 1.08rem; font-weight: 400; color: var(--navy-soft); margin-bottom: 28px; max-width: 620px; line-height: 1.65; }
-    .hero-question-label { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
-    .answer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 22px; }
-    .answer-card { border: 1px solid var(--border); border-radius: 24px; background: var(--card); padding: 22px 18px 18px; cursor: pointer; text-align: center; transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; box-shadow: var(--shadow-soft); }
-    .answer-card:hover { transform: translateY(-2px); border-color: rgba(238,66,102,0.28); box-shadow: var(--shadow-hover); }
-    .answer-card.selected { border-color: var(--accent-2); border-width: 2px; box-shadow: 0 0 0 5px rgba(238,66,102,0.18), var(--shadow-card); background: #fff0f3; }
-    .answer-icon { width: 108px; height: 108px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      min-height: 64px; display: flex;
+      align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-logo {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 36px; width: auto; display: block;
+    }
+    .nav-hamburger {
+      background: none; border: none; cursor: pointer;
+      padding: 8px; display: flex; flex-direction: column; gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--navy); transition: all 0.2s; transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-dropdown {
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: #fff; border-bottom: 1px solid var(--border-strong);
+      box-shadow: 0 8px 24px rgba(20,33,61,0.08);
+      z-index: 199; display: none; padding: 8px 0 12px;
+    }
+    .nav-dropdown.open { display: block; }
+    .nav-dropdown-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; font-family: "Inter", sans-serif;
+      font-size: 15px; font-weight: 600; color: var(--navy);
+      text-decoration: none; border: none; background: none;
+      width: 100%; cursor: pointer; transition: background 0.12s;
+    }
+    .nav-dropdown-item:hover { background: var(--bg); }
+    .nav-dropdown-item.active { color: var(--accent); }
+    .nav-dropdown-item.active::after {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--accent); flex-shrink: 0;
+    }
+    .nav-dropdown-item.soon { color: var(--navy-soft); cursor: default; }
+    .nav-dropdown-soon {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; background: #fff7e8;
+      color: var(--navy-soft); padding: 3px 7px;
+    }
+    .nav-overlay {
+      position: fixed; inset: 0; top: 64px; z-index: 198; display: none;
+    }
+    .nav-overlay.open { display: block; }
+
+    /* HERO */
+    .hero {
+      padding: 56px 0 32px;
+      background:
+        radial-gradient(circle at top right, rgba(255,210,63,0.14), transparent 25%),
+        radial-gradient(circle at top left, rgba(238,66,102,0.07), transparent 20%),
+        linear-gradient(180deg, #ffffff, #fbfcff);
+    }
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 0.98; letter-spacing: -0.035em;
+      color: var(--navy); margin-bottom: 14px; max-width: 780px;
+    }
+    .hero-sub {
+      font-size: 1.08rem; color: var(--navy-soft);
+      margin-bottom: 28px; max-width: 620px; line-height: 1.65;
+    }
+    .hero-question-label {
+      font-size: 20px; font-weight: 800;
+      color: var(--navy); margin-bottom: 14px; text-align: center;
+    }
+
+    /* ANSWER CARDS */
+    .answer-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-bottom: 22px;
+    }
+    .answer-card {
+      border: 1px solid var(--border); border-radius: 24px;
+      background: var(--card); padding: 22px 18px 18px;
+      cursor: pointer; text-align: center;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: var(--shadow-soft);
+    }
+    .answer-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(238,66,102,0.28);
+      box-shadow: var(--shadow-hover);
+    }
+    .answer-card.selected {
+      border-color: var(--accent-2); border-width: 2px;
+      box-shadow: 0 0 0 5px rgba(238,66,102,0.18), var(--shadow-card);
+      background: #fff0f3;
+    }
+    .answer-icon {
+      width: 108px; height: 108px;
+      margin: 0 auto 14px; display: flex;
+      align-items: center; justify-content: center;
+    }
     .answer-title { font-size: 18px; font-weight: 800; color: var(--navy); line-height: 1.28; margin-bottom: 6px; }
     .answer-sub { font-size: 14px; line-height: 1.55; color: var(--navy-soft); }
-    .question-actions { display: flex; justify-content: center; margin-bottom: 28px; }
+
+    /* PROOF CHIPS */
     .proof-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
-    .proof-chip { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 999px; padding: 12px 16px; background: #fff; color: var(--navy); font-size: 14px; font-weight: 600; box-shadow: var(--shadow-soft); }
-    .proof-chip .dot { width: 30px; height: 30px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,210,63,0.22); color: var(--accent); flex-shrink: 0; }
-    .hero-card { background: linear-gradient(180deg, #ffffff, #fcfcff); border: 1px solid var(--border); border-radius: 30px; padding: 22px; box-shadow: var(--shadow-card); position: relative; overflow: hidden; max-width: 560px; }
-    .hero-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(238,66,102,0.08), transparent 38%); pointer-events: none; }
-    .estimate-panel { position: relative; z-index: 1; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 24px; box-shadow: var(--shadow-soft); }
+    .proof-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: 12px 16px; background: #fff; color: var(--navy);
+      font-size: 14px; font-weight: 600; box-shadow: var(--shadow-soft);
+    }
+    .proof-chip .dot {
+      width: 30px; height: 30px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,210,63,0.22); color: var(--accent); flex-shrink: 0;
+    }
+
+    /* SAMPLE CARD */
+    .hero-card {
+      background: linear-gradient(180deg, #ffffff, #fcfcff);
+      border: 1px solid var(--border); border-radius: 30px;
+      padding: 22px; box-shadow: var(--shadow-card);
+      position: relative; overflow: hidden; max-width: 560px;
+    }
+    .hero-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at top right, rgba(238,66,102,0.08), transparent 38%);
+      pointer-events: none;
+    }
+    .estimate-panel {
+      position: relative; z-index: 1; background: var(--card);
+      border: 1px solid var(--border); border-radius: 24px;
+      padding: 24px; box-shadow: var(--shadow-soft);
+    }
     .estimate-label { font-size: 12px; font-weight: 800; color: var(--accent-2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
     .estimate-title { font-family: "Fraunces", serif; font-size: 30px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 10px; color: var(--navy); }
     .estimate-range { font-size: 30px; line-height: 1; font-weight: 800; color: var(--accent); margin-bottom: 10px; }
@@ -69,65 +196,103 @@
     .estimate-list { display: grid; gap: 10px; }
     .estimate-item { display: flex; align-items: center; gap: 10px; color: var(--navy); font-size: 14px; font-weight: 600; }
     .estimate-mini { width: 24px; height: 24px; border-radius: 999px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(255,210,63,0.22); color: var(--accent); }
-    .section { padding: 24px 0 18px; background: #ffffff; }
+
+    /* SHARED */
     .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
     .section-kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-2); }
-    .section h2, .flow-wrap h2, .faq-wrap h2, .bottom-cta-wrap h2 { font-family: "Fraunces", serif; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.03; letter-spacing: -0.03em; color: var(--navy); }
+    .section h2, .flow-wrap h2, .faq-wrap h2, .bottom-cta-wrap h2 {
+      font-family: "Fraunces", serif; font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.03; letter-spacing: -0.03em; color: var(--navy);
+    }
     .section-lead { color: var(--navy-soft); max-width: 700px; font-size: 1.02rem; line-height: 1.65; }
-    .btn { appearance: none; border: none; cursor: pointer; border-radius: 999px; padding: 16px 32px; font-size: 15px; font-weight: 800; transition: transform 0.16s ease, box-shadow 0.16s ease; }
+
+    .btn {
+      appearance: none; border: none; cursor: pointer;
+      border-radius: 999px; padding: 16px 32px;
+      font-size: 15px; font-weight: 800;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
     .btn:hover { transform: translateY(-1px); }
     .btn-primary { background: var(--accent-2); color: #fff; box-shadow: 0 12px 26px rgba(238,66,102,0.22); }
     .btn-primary:hover { box-shadow: 0 16px 32px rgba(238,66,102,0.3); }
-    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-    .flow-wrap { padding: 36px 0 42px; background: linear-gradient(180deg, #fbfcff, #f7f9fc); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    /* HOW IT WORKS */
+    .flow-wrap {
+      padding: 36px 0 42px;
+      background: linear-gradient(180deg, #fbfcff, #f7f9fc);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; align-items: start; margin-bottom: 28px; }
-    .step-card { text-align: center; padding: 6px 10px 0; background: transparent; border: none; box-shadow: none; border-radius: 0; }
-    .step-icon { width: 92px; height: 92px; border-radius: 999px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255,210,63,0.24), rgba(255,210,63,0.08)); box-shadow: var(--shadow-soft); }
+    .step-card { text-align: center; padding: 6px 10px 0; }
+    .step-icon {
+      width: 92px; height: 92px; border-radius: 999px;
+      margin: 0 auto 18px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(180deg, rgba(255,210,63,0.24), rgba(255,210,63,0.08));
+      box-shadow: var(--shadow-soft);
+    }
     .step-index { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-2); margin-bottom: 6px; }
     .step-title { font-family: "Fraunces", serif; font-size: 24px; line-height: 1.04; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 8px; }
     .step-copy { font-size: 15px; color: var(--navy-soft); line-height: 1.55; max-width: 300px; margin: 0 auto; }
     .flow-cta { display: flex; justify-content: center; }
+
+    /* FACTORS */
     .factors-wrap { padding: 16px 0 8px; background: #ffffff; }
     .factors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .factor-card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 24px 22px; box-shadow: var(--shadow-soft); }
     .factor-card h3 { font-family: "Fraunces", serif; font-size: 24px; line-height: 1.04; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 10px; }
     .factor-card p { font-size: 15px; color: var(--navy-soft); line-height: 1.6; }
+
+    /* FAQ */
     .faq-wrap { padding: 20px 0 40px; background: #ffffff; }
     .faq-list { display: grid; gap: 14px; max-width: 860px; margin: 0 auto; }
     .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px 22px; box-shadow: var(--shadow-soft); }
     .faq-q { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
     .faq-a { font-size: 15px; color: var(--navy-soft); line-height: 1.6; }
-    .bottom-cta-wrap { padding: 40px 0 48px; background: linear-gradient(180deg, #f7f9fc, #fff); border-top: 1px solid var(--border); text-align: center; }
+
+    /* BOTTOM CTA */
+    .bottom-cta-wrap {
+      padding: 40px 0 48px;
+      background: linear-gradient(180deg, #f7f9fc, #fff);
+      border-top: 1px solid var(--border); text-align: center;
+    }
     .bottom-cta-wrap h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); margin-bottom: 10px; }
     .bottom-cta-wrap p { color: var(--navy-soft); font-size: 1rem; margin-bottom: 24px; }
+
+    /* FOOTER */
     .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px; }
-    @media (max-width: 1040px) { .answer-grid, .steps-grid, .factors-grid { grid-template-columns: 1fr 1fr; } }
+
+    @media (max-width: 1040px) {
+      .answer-grid, .steps-grid, .factors-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 720px) {
-      .nav-inner { min-height: 70px; } .brand-sub, .nav-right { display: none; } .hero { padding-top: 34px; }
+      .hero { padding-top: 34px; }
       .answer-grid, .steps-grid, .factors-grid { grid-template-columns: 1fr; }
-      .proof-chips { gap: 10px; } .proof-chip { width: 100%; justify-content: flex-start; } .footer-inner { flex-direction: column; }
+      .proof-chips { gap: 10px; }
+      .proof-chip { width: 100%; justify-content: flex-start; }
+      .footer-inner { flex-direction: column; }
     }
   </style>
 </head>
 <body>
+
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#">
-        <div class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M8.5 13.5 11 16l4.5-5" stroke="#ee4266" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="brand-copy">
-          <div class="brand-title">HVAC Install Costs</div>
-          <div class="brand-sub">Local AC installation estimate</div>
-        </div>
+      <a class="nav-logo" href="index.html">
+        <img src="logo.png" alt="HVAC Cost Guide" />
       </a>
-      <div class="nav-right">Real local pricing</div>
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <div class="nav-dropdown" id="nav-dropdown">
+    <a href="index.html" class="nav-dropdown-item active">AC Installation Calculator</a>
+    <a href="heating/index.html" class="nav-dropdown-item">Heating Cost Calculator</a>
+    <div class="nav-dropdown-item soon">Compare Quotes <span class="nav-dropdown-soon">Coming Soon</span></div>
+  </div>
+  <div class="nav-overlay" id="nav-overlay" onclick="closeMenu()"></div>
 
   <section class="hero">
     <div class="container">
@@ -135,48 +300,63 @@
       <p class="hero-sub">Based on real local pricing from King &amp; Snohomish County.</p>
       <div class="hero-question-label">What best describes your situation?</div>
 
-      <div class="answer-grid" id="heroCards">
-        <button class="answer-card" type="button" data-intent="replace" onclick="selectCard(this)">
+      <div class="answer-grid">
+        <button class="answer-card" type="button" onclick="goToQuiz('replace')">
           <div class="answer-icon">
             <svg width="98" height="98" viewBox="0 0 120 120" fill="none">
-              <rect x="28" y="24" width="64" height="56" rx="10" stroke="#14213d" stroke-width="3"/>
-              <path d="M22 88h76" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
-              <path d="M42 48h36" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
-              <circle cx="40" cy="60" r="6" fill="#ffd23f"/>
+              <rect x="18" y="32" width="64" height="44" rx="8" stroke="#14213d" stroke-width="3" fill="none"/>
+              <line x1="30" y1="46" x2="30" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="40" y1="46" x2="40" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="50" y1="46" x2="50" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="66" cy="54" r="6" fill="#ee4266"/>
+              <line x1="12" y1="82" x2="88" y2="82" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+              <path d="M88 54 L104 54" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+              <path d="M97 46 L106 54 L97 62" stroke="#ee4266" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M22 38 L26 44" stroke="#52607a" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M26 38 L22 44" stroke="#52607a" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="answer-title">My AC needs to be replaced</div>
           <div class="answer-sub">For homes swapping out an older or failing system.</div>
         </button>
 
-        <button class="answer-card" type="button" data-intent="add" onclick="selectCard(this)">
+        <button class="answer-card" type="button" onclick="goToQuiz('add')">
           <div class="answer-icon">
             <svg width="98" height="98" viewBox="0 0 120 120" fill="none">
-              <path d="M20 84V46l40-24 40 24v38" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
-              <rect x="46" y="60" width="28" height="24" rx="4" stroke="#540d6e" stroke-width="3"/>
-              <path d="M36 48h48" stroke="#ee4266" stroke-width="4" stroke-linecap="round"/>
+              <path d="M20 58 L60 22 L100 58" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M30 52 L30 90 L90 90 L90 52" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <rect x="42" y="60" width="36" height="22" rx="5" stroke="#540d6e" stroke-width="2.5" fill="none"/>
+              <line x1="50" y1="68" x2="50" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+              <line x1="57" y1="68" x2="57" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="68" cy="71" r="4" fill="#ffd23f"/>
+              <circle cx="94" cy="30" r="14" fill="#ffd23f" opacity="0.25"/>
+              <line x1="94" y1="22" x2="94" y2="38" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+              <line x1="86" y1="30" x2="102" y2="30" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="answer-title">I want to add AC to my home</div>
           <div class="answer-sub">For homes adding cooling for the first time.</div>
         </button>
 
-        <button class="answer-card" type="button" data-intent="unsure" onclick="selectCard(this)">
+        <button class="answer-card" type="button" onclick="goToQuiz('unsure')">
           <div class="answer-icon">
             <svg width="98" height="98" viewBox="0 0 120 120" fill="none">
-              <circle cx="60" cy="60" r="34" stroke="#14213d" stroke-width="3"/>
-              <path d="M60 42v20" stroke="#540d6e" stroke-width="4" stroke-linecap="round"/>
-              <circle cx="60" cy="78" r="4" fill="#ee4266"/>
-              <path d="M24 94c10-8 21-10 36-10 15 0 26 2 36 10" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/>
+              <rect x="8" y="38" width="36" height="22" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+              <line x1="16" y1="46" x2="16" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+              <line x1="22" y1="46" x2="22" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="36" cy="49" r="3.5" fill="#ffd23f"/>
+              <rect x="76" y="36" width="36" height="26" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+              <circle cx="94" cy="49" r="8" stroke="#540d6e" stroke-width="2" fill="none"/>
+              <circle cx="94" cy="49" r="3" fill="#540d6e"/>
+              <line x1="60" y1="30" x2="60" y2="90" stroke="#e0e8ee" stroke-width="2" stroke-dasharray="4 4"/>
+              <text x="60" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#ee4266">?</text>
+              <line x1="8" y1="72" x2="44" y2="72" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+              <line x1="76" y1="72" x2="112" y2="72" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="answer-title">I'm not sure what I need</div>
           <div class="answer-sub">A good starting point if you want clarity before talking to anyone.</div>
         </button>
-      </div>
-
-      <div class="question-actions">
-        <button class="btn btn-primary" id="continueBtn" type="button" disabled onclick="goToEstimate()">Continue →</button>
       </div>
 
       <div class="proof-chips">
@@ -217,10 +397,26 @@
           <div class="estimate-copy">Most homes like yours fall in this range.</div>
           <div class="estimate-subhead">Usually includes</div>
           <div class="estimate-list">
-            <div class="estimate-item"><span class="estimate-mini"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Equipment</div>
-            <div class="estimate-item"><span class="estimate-mini"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Standard install labor</div>
-            <div class="estimate-item"><span class="estimate-mini"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Startup and testing</div>
-            <div class="estimate-item"><span class="estimate-mini"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Typical install time: 1–2 days</div>
+            <div class="estimate-item">
+              <span class="estimate-mini">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Equipment
+            </div>
+            <div class="estimate-item">
+              <span class="estimate-mini">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Standard install labor
+            </div>
+            <div class="estimate-item">
+              <span class="estimate-mini">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Startup and testing
+            </div>
+            <div class="estimate-item">
+              <span class="estimate-mini">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>Typical install time: 1-2 days
+            </div>
           </div>
         </div>
       </div>
@@ -236,26 +432,46 @@
       </div>
       <div class="steps-grid">
         <div class="step-card">
-          <div class="step-icon"><svg width="56" height="56" viewBox="0 0 80 80" fill="none"><rect x="12" y="20" width="56" height="36" rx="8" stroke="#14213d" stroke-width="3"/><path d="M22 60h36" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/><path d="M27 36h26" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="38" r="4" fill="#ffd23f"/></svg></div>
+          <div class="step-icon">
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+              <rect x="12" y="20" width="56" height="36" rx="8" stroke="#14213d" stroke-width="3"/>
+              <path d="M22 60h36" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+              <path d="M27 36h26" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="22" cy="38" r="4" fill="#ffd23f"/>
+            </svg>
+          </div>
           <div class="step-index">Step 1</div>
           <div class="step-title">Pick your situation</div>
           <div class="step-copy">Tell us if you're replacing a system, adding AC, or not sure yet.</div>
         </div>
         <div class="step-card">
-          <div class="step-icon"><svg width="56" height="56" viewBox="0 0 80 80" fill="none"><path d="M18 58V33l22-15 22 15v25" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/><path d="M31 58V43h18v15" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/><path d="M20 33h40" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <div class="step-icon">
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+              <path d="M18 58V33l22-15 22 15v25" stroke="#14213d" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M31 58V43h18v15" stroke="#540d6e" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M20 33h40" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="step-index">Step 2</div>
           <div class="step-title">Answer quick home questions</div>
           <div class="step-copy">We use home size, ductwork, and location to narrow the estimate.</div>
         </div>
         <div class="step-card">
-          <div class="step-icon"><svg width="56" height="56" viewBox="0 0 80 80" fill="none"><rect x="18" y="14" width="44" height="52" rx="10" stroke="#14213d" stroke-width="3"/><path d="M28 30h24" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/><path d="M28 42h18" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/><path d="M28 54h12" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <div class="step-icon">
+            <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+              <rect x="18" y="14" width="44" height="52" rx="10" stroke="#14213d" stroke-width="3"/>
+              <path d="M28 30h24" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+              <path d="M28 42h18" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+              <path d="M28 54h12" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="step-index">Step 3</div>
           <div class="step-title">See your range</div>
           <div class="step-copy">Get a tighter local estimate and the option that usually makes sense.</div>
         </div>
       </div>
       <div class="flow-cta">
-        <button class="btn btn-primary" type="button" onclick="goToEstimate()">Start My Estimate →</button>
+        <button class="btn btn-primary" type="button" onclick="goToQuiz('unsure')">Start My Estimate &rarr;</button>
       </div>
     </div>
   </section>
@@ -282,9 +498,22 @@
         <h2>Quick answers before you start.</h2>
       </div>
       <div class="faq-list">
-        <div class="faq-item"><div class="faq-q">Is this an exact quote?</div><div class="faq-a">No. This shows a tighter local range based on homes and installs similar to yours.</div></div>
-        <div class="faq-item"><div class="faq-q">Why can quotes vary so much?</div><div class="faq-a">System size, layout, ductwork, labor, and installer approach can swing the number by thousands.</div></div>
-        <div class="faq-item"><div class="faq-q">Will I need to talk to someone right away?</div><div class="faq-a">No. The goal is to show value first. A more exact estimate can come later as an optional step.</div></div>
+        <div class="faq-item">
+          <div class="faq-q">Is this an exact quote?</div>
+          <div class="faq-a">No. This shows a tighter local range based on homes and installs similar to yours.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why can quotes vary so much?</div>
+          <div class="faq-a">System size, layout, ductwork, labor, and installer approach can swing the number by thousands.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Will I need to talk to someone right away?</div>
+          <div class="faq-a">No. You'll get your estimate without talking to anyone. Connecting with an installer is always optional.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do I need more than one quote?</div>
+          <div class="faq-a">Usually yes. Even after getting a baseline here, comparing a couple of local quotes is still smart.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -293,32 +522,35 @@
     <div class="container">
       <h2>Ready to see your range?</h2>
       <p>Takes less than two minutes. No contact info required.</p>
-      <button class="btn btn-primary" type="button" onclick="goToEstimate()">Get My Estimate →</button>
+      <button class="btn btn-primary" type="button" onclick="goToQuiz('unsure')">Get My Estimate &rarr;</button>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div>© 2026 HVAC Install Costs</div>
-      <div>Informational estimates only · Privacy Policy</div>
+      <div>&copy; 2026 HVAC Cost Guide</div>
+      <div>Informational estimates only &middot; <a href="#">Privacy Policy</a></div>
     </div>
   </footer>
 
   <script>
-    let selectedIntent = null;
-
-    function selectCard(el) {
-      document.querySelectorAll('#heroCards .answer-card').forEach(c => c.classList.remove('selected'));
-      el.classList.add('selected');
-      selectedIntent = el.dataset.intent;
-      document.getElementById('continueBtn').disabled = false;
+    function toggleMenu() {
+      const h = document.getElementById('nav-hamburger');
+      const d = document.getElementById('nav-dropdown');
+      const o = document.getElementById('nav-overlay');
+      const isOpen = d.classList.contains('open');
+      if (isOpen) { closeMenu(); } else { h.classList.add('open'); d.classList.add('open'); o.classList.add('open'); }
     }
-
-    function goToEstimate() {
-      const url = selectedIntent
-        ? 'estimate.html?intent=' + selectedIntent
-        : 'estimate.html';
-      window.location.href = url;
+    function closeMenu() {
+      document.getElementById('nav-hamburger').classList.remove('open');
+      document.getElementById('nav-dropdown').classList.remove('open');
+      document.getElementById('nav-overlay').classList.remove('open');
+    }
+    function goToQuiz(intent) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'quiz_start', { intent: intent });
+      }
+      window.location.href = 'estimate.html?intent=' + intent;
     }
   </script>
 </body>
