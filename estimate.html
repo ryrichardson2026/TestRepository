@@ -265,6 +265,14 @@
     }
     .lead-submit:hover { transform: translateY(-1px); background: var(--accent-dark); }
     .lead-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .lead-error {
+      display: none;
+      font-size: 12px;
+      color: #ee4266;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+    .lead-error.visible { display: block; }
 
     /* THANK YOU */
     .thankyou-wrap { display: none; text-align: center; padding: 16px 0; }
@@ -626,11 +634,13 @@
                 <div class="lead-fields">
                   <div class="lead-field">
                     <label class="lead-label" for="leadName">First name</label>
-                    <input class="lead-input" type="text" id="leadName" placeholder="Your first name" autocomplete="given-name" oninput="updateSubmit()" />
+                    <input class="lead-input" type="text" id="leadName" placeholder="Your first name" autocomplete="given-name" required oninput="updateSubmit()" />
+                    <div class="lead-error" id="nameError"></div>
                   </div>
                   <div class="lead-field">
                     <label class="lead-label" for="leadPhone">Phone number</label>
-                    <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" oninput="updateSubmit()" />
+                    <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" required oninput="updateSubmit()" />
+                    <div class="lead-error" id="phoneError"></div>
                   </div>
                   <div class="lead-field">
                     <label class="lead-label" for="leadEmail">Email <span class="lead-optional">(optional)</span></label>
@@ -722,7 +732,15 @@
   </footer>
 
   <script>
-    const state = { intent: null, size: null, ducts: null, city: null };
+    const state = {
+      intent: null,
+      size: null,
+      ducts: null,
+      city: null,
+      result_type: null,
+      result_range: null,
+      result_labor: null
+    };
 
     const microCopy = {
       replace: 'Replacing — good to know.',
@@ -911,18 +929,6 @@
     }
 
     function runLoadingThenResults() {
-      // Fire webhook with quiz answers
-      const cityEl = document.getElementById('citySelect');
-      const cityText = cityEl ? cityEl.options[cityEl.selectedIndex].text : '';
-      fireWebhook({
-        event: 'quiz_complete',
-        intent: state.intent,
-        size: state.size,
-        ducts: state.ducts,
-        city: cityText,
-        timestamp: new Date().toISOString()
-      });
-
       showStep('loadingStep');
       const messages = [
         'Analyzing your inputs…',
@@ -946,6 +952,23 @@
       setTimeout(() => {
         clearInterval(interval);
         buildResults();
+
+        const cityEl = document.getElementById('citySelect');
+        const cityText = cityEl ? cityEl.options[cityEl.selectedIndex].text : '';
+
+        fireWebhook({
+          event: 'quiz_complete',
+          site_label: 'AC Estimator',
+          intent: state.intent,
+          size: state.size,
+          ducts: state.ducts,
+          city: cityText,
+          result_type: state.result_type,
+          result_range: state.result_range,
+          result_labor: state.result_labor,
+          timestamp: new Date().toISOString()
+        });
+
         showStep('resultsStep');
       }, 5600);
     }
@@ -964,6 +987,10 @@
       if (state.intent === 'replace') result = resultMap.replace[state.size];
       else if (state.intent === 'add') result = resultMap.add[state.size][state.ducts || 'unsure'];
       else result = resultMap.unsure[state.size];
+
+      state.result_type = result.type;
+      state.result_range = result.range;
+      state.result_labor = result.labor;
 
       const cityEl = document.getElementById('citySelect');
       const cityText = cityEl ? cityEl.options[cityEl.selectedIndex].text : '';
@@ -1006,8 +1033,33 @@
       const name = document.getElementById('leadName').value.trim();
       const phone = document.getElementById('leadPhone').value.trim();
       const consent = document.getElementById('consentCheck').checked;
-      document.getElementById('leadSubmit').disabled = !(name && phone && consent);
+
+      const nameError = document.getElementById('nameError');
+      const phoneError = document.getElementById('phoneError');
+
+      const cleanedPhone = phone.replace(/\D/g, '');
+      const isNameValid = name.length >= 2;
+      const isPhoneValid = /^\d{10}$/.test(cleanedPhone);
+
+      nameError.classList.remove('visible');
+      phoneError.classList.remove('visible');
+
+      document.getElementById('leadSubmit').disabled = !(isNameValid && isPhoneValid && consent);
     }
+
+    document.getElementById('leadPhone').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '').slice(0, 10);
+
+      if (value.length >= 7) {
+        value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6)}`;
+      } else if (value.length >= 4) {
+        value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+      } else if (value.length >= 1) {
+        value = `(${value}`;
+      }
+
+      e.target.value = value;
+    });
 
     function submitLead() {
       const name = document.getElementById('leadName').value.trim();
@@ -1016,9 +1068,32 @@
       const cityEl = document.getElementById('citySelect');
       const cityText = cityEl ? cityEl.options[cityEl.selectedIndex].text : '';
 
-      // Fire Make webhook with lead data
+      const nameError = document.getElementById('nameError');
+      const phoneError = document.getElementById('phoneError');
+
+      nameError.classList.remove('visible');
+      phoneError.classList.remove('visible');
+
+      let valid = true;
+
+      if (name.length < 2) {
+        nameError.textContent = 'Please enter your first name';
+        nameError.classList.add('visible');
+        valid = false;
+      }
+
+      const cleanedPhone = phone.replace(/\D/g, '');
+      if (!/^\d{10}$/.test(cleanedPhone)) {
+        phoneError.textContent = 'Enter a valid 10-digit phone number';
+        phoneError.classList.add('visible');
+        valid = false;
+      }
+
+      if (!valid) return;
+
       fireWebhook({
         event: 'lead_submit',
+        site_label: 'AC Estimator',
         name: name,
         phone: phone,
         email: email,
@@ -1026,13 +1101,12 @@
         intent: state.intent,
         size: state.size,
         ducts: state.ducts,
-        results: state.result_type
-        range: state.result_range
-        labor: state.result_labor
+        result_type: state.result_type,
+        result_range: state.result_range,
+        result_labor: state.result_labor,
         timestamp: new Date().toISOString()
       });
 
-      // Fire Google Ads conversion
       if (typeof gtag !== 'undefined') {
         gtag('event', 'conversion', { send_to: 'AW-17039190320' });
         gtag('event', 'lead_submit', { city: cityText, intent: state.intent });
@@ -1045,6 +1119,7 @@
 
     function restartFlow() {
       state.intent = null; state.size = null; state.ducts = null; state.city = null;
+      state.result_type = null; state.result_range = null; state.result_labor = null;
       document.querySelectorAll('.answer-card').forEach(c => c.classList.remove('selected'));
       const cs = document.getElementById('citySelect');
       if (cs) { cs.value = ''; cs.classList.remove('selected-val'); }
