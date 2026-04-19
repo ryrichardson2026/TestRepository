@@ -125,18 +125,37 @@
     }
     .hero-note { font-size: 0.95rem; color: var(--navy-soft); margin-bottom: 20px; }
 
-    .proof-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
-    .proof-chip {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 1px solid var(--border); border-radius: 999px;
-      padding: 10px 14px; background: #fff; color: var(--navy);
-      font-size: 14px; font-weight: 600; box-shadow: var(--shadow-soft);
-    }
-    .proof-chip .dot {
-      width: 28px; height: 28px; border-radius: 999px;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: rgba(255,210,63,0.18); color: var(--accent); flex-shrink: 0;
-    }
+.proof-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+
+.proof-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #fff;
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.proof-chip .dot {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none; /* removed yellow */
+  color: #540d6e;   /* brand color */
+  flex-shrink: 0;
+}
 
     .hero-question-label { font-size: 19px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
 
@@ -354,6 +373,7 @@
         <h1>See real AC installation costs in your area</h1>
         <p class="hero-sub"><p class="hero-sub">Answer a few quick questions to get a local price range for <b>Snohomish & King County</b> — often within a few hundred dollars of real quotes.
 </p></p>
+        <p></p>
 
        <div class="proof-chips">
 
