@@ -19,6 +19,16 @@
     gtag('config', 'AW-17039190320');
   </script>
 
+
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('intent')) {
+        document.documentElement.classList.add('has-preintent');
+      }
+    })();
+  </script>
+
   <style>
     :root {
       --navy: #14213d;
@@ -310,6 +320,10 @@
 
     .bottom-cta { padding: 8px 0 44px; display: flex; justify-content: center; }
     .is-hidden-after-start { display: none !important; }
+    html.has-preintent .factors-wrap,
+    html.has-preintent .faq-wrap,
+    html.has-preintent .bottom-cta,
+    html.has-preintent #step1 { display: none !important; }
     .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px; }
 
@@ -376,7 +390,7 @@
           <text x="70" y="37" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.3" fill="#2d3a55">HVAC Cost Guide</text>
         </svg>
       </a>
-      <a class="nav-back" href="index.html">← Back</a>
+      <a class="nav-back" href="index.html">↺ Start Over</a>
     </div>
   </header>
 
@@ -1127,19 +1141,7 @@
     }
 
     function restartFlow() {
-      state.intent = null; state.size = null; state.ducts = null; state.city = null;
-      state.result_type = null; state.result_range = null; state.result_labor = null;
-      document.querySelectorAll('.answer-card').forEach(c => c.classList.remove('selected'));
-      const cs = document.getElementById('citySelect');
-      if (cs) { cs.value = ''; cs.classList.remove('selected-val'); }
-      document.getElementById('toStep2').disabled = true;
-      document.getElementById('toStep3').disabled = true;
-      document.getElementById('toStep4').disabled = true;
-      document.getElementById('seeResults').disabled = true;
-      document.getElementById('leadFormWrap').classList.remove('visible');
-      document.getElementById('thankyouWrap').classList.remove('visible');
-      showStep('step1');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.location.href = 'index.html';
     }
 
     // Read intent from URL
