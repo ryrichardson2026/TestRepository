@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-WF65GPHQ"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
@@ -26,7 +28,6 @@
       }
     })();
   </script>
-
 
   <style>
     :root {
@@ -187,7 +188,7 @@
     }
     @keyframes shimmer { 0% { transform: translateX(-80%); } 100% { transform: translateX(220%); } }
 
-    .results-stack { display: grid; gap: 18px; }
+    .results-stack { display: grid; gap: 10px; }
     .results-summary {
       font-size: 12px; font-weight: 700; color: var(--navy-soft);
       text-transform: uppercase; letter-spacing: 0.07em;
@@ -279,32 +280,6 @@
     .thankyou-title { font-family: "Fraunces", serif; font-size: 1.9rem; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 8px; }
     .thankyou-body { font-size: 15px; color: var(--navy-soft); line-height: 1.6; max-width: 480px; margin: 0 auto; }
 
-    .factors-wrap, .faq-wrap { padding: 18px 0 22px; background: var(--white); }
-    .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
-    .section-kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
-    .section-head h2 {
-      font-family: "Fraunces", serif;
-      font-size: clamp(1.8rem, 3vw, 2.75rem);
-      line-height: 1.03; letter-spacing: -0.03em;
-    }
-    .section-lead { max-width: 720px; color: var(--navy-soft); font-size: 1rem; line-height: 1.65; }
-    .factors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .factor-card, .faq-item {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 24px; box-shadow: var(--shadow-soft); padding: 22px;
-    }
-    .factor-card h3 {
-      font-family: "Fraunces", serif; font-size: 24px;
-      line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 10px;
-    }
-    .factor-card p, .faq-a { color: var(--navy-soft); font-size: 15px; line-height: 1.6; }
-    .faq-list { display: grid; gap: 14px; max-width: 860px; margin: 0 auto; }
-    .faq-q { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
-
-    .bottom-cta { padding: 8px 0 44px; display: flex; justify-content: center; }
-    html.has-preintent .factors-wrap,
-    html.has-preintent .faq-wrap,
-    html.has-preintent .bottom-cta,
     html.has-preintent #step1 { display: none !important; }
     .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px; }
@@ -339,6 +314,7 @@
       .footer-inner { flex-direction: column; }
     }
   </style>
+
 </head>
 <body>
   <header class="nav">
@@ -393,222 +369,187 @@
           <span class="progress-pill" id="p7"></span>
         </div>
 
-        <div class="flow-step active" id="step1">
-          <div class="flow-title">What best matches your situation?</div>
-          <div class="flow-sub">Pick the one that feels closest to where you are right now.</div>
-          <div class="answers-grid cols-3">
-            <button class="answer-card flow-intent" type="button" data-value="replace">
-              <div class="answer-title">Replace my AC</div>
-              <div class="answer-sub">Swap out an older or failing system.</div>
-            </button>
-            <button class="answer-card flow-intent" type="button" data-value="add">
-              <div class="answer-title">Add AC</div>
-              <div class="answer-sub">Put cooling into a home that does not have it now.</div>
-            </button>
-            <button class="answer-card flow-intent" type="button" data-value="unsure">
-              <div class="answer-title">Not sure yet</div>
-              <div class="answer-sub">Get a starting point before talking to anyone.</div>
-            </button>
-          </div>
-          <div class="step-actions">
-            <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue →</button>
-          </div>
-        </div>
+```
+    <div class="flow-step active" id="step1">
+      <div class="flow-title">What best matches your situation?</div>
+      <div class="flow-sub">Pick the one that feels closest to where you are right now.</div>
+      <div class="answers-grid cols-3">
+        <button class="answer-card flow-intent" type="button" data-value="replace">
+          <div class="answer-title">Replace my AC</div>
+          <div class="answer-sub">Swap out an older or failing system.</div>
+        </button>
+        <button class="answer-card flow-intent" type="button" data-value="add">
+          <div class="answer-title">Add AC</div>
+          <div class="answer-sub">Put cooling into a home that does not have it now.</div>
+        </button>
+        <button class="answer-card flow-intent" type="button" data-value="unsure">
+          <div class="answer-title">Not sure yet</div>
+          <div class="answer-sub">Get a starting point before talking to anyone.</div>
+        </button>
+      </div>
+      <div class="step-actions">
+        <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue →</button>
+      </div>
+    </div>
 
-        <div class="flow-step" id="step2">
-          <div class="flow-title">How big is your home?</div>
-          <div class="flow-sub">This helps narrow the system size and your price range.</div>
-          <div class="answers-grid cols-3">
-            <button class="answer-card flow-size" type="button" data-value="small"><div class="answer-title">Small</div><div class="answer-sub">Under 1,500 sq ft</div></button>
-            <button class="answer-card flow-size" type="button" data-value="medium"><div class="answer-title">Medium</div><div class="answer-sub">1,500–2,500 sq ft</div></button>
-            <button class="answer-card flow-size" type="button" data-value="large"><div class="answer-title">Large</div><div class="answer-sub">Over 2,500 sq ft</div></button>
-          </div>
-          <div class="step-actions"><button class="btn btn-ghost" type="button" onclick="window.location.href='index.html'"> ← Start Over
+    <div class="flow-step" id="step2">
+      <div class="flow-title">How big is your home?</div>
+      <div class="flow-sub">This helps narrow the system size and your price range.</div>
+      <div class="answers-grid cols-3">
+        <button class="answer-card flow-size" type="button" data-value="small"><div class="answer-title">Small</div><div class="answer-sub">Under 1,500 sq ft</div></button>
+        <button class="answer-card flow-size" type="button" data-value="medium"><div class="answer-title">Medium</div><div class="answer-sub">1,500–2,500 sq ft</div></button>
+        <button class="answer-card flow-size" type="button" data-value="large"><div class="answer-title">Large</div><div class="answer-sub">Over 2,500 sq ft</div></button>
+      </div>
+      <div class="step-actions"><button class="btn btn-ghost" type="button" onclick="window.location.href='index.html'"> ← Start Over
+```
+
 </button>
             <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue →</button>
           </div>
         </div>
 
-        <div class="flow-step" id="step3">
-          <div class="flow-title">How well is your current home cooling?</div>
-          <div class="flow-sub">Choose the one that feels most true today.</div>
-          <div class="answers-grid cols-3" id="performanceGrid"></div>
-          <div class="step-actions">
-            <button class="btn btn-ghost" type="button" id="step3Back">Back</button>
-            <button class="btn btn-primary" type="button" id="toStep4" disabled>Continue →</button>
+```
+    <div class="flow-step" id="step3">
+      <div class="flow-title">How well is your current home cooling?</div>
+      <div class="flow-sub">Choose the one that feels most true today.</div>
+      <div class="answers-grid cols-3" id="performanceGrid"></div>
+      <div class="step-actions">
+        <button class="btn btn-ghost" type="button" id="step3Back">Back</button>
+        <button class="btn btn-primary" type="button" id="toStep4" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <div class="flow-step" id="step4">
+      <div class="flow-title">Does your home have air vents (ductwork)?</div>
+      <div class="flow-sub">This helps narrow whether central AC, heat pump, or ductless is the better fit.</div>
+      <div class="answers-grid cols-3" id="ductsGrid"></div>
+      <div class="step-actions">
+        <button class="btn btn-ghost" type="button" id="step4Back">Back</button>
+        <button class="btn btn-primary" type="button" id="toStep6" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <!-- Step 6: replace intent only — age only (issue_type removed) -->
+    <div class="flow-step" id="step6">
+      <div class="flow-title" id="step6Title">A few details about your current system</div>
+      <div class="flow-sub" id="step6Sub">These help us give better direction for replacement pricing.</div>
+      <div class="answers-grid cols-3" id="replaceGrid"></div>
+      <div class="step-actions">
+        <button class="btn btn-ghost" type="button" id="step6Back">Back</button>
+        <button class="btn btn-primary" type="button" id="toStep7" disabled>Continue →</button>
+      </div>
+    </div>
+
+    <div class="flow-step" id="step7">
+      <div class="flow-title">Where is your home located?</div>
+      <div class="flow-sub">This keeps the estimate framed around Snohomish &amp; King County expectations.</div>
+      <div class="city-select-wrap">
+        <select class="city-select" id="citySelect" onchange="onCitySelect(this)">
+          <option value="">Select your city...</option>
+          <option value="mill-creek">Mill Creek</option>
+          <option value="everett">Everett</option>
+          <option value="bothell">Bothell</option>
+          <option value="lynnwood">Lynnwood</option>
+          <option value="mukilteo">Mukilteo</option>
+          <option value="snohomish">Snohomish</option>
+          <option value="marysville">Marysville</option>
+          <option value="monroe">Monroe</option>
+          <option value="woodinville">Woodinville</option>
+          <option value="kenmore">Kenmore</option>
+          <option value="bellevue">Bellevue</option>
+          <option value="redmond">Redmond</option>
+          <option value="kirkland">Kirkland</option>
+          <option value="seattle">Seattle</option>
+          <option value="other">Other / Not listed</option>
+        </select>
+      </div>
+      <div class="step-actions">
+        <button class="btn btn-ghost" type="button" id="step7Back">Back</button>
+        <button class="btn btn-primary" type="button" id="seeResults" disabled>See My Results →</button>
+      </div>
+    </div>
+
+    <div class="flow-step" id="loadingStep">
+      <div class="loading-block">
+        <div class="loading-title">Building your local price range...</div>
+        <div class="loading-cycle"><div class="loading-cycle-text" id="loadingCycleText">Analyzing your inputs…</div></div>
+        <div class="loading-bar"><div class="loading-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="flow-step" id="resultsStep">
+      <div class="results-stack">
+        <div class="results-card">
+          <div class="results-summary" id="resultSummary"></div>
+          <div class="results-label">Best starting option — <span id="resultCity"></span></div>
+          <div class="results-type" id="resultType">Central AC</div>
+          <div class="results-range" id="resultRange">$8,200 – $8,900</div>
+          <div class="results-labor" id="resultLabor">Estimated labor: $2,400 – $2,900</div>
+          <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
+          <div class="results-divider"></div>
+          <div class="mini-kicker">Why this range fits your home</div>
+          <div class="results-reasons" id="resultReasons"></div>
+          <div class="alt-block" id="altBlock">
+            <div class="mini-kicker">Also worth comparing</div>
+            <div class="alt-list" id="altList"></div>
           </div>
+          <div class="results-divider"></div>
+          <div class="results-includes-head">Usually includes</div>
+          <div class="results-includes">
+            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>System startup &amp; testing</div>
+            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1–3 days</div>
+          </div>
+          <div class="results-not-included">Not typically included: permit fees · duct repairs/modifications · electrical upgrades · insulation or airflow fixes</div>
         </div>
 
-        <div class="flow-step" id="step4">
-          <div class="flow-title">Does your home have air vents (ductwork)?</div>
-          <div class="flow-sub">This helps narrow whether central AC, heat pump, or ductless is the better fit.</div>
-          <div class="answers-grid cols-3" id="ductsGrid"></div>
-          <div class="step-actions">
-            <button class="btn btn-ghost" type="button" id="step4Back">Back</button>
-            <button class="btn btn-primary" type="button" id="toStep5" disabled>Continue →</button>
-          </div>
-        </div>
+        <div class="quote-bridge">
+          <div class="quote-title">Most homeowners compare 3–5 quotes before deciding</div>
+          <div class="quote-copy">We can connect you with a local specialist to get an exact number for your home.</div>
+          <button class="btn btn-primary" type="button" onclick="showLeadForm()">Get an exact quote →</button>
 
-        <div class="flow-step" id="step5">
-          <div class="flow-title">What are you looking for?</div>
-          <div class="flow-sub">This helps narrow the best-fit system for your home.</div>
-          <div class="answers-grid cols-3" id="preferenceGrid"></div>
-          <div class="step-actions">
-            <button class="btn btn-ghost" type="button" id="step5Back">Back</button>
-            <button class="btn btn-primary" type="button" id="toStep6" disabled>Continue →</button>
-          </div>
-        </div>
-
-        <div class="flow-step" id="step6">
-          <div class="flow-title" id="step6Title">A few details about your current system</div>
-          <div class="flow-sub" id="step6Sub">These help us give better direction for replacement pricing.</div>
-          <div class="answers-grid cols-3" id="replaceGrid"></div>
-          <div class="step-actions">
-            <button class="btn btn-ghost" type="button" id="step6Back">Back</button>
-            <button class="btn btn-primary" type="button" id="toStep7" disabled>Continue →</button>
-          </div>
-        </div>
-
-        <div class="flow-step" id="step7">
-          <div class="flow-title">Where is your home located?</div>
-          <div class="flow-sub">This keeps the estimate framed around Snohomish &amp; King County expectations.</div>
-          <div class="city-select-wrap">
-            <select class="city-select" id="citySelect" onchange="onCitySelect(this)">
-              <option value="">Select your city...</option>
-              <option value="mill-creek">Mill Creek</option>
-              <option value="everett">Everett</option>
-              <option value="bothell">Bothell</option>
-              <option value="lynnwood">Lynnwood</option>
-              <option value="mukilteo">Mukilteo</option>
-              <option value="snohomish">Snohomish</option>
-              <option value="marysville">Marysville</option>
-              <option value="monroe">Monroe</option>
-              <option value="woodinville">Woodinville</option>
-              <option value="kenmore">Kenmore</option>
-              <option value="bellevue">Bellevue</option>
-              <option value="redmond">Redmond</option>
-              <option value="kirkland">Kirkland</option>
-              <option value="seattle">Seattle</option>
-              <option value="other">Other / Not listed</option>
-            </select>
-          </div>
-          <div class="step-actions">
-            <button class="btn btn-ghost" type="button" id="step7Back">Back</button>
-            <button class="btn btn-primary" type="button" id="seeResults" disabled>See My Results →</button>
-          </div>
-        </div>
-
-        <div class="flow-step" id="loadingStep">
-          <div class="loading-block">
-            <div class="loading-title">Building your local price range...</div>
-            <div class="loading-cycle"><div class="loading-cycle-text" id="loadingCycleText">Analyzing your inputs…</div></div>
-            <div class="loading-bar"><div class="loading-fill"></div></div>
-          </div>
-        </div>
-
-        <div class="flow-step" id="resultsStep">
-          <div class="results-stack">
-            <div class="results-card">
-              <div class="results-summary" id="resultSummary"></div>
-              <div class="results-label">Best starting option — <span id="resultCity"></span></div>
-              <div class="results-type" id="resultType">Central AC</div>
-              <div class="results-range" id="resultRange">$8,200 – $8,900</div>
-              <div class="results-labor" id="resultLabor">Estimated labor: $2,400 – $2,900</div>
-              <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
-              <div class="results-divider"></div>
-              <div class="mini-kicker">Why this range fits your home</div>
-              <div class="results-reasons" id="resultReasons"></div>
-              <div class="alt-block" id="altBlock">
-                <div class="mini-kicker">Also worth comparing</div>
-                <div class="alt-list" id="altList"></div>
+          <div class="lead-form-wrap" id="leadFormWrap">
+            <div class="lead-form-title">Get an exact quote — no obligation.</div>
+            <div class="lead-form-sub">We'll connect you with one local HVAC specialist. No spam. No multiple calls.</div>
+            <div class="lead-fields">
+              <div class="lead-field">
+                <label class="lead-label" for="leadName">First name</label>
+                <input class="lead-input" type="text" id="leadName" placeholder="Your first name" autocomplete="given-name" required oninput="updateSubmit()" />
+                <div class="lead-error" id="nameError"></div>
               </div>
-              <div class="results-divider"></div>
-              <div class="results-includes-head">Usually includes</div>
-              <div class="results-includes">
-                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>System startup &amp; testing</div>
-                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1–3 days</div>
+              <div class="lead-field">
+                <label class="lead-label" for="leadPhone">Phone number</label>
+                <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" required oninput="updateSubmit()" />
+                <div class="lead-error" id="phoneError"></div>
               </div>
-              <div class="results-not-included">Not typically included: permit fees · duct repairs/modifications · electrical upgrades · insulation or airflow fixes</div>
+              <div class="lead-field">
+                <label class="lead-label" for="leadEmail">Email <span class="lead-optional">(optional)</span></label>
+                <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" />
+              </div>
             </div>
+            <div class="consent-wrap">
+              <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
+              <label class="consent-text" for="consentCheck">I agree to be contacted by one local HVAC professional to discuss my project and estimate.</label>
+            </div>
+            <button class="lead-submit" id="leadSubmit" type="button" disabled onclick="submitLead()">Send My Request →</button>
+          </div>
 
-            <div class="quote-bridge">
-              <div class="quote-title">Most homeowners compare 3–5 quotes before deciding</div> 
+          <div class="thankyou-wrap" id="thankyouWrap">
+            <div class="thankyou-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="thankyou-title">You're all set.</div>
+            <div class="thankyou-body">A local pro will reach out shortly to discuss your project. Ask whether the quote includes permits, startup, and any duct or electrical updates.</div>
+          </div>
+        </div>
+
+        <div class="step-actions" style="justify-content:flex-start;">
+          <button class="btn btn-ghost" type="button" onclick="restartFlow()">Start Over</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-              <br>
-              <button class="btn btn-primary" type="button" onclick="showLeadForm()">Get an exact quote →</button>
+```
 
-              <div class="lead-form-wrap" id="leadFormWrap">
-                <div class="lead-form-title">Get a real quote — no obligation.</div>
-                <div class="lead-form-sub">We'll connect you with one local HVAC professional. No spam. No multiple calls.</div>
-                <div class="lead-fields">
-                  <div class="lead-field">
-                    <label class="lead-label" for="leadName">First name</label>
-                    <input class="lead-input" type="text" id="leadName" placeholder="Your first name" autocomplete="given-name" required oninput="updateSubmit()" />
-                    <div class="lead-error" id="nameError"></div>
-                  </div>
-                  <div class="lead-field">
-                    <label class="lead-label" for="leadPhone">Phone number</label>
-                    <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" required oninput="updateSubmit()" />
-                    <div class="lead-error" id="phoneError"></div>
-                  </div>
-                  <div class="lead-field">
-                    <label class="lead-label" for="leadEmail">Email <span class="lead-optional">(optional)</span></label>
-                    <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" />
-                  </div>
-                </div>
-                <div class="consent-wrap">
-                  <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
-                  <label class="consent-text" for="consentCheck">I agree to be contacted by one local HVAC professional to discuss my project and estimate.</label>
-                </div>
-                <button class="lead-submit" id="leadSubmit" type="button" disabled onclick="submitLead()">Send My Request →</button>
-              </div>
-
-              <div class="thankyou-wrap" id="thankyouWrap">
-                <div class="thankyou-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <div class="thankyou-title">You're all set.</div>
-                <div class="thankyou-body">A local pro will reach out shortly to discuss your project. Ask whether the quote includes permits, startup, and any duct or electrical updates.</div>
-              </div>
-            </div>
-
-            <div class="step-actions" style="justify-content:flex-start;">
-              <button class="btn btn-ghost" type="button" onclick="restartFlow()">Start Over</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
-
-  <section class="factors-wrap">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">What changes cost</div>
-        <h2>The same home can get very different quotes.</h2>
-        <p class="section-lead">These are the biggest drivers behind price changes.</p>
-      </div>
-      <div class="factors-grid">
-        <div class="factor-card"><h3>Home size</h3><p>Larger homes usually need larger equipment, which changes both material and labor cost.</p></div>
-        <div class="factor-card"><h3>Ductwork</h3><p>Existing ductwork keeps some options simpler. Partial or unknown ductwork widens the range.</p></div>
-        <div class="factor-card"><h3>System choice</h3><p>Central AC, heat pumps, and mini splits solve different problems and price differently.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="faq-wrap">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">FAQ</div>
-        <h2>Quick answers before you start.</h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item"><div class="faq-q">Is this an exact quote?</div><div class="faq-a">No. This shows a directional local range based on homes and installs similar to yours.</div></div>
-        <div class="faq-item"><div class="faq-q">Does city change the price?</div><div class="faq-a">This tool uses city to keep the estimate locally framed, but the biggest drivers are system type, home size, ductwork, and project conditions.</div></div>
-        <div class="faq-item"><div class="faq-q">Why is my range wider sometimes?</div><div class="faq-a">Wider ranges usually mean a few details are still being narrowed down, like ductwork condition or system preference.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="bottom-cta"><button class="btn btn-primary" type="button" onclick="showLeadForm(); window.scrollTo({top:0,behavior:'smooth'})">Get a Quote →</button></div>
 
   <footer class="footer">
     <div class="container footer-inner">
@@ -623,10 +564,7 @@
       size: null,
       cooling_performance: null,
       ducts: null,
-      system_preference: null,
       system_age: null,
-      issue_type: null,
-      keep_system: null,
       city: null,
       result_type: null,
       result_range: null,
@@ -650,26 +588,10 @@
         ['no','No ductwork'],
         ['not_sure','Not sure']
       ],
-      system_preference: [
-        ['cooling_only','Cooling only (AC)'],
-        ['heating_cooling','Heating & cooling in one system'],
-        ['not_sure','Not sure']
-      ],
       system_age: [
         ['under_10','Less than 10 years'],
         ['10_15','10–15 years'],
         ['15_plus','15+ years'],
-        ['not_sure','Not sure']
-      ],
-      issue_type: [
-        ['not_working','Not working at all'],
-        ['expensive_repair','Quoted an expensive repair'],
-        ['inefficient','Still works but inefficient'],
-        ['just_upgrading','Just looking to upgrade']
-      ],
-      keep_system: [
-        ['keep','Yes, replace with similar system'],
-        ['explore','Open to better options (heat pump, etc.)'],
         ['not_sure','Not sure']
       ]
     };
@@ -708,6 +630,7 @@
     };
 
     const steps = ['step1','step2','step3','step4','step5','step6','step7'];
+    // replaceStage now only has 2 stages: 0 = system_age, 1 = issue_type
     let replaceStage = 0;
 
     function updateProgress(stepName) {
@@ -737,9 +660,8 @@
           btn.classList.add('selected');
           state[field] = value;
           if (field === 'cooling_performance') document.getElementById('toStep4').disabled = false;
-          if (field === 'ducts') document.getElementById('toStep5').disabled = false;
-          if (field === 'system_preference') document.getElementById('toStep6').disabled = false;
-          if (field === 'system_age' || field === 'issue_type' || field === 'keep_system') document.getElementById('toStep7').disabled = !replaceStageComplete();
+          if (field === 'ducts') document.getElementById('toStep6').disabled = false;
+          if (field === 'system_age') document.getElementById('toStep7').disabled = !replaceStageComplete();
         });
         target.appendChild(btn);
       });
@@ -752,45 +674,28 @@
       grid.innerHTML = '';
       document.getElementById('toStep7').disabled = true;
 
-      let config;
-      if (replaceStage === 0) {
-        title.textContent = 'How old is your current system?';
-        sub.textContent = 'Age helps us frame replacement urgency and likely price range.';
-        config = { key: 'system_age', options: OPTIONS.system_age };
-      } else if (replaceStage === 1) {
-        title.textContent = 'What’s going on with your system?';
-        sub.textContent = 'This helps us understand whether you are replacing out of urgency or planning ahead.';
-        config = { key: 'issue_type', options: OPTIONS.issue_type };
-      } else {
-        title.textContent = 'Are you planning to keep the same type of system?';
-        sub.textContent = 'This helps us decide whether to keep the recommendation simple or show better-fit options.';
-        config = { key: 'keep_system', options: OPTIONS.keep_system };
-      }
+      title.textContent = 'How old is your current system?';
+      sub.textContent = 'Age helps us frame replacement urgency and likely price range.';
 
-      config.options.forEach(([value, label]) => {
+      OPTIONS.system_age.forEach(([value, label]) => {
         const btn = document.createElement('button');
         btn.className = 'answer-card';
         btn.type = 'button';
         btn.dataset.value = value;
         btn.innerHTML = `<div class="answer-title">${label}</div>`;
-        if (state[config.key] === value) btn.classList.add('selected');
+        if (state.system_age === value) btn.classList.add('selected');
         btn.addEventListener('click', () => {
           [...grid.querySelectorAll('.answer-card')].forEach(c => c.classList.remove('selected'));
           btn.classList.add('selected');
-          state[config.key] = value;
-          if (replaceStage < 2) {
-            replaceStage += 1;
-            renderReplaceStage();
-          } else {
-            document.getElementById('toStep7').disabled = false;
-          }
+          state.system_age = value;
+          document.getElementById('toStep7').disabled = false;
         });
         grid.appendChild(btn);
       });
     }
 
     function replaceStageComplete() {
-      return !!(state.system_age && state.issue_type && state.keep_system);
+      return !!state.system_age;
     }
 
     function fireWebhook(payload) {
@@ -802,28 +707,22 @@
     }
 
     function determineSystem(state) {
-      const { intent, ducts, system_preference, keep_system } = state;
+      const { intent, ducts } = state;
+
       if (intent === 'replace') {
-        if (keep_system === 'explore' || system_preference === 'heating_cooling') {
-          if (ducts === 'no') return 'mini_split';
-          return 'heat_pump';
-        }
         if (ducts === 'no') return 'mini_split';
-        if (system_preference === 'cooling_only') return 'central_ac';
-        if (system_preference === 'heating_cooling') return 'heat_pump';
+        if (ducts === 'yes') return 'central_ac';
+        if (ducts === 'partial') return 'mini_split';
         return 'central_ac';
       }
       if (intent === 'add') {
         if (ducts === 'no') return 'mini_split';
-        if (ducts === 'partial') return system_preference === 'heating_cooling' ? 'heat_pump' : 'mini_split';
-        if (ducts === 'yes') return system_preference === 'heating_cooling' ? 'heat_pump' : 'central_ac';
-        return system_preference === 'cooling_only' ? 'central_ac' : 'heat_pump';
+        if (ducts === 'partial') return 'mini_split';
+        if (ducts === 'yes') return 'central_ac';
+        return 'heat_pump';
       }
       if (intent === 'unsure') {
-        if (ducts === 'no') return 'mini_split';
-        if (ducts === 'partial') return 'mini_split';
-        if (system_preference === 'heating_cooling') return 'heat_pump';
-        if (system_preference === 'cooling_only' && ducts === 'yes') return 'central_ac';
+        if (ducts === 'no' || ducts === 'partial') return 'mini_split';
         return 'heat_pump';
       }
       return 'central_ac';
@@ -847,7 +746,7 @@
     function calculatePrice(system, state) {
       let min = PRICING[system][state.size].min;
       let max = PRICING[system][state.size].max;
-      const uncertain = state.intent === 'unsure' || state.ducts === 'not_sure' || state.system_preference === 'not_sure' || state.keep_system === 'not_sure';
+      const uncertain = state.intent === 'unsure' || state.ducts === 'not_sure';
       if (uncertain) max = Math.round(max * 1.15);
       if (state.ducts === 'partial') max = Math.round(max * 1.10);
       if (state.cooling_performance === 'uneven') max = Math.round(max * 1.08);
@@ -871,10 +770,6 @@
       if (state.ducts === 'yes') reasons.push('Existing ductwork keeps central system options more manageable.');
       if (state.ducts === 'partial') reasons.push('Partial duct coverage can push final pricing higher if modifications are needed.');
       if (state.ducts === 'no') reasons.push('No ductwork shifts the recommendation toward ductless or non-central options.');
-      if (state.ducts === 'not_sure') reasons.push('This range is a bit wider because ductwork details are still being narrowed down.');
-      if (state.system_preference === 'heating_cooling') reasons.push('Wanting heating and cooling in one system makes heat pump options more relevant.');
-      if (state.cooling_performance === 'uneven') reasons.push('Uneven cooling can point to airflow or duct distribution issues worth checking.');
-      if (state.issue_type === 'expensive_repair') reasons.push('A major repair quote often pushes homeowners to compare replacement instead.');
       if (state.system_age === '15_plus') reasons.push('Older systems often make full replacement easier to justify.');
       if (state.intent === 'unsure') reasons.push(`This is a best-fit starting option for homeowners in ${cityText || 'your area'} still comparing systems.`);
       return reasons.slice(0, 4);
@@ -891,7 +786,8 @@
       const cityText = cityEl ? cityEl.options[cityEl.selectedIndex].text : '';
       const system = determineSystem(state);
       const pricing = calculatePrice(system, state);
-      const alternatives = (state.intent === 'unsure' || state.keep_system === 'explore') ? getAlternatives(system, state) : [];
+      // Show alternatives for unsure intent or when ductwork/preference is ambiguous
+      const alternatives = (state.intent === 'unsure') ? getAlternatives(system, state) : [];
 
       state.result_type = displayTypeMap[system];
       state.result_range = pricing.range;
@@ -905,7 +801,6 @@
       summaryParts.push(intentLabels[state.intent]);
       summaryParts.push(sizeLabels[state.size]);
       if (state.ducts) summaryParts.push(ductsLabels[state.ducts]);
-      if (cityText) summaryParts.push(cityText);
 
       document.getElementById('resultSummary').textContent = summaryParts.join(' · ');
       document.getElementById('resultCity').textContent = cityText || 'Your area';
@@ -914,7 +809,7 @@
       document.getElementById('resultLabor').textContent = 'Estimated labor: ' + pricing.labor;
 
       let copy = buildCopy(system);
-      if (state.intent === 'unsure' || state.ducts === 'not_sure' || state.system_preference === 'not_sure' || state.keep_system === 'not_sure') {
+      if (state.intent === 'unsure' || state.ducts === 'not_sure') {
         copy += ' This range is a bit wider because a few home details are still being narrowed down.';
       }
       if (state.system_age === 'under_10' && state.cooling_performance === 'fine') {
@@ -958,10 +853,7 @@
         size: state.size,
         cooling_performance: state.cooling_performance || '',
         ducts: state.ducts || '',
-        system_preference: state.system_preference || '',
         system_age: state.system_age || '',
-        issue_type: state.issue_type || '',
-        keep_system: state.keep_system || '',
         result_type: state.result_type || '',
         result_range: state.result_range || '',
         result_labor: state.result_labor || '',
@@ -1005,7 +897,6 @@
       }
     });
     document.getElementById('toStep4').addEventListener('click', () => showStep('step4'));
-    document.getElementById('toStep5').addEventListener('click', () => showStep('step5'));
     document.getElementById('toStep6').addEventListener('click', () => {
       if (state.intent === 'replace') {
         replaceStage = 0;
@@ -1014,7 +905,6 @@
       } else {
         state.system_age = '';
         state.issue_type = '';
-        state.keep_system = '';
         showStep('step7');
       }
     });
@@ -1022,16 +912,15 @@
 
     document.getElementById('step3Back').addEventListener('click', () => showStep('step2'));
     document.getElementById('step4Back').addEventListener('click', () => state.intent === 'add' ? showStep('step2') : showStep('step3'));
-    document.getElementById('step5Back').addEventListener('click', () => showStep('step4'));
     document.getElementById('step6Back').addEventListener('click', () => {
       if (replaceStage > 0) {
         replaceStage -= 1;
         renderReplaceStage();
       } else {
-        showStep('step5');
+        showStep('step4');
       }
     });
-    document.getElementById('step7Back').addEventListener('click', () => state.intent === 'replace' ? showStep('step6') : showStep('step5'));
+    document.getElementById('step7Back').addEventListener('click', () => state.intent === 'replace' ? showStep('step6') : showStep('step4'));
     document.querySelectorAll('[data-back-step]').forEach(btn => btn.addEventListener('click', () => showStep(btn.dataset.backStep)));
 
     document.getElementById('seeResults').addEventListener('click', () => {
@@ -1135,7 +1024,6 @@
     window.addEventListener('load', () => {
       makeButtons('performanceGrid','cooling_performance','cooling_performance');
       makeButtons('ductsGrid','ducts','ducts');
-      makeButtons('preferenceGrid','system_preference','system_preference');
       renderReplaceStage();
       if (preIntent) {
         state.intent = preIntent;
@@ -1147,5 +1035,6 @@
       }
     });
   </script>
+
 </body>
 </html>
