@@ -402,15 +402,12 @@
         <button class="answer-card flow-size" type="button" data-value="medium"><div class="answer-title">Medium</div><div class="answer-sub">1,500–2,500 sq ft</div></button>
         <button class="answer-card flow-size" type="button" data-value="large"><div class="answer-title">Large</div><div class="answer-sub">Over 2,500 sq ft</div></button>
       </div>
-      <div class="step-actions"><button class="btn btn-ghost" type="button" onclick="window.location.href='index.html'"> ← Start Over
-```
+      <div class="step-actions">
+        <button class="btn btn-ghost" type="button" onclick="window.location.href='index.html'">← Start Over</button>
+        <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue →</button>
+      </div>
+    </div>
 
-</button>
-            <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue →</button>
-          </div>
-        </div>
-
-```
     <div class="flow-step" id="step3">
       <div class="flow-title">How well is your current home cooling?</div>
       <div class="flow-sub">Choose the one that feels most true today.</div>
@@ -443,27 +440,10 @@
     </div>
 
     <div class="flow-step" id="step7">
-      <div class="flow-title">Where is your home located?</div>
-      <div class="flow-sub">This keeps the estimate framed around Snohomish &amp; King County expectations.</div>
+      <div class="flow-title">What ZIP code is the project in?</div>
+      <div class="flow-sub">Used for local pricing and availability.</div>
       <div class="city-select-wrap">
-        <select class="city-select" id="citySelect" onchange="onCitySelect(this)">
-          <option value="">Select your city...</option>
-          <option value="mill-creek">Mill Creek</option>
-          <option value="everett">Everett</option>
-          <option value="bothell">Bothell</option>
-          <option value="lynnwood">Lynnwood</option>
-          <option value="mukilteo">Mukilteo</option>
-          <option value="snohomish">Snohomish</option>
-          <option value="marysville">Marysville</option>
-          <option value="monroe">Monroe</option>
-          <option value="woodinville">Woodinville</option>
-          <option value="kenmore">Kenmore</option>
-          <option value="bellevue">Bellevue</option>
-          <option value="redmond">Redmond</option>
-          <option value="kirkland">Kirkland</option>
-          <option value="seattle">Seattle</option>
-          <option value="other">Other / Not listed</option>
-        </select>
+        <input class="city-select" type="text" id="zipInput" inputmode="numeric" maxlength="5" placeholder="e.g. 98012" oninput="onZipInput(this)" style="text-align:center; font-size:20px; font-weight:700; letter-spacing:0.12em;" />
       </div>
       <div class="step-actions">
         <button class="btn btn-ghost" type="button" id="step7Back">Back</button>
@@ -483,7 +463,7 @@
       <div class="results-stack">
         <div class="results-card">
           <div class="results-summary" id="resultSummary"></div>
-          <div class="results-label">Best starting option — <span id="resultCity"></span></div>
+          <div class="results-label">Best starting option — ZIP <span id="resultCity"></span></div>
           <div class="results-type" id="resultType">Central AC</div>
           <div class="results-range" id="resultRange">$8,200 – $8,900</div>
           <div class="results-labor" id="resultLabor">Estimated labor: $2,400 – $2,900</div>
@@ -513,9 +493,19 @@
             <div class="lead-form-sub">We'll connect you with one local HVAC specialist. No spam. No multiple calls.</div>
             <div class="lead-fields">
               <div class="lead-field">
-                <label class="lead-label" for="leadName">First name</label>
-                <input class="lead-input" type="text" id="leadName" placeholder="Your first name" autocomplete="given-name" required oninput="updateSubmit()" />
-                <div class="lead-error" id="nameError"></div>
+                <label class="lead-label" for="leadFirstName">First name</label>
+                <input class="lead-input" type="text" id="leadFirstName" placeholder="First name" autocomplete="given-name" required oninput="updateSubmit()" />
+                <div class="lead-error" id="firstNameError"></div>
+              </div>
+              <div class="lead-field">
+                <label class="lead-label" for="leadLastName">Last name</label>
+                <input class="lead-input" type="text" id="leadLastName" placeholder="Last name" autocomplete="family-name" required oninput="updateSubmit()" />
+                <div class="lead-error" id="lastNameError"></div>
+              </div>
+              <div class="lead-field">
+                <label class="lead-label" for="leadAddress">Service address</label>
+                <input class="lead-input" type="text" id="leadAddress" placeholder="Where the AC service is needed" autocomplete="street-address" required oninput="updateSubmit()" />
+                <div class="lead-error" id="addressError"></div>
               </div>
               <div class="lead-field">
                 <label class="lead-label" for="leadPhone">Phone number</label>
@@ -523,8 +513,24 @@
                 <div class="lead-error" id="phoneError"></div>
               </div>
               <div class="lead-field">
-                <label class="lead-label" for="leadEmail">Email <span class="lead-optional">(optional)</span></label>
-                <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" />
+                <label class="lead-label" for="leadEmail">Email address</label>
+                <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" required oninput="updateSubmit()" />
+                <div class="lead-error" id="emailError"></div>
+              </div>
+              <div class="lead-field">
+                <label class="lead-label">Do you own this home?</label>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
+                  <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
+                    <input type="radio" name="ownership" value="yes" onchange="updateSubmit()" style="accent-color:var(--accent);"> Yes
+                  </label>
+                  <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
+                    <input type="radio" name="ownership" value="can_approve" onchange="updateSubmit()" style="accent-color:var(--accent);"> No, but I can approve the work
+                  </label>
+                  <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
+                    <input type="radio" name="ownership" value="no" onchange="updateSubmit()" style="accent-color:var(--accent);"> No
+                  </label>
+                </div>
+                <div class="lead-error" id="ownershipError"></div>
               </div>
             </div>
             <div class="consent-wrap">
@@ -862,12 +868,11 @@
       };
     }
 
-    function onCitySelect(el) {
-      if (el.value) {
-        state.city = el.value;
-        el.classList.add('selected-val');
-        document.getElementById('seeResults').disabled = false;
-      }
+    function onZipInput(el) {
+      el.value = el.value.replace(/\D/g, '').slice(0, 5);
+      const valid = /^\d{5}$/.test(el.value);
+      document.getElementById('seeResults').disabled = !valid;
+      if (valid) state.city = el.value;
     }
 
     document.querySelectorAll('.flow-intent').forEach(card => {
@@ -962,17 +967,17 @@
     }
 
     function updateSubmit() {
-      const name = document.getElementById('leadName').value.trim();
-      const phone = document.getElementById('leadPhone').value.trim();
+      const firstName = document.getElementById('leadFirstName').value.trim();
+      const lastName = document.getElementById('leadLastName').value.trim();
+      const address = document.getElementById('leadAddress').value.trim();
+      const phone = document.getElementById('leadPhone').value.replace(/\D/g, '');
+      const email = document.getElementById('leadEmail').value.trim();
       const consent = document.getElementById('consentCheck').checked;
-      const nameError = document.getElementById('nameError');
-      const phoneError = document.getElementById('phoneError');
-      const cleanedPhone = phone.replace(/\D/g, '');
-      const isNameValid = name.length >= 2;
-      const isPhoneValid = /^\d{10}$/.test(cleanedPhone);
-      nameError.classList.remove('visible');
-      phoneError.classList.remove('visible');
-      document.getElementById('leadSubmit').disabled = !(isNameValid && isPhoneValid && consent);
+      const ownership = document.querySelector('input[name="ownership"]:checked');
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const valid = firstName.length >= 2 && lastName.length >= 2 && address.length >= 5
+                 && phone.length === 10 && emailRe.test(email) && consent && !!ownership;
+      document.getElementById('leadSubmit').disabled = !valid;
     }
 
     document.getElementById('leadPhone').addEventListener('input', function(e) {
@@ -984,32 +989,28 @@
     });
 
     function submitLead() {
-      const name = document.getElementById('leadName').value.trim();
+      const firstName = document.getElementById('leadFirstName').value.trim();
+      const lastName = document.getElementById('leadLastName').value.trim();
+      const address = document.getElementById('leadAddress').value.trim();
       const phone = document.getElementById('leadPhone').value.trim();
       const email = document.getElementById('leadEmail').value.trim();
-      const nameError = document.getElementById('nameError');
-      const phoneError = document.getElementById('phoneError');
-      nameError.classList.remove('visible');
-      phoneError.classList.remove('visible');
+      const ownershipEl = document.querySelector('input[name="ownership"]:checked');
+      const ownership = ownershipEl ? ownershipEl.value : '';
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       let valid = true;
-      if (name.length < 2) {
-        nameError.textContent = 'Please enter your first name';
-        nameError.classList.add('visible');
-        valid = false;
-      }
-      const cleanedPhone = phone.replace(/\D/g, '');
-      if (!/^\d{10}$/.test(cleanedPhone)) {
-        phoneError.textContent = 'Enter a valid 10-digit phone number';
-        phoneError.classList.add('visible');
-        valid = false;
-      }
+      if (firstName.length < 2) { document.getElementById('firstNameError').textContent = 'Please enter your first name'; document.getElementById('firstNameError').classList.add('visible'); valid = false; }
+      if (lastName.length < 2)  { document.getElementById('lastNameError').textContent = 'Please enter your last name'; document.getElementById('lastNameError').classList.add('visible'); valid = false; }
+      if (address.length < 5)   { document.getElementById('addressError').textContent = 'Please enter the service address'; document.getElementById('addressError').classList.add('visible'); valid = false; }
+      if (phone.replace(/\D/g,'').length < 10) { document.getElementById('phoneError').textContent = 'Enter a valid 10-digit phone number'; document.getElementById('phoneError').classList.add('visible'); valid = false; }
+      if (!emailRe.test(email)) { document.getElementById('emailError').textContent = 'Please enter a valid email address'; document.getElementById('emailError').classList.add('visible'); valid = false; }
+      if (!ownership) { document.getElementById('ownershipError').textContent = 'Please select one'; document.getElementById('ownershipError').classList.add('visible'); valid = false; }
       if (!valid) return;
 
-      fireWebhook({ ...getPayloadBase('lead_submit'), name, phone, email });
+      fireWebhook({ ...getPayloadBase('lead_submit'), first_name: firstName, last_name: lastName, service_address: address, phone, email, ownership });
 
       if (typeof gtag !== 'undefined') {
         gtag('event', 'conversion', { send_to: 'AW-17039190320' });
-        gtag('event', 'lead_submit', { city: state.city, intent: state.intent });
+        gtag('event', 'lead_submit', { zip: state.city, intent: state.intent });
       }
       document.getElementById('leadFormWrap').classList.remove('visible');
       document.getElementById('thankyouWrap').classList.add('visible');
