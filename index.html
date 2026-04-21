@@ -308,8 +308,8 @@
 
   <section class="hero">
     <div class="container">
-      <h1>See real AC installation costs in your area</h1>
-      <p class="hero-sub">Answer a few quick questions to get a local price range for <strong>Snohomish &amp; King County</strong> — often within a few hundred dollars of real quotes.</p>
+      <h1>Central AC help for your home</h1>
+      <p class="hero-sub">See what Central AC projects may cost in your ZIP code. Answer a few quick questions to get started.</p>
 
 ```
   <div class="proof-chips">
@@ -341,10 +341,10 @@
     </div>
   </div>
 
-  <div class="hero-question-label">What best matches your situation?</div>
+  <div class="hero-question-label">What do you need help with?</div>
 
-  <div class="answer-grid">
-    <button class="answer-card" type="button" onclick="goToQuiz('add')">
+  <div class="answer-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 640px; margin: 0 auto;">
+    <button class="answer-card" type="button" onclick="goToQuiz('install')">
       <div class="answer-icon">
         <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
           <path d="M20 58 L60 22 L100 58" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -357,12 +357,12 @@
           <line x1="86" y1="30" x2="102" y2="30" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
         </svg>
       </div>
-      <div class="answer-title">Add AC to my home</div>
-      <div class="answer-sub">Install cooling where there isn't any today</div>
-      <div class="answer-cta">Start estimate →</div>
+      <div class="answer-title">Install Central AC</div>
+      <div class="answer-sub">Add a new central AC system to your home</div>
+      <div class="answer-cta">Get started →</div>
     </button>
 
-    <button class="answer-card" type="button" onclick="goToQuiz('replace')">
+    <button class="answer-card" type="button" onclick="goToQuiz('repair')">
       <div class="answer-icon">
         <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
           <rect x="18" y="32" width="64" height="44" rx="8" stroke="#14213d" stroke-width="3" fill="none"/>
@@ -375,27 +375,9 @@
           <path d="M97 46 L106 54 L97 62" stroke="#ee4266" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         </svg>
       </div>
-      <div class="answer-title">Replace my AC system</div>
-      <div class="answer-sub">Swap out an older or failing unit</div>
-      <div class="answer-cta">Start estimate →</div>
-    </button>
-
-    <button class="answer-card" type="button" onclick="goToQuiz('unsure')">
-      <div class="answer-icon">
-        <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-          <rect x="8" y="38" width="36" height="22" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
-          <line x1="16" y1="46" x2="16" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
-          <line x1="22" y1="46" x2="22" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
-          <rect x="76" y="36" width="36" height="26" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
-          <circle cx="94" cy="49" r="8" stroke="#540d6e" stroke-width="2" fill="none"/>
-          <circle cx="94" cy="49" r="3" fill="#540d6e"/>
-          <line x1="60" y1="30" x2="60" y2="90" stroke="#e0e8ee" stroke-width="2" stroke-dasharray="4 4"/>
-          <text x="60" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#ee4266">?</text>
-        </svg>
-      </div>
-      <div class="answer-title">Not sure yet</div>
-      <div class="answer-sub">Get guidance before making a decision</div>
-      <div class="answer-cta">Start estimate →</div>
+      <div class="answer-title">Repair Central AC</div>
+      <div class="answer-sub">Fix an existing system that isn't working right</div>
+      <div class="answer-cta">Get started →</div>
     </button>
   </div>
 </div>
@@ -474,9 +456,9 @@
 
   <section class="bottom-cta-wrap">
     <div class="container">
-      <h2>See your AC installation cost range</h2>
-      <p>Takes less than 2 minutes. No contact info required.</p>
-      <button class="btn btn-primary" type="button" onclick="goToQuiz('unsure')">Get My Estimate →</button>
+      <h2>Get local AC pricing and quote options</h2>
+      <p>Takes less than 2 minutes. No contact info required to see pricing.</p>
+      <button class="btn btn-primary" type="button" onclick="goToQuiz('install')">Get Started →</button>
     </div>
   </section>
 
@@ -504,7 +486,7 @@
       if (typeof gtag !== 'undefined') {
         gtag('event', 'quiz_start', { intent: intent });
       }
-      window.location.href = 'estimate.html?intent=' + intent;
+      window.location.href = 'questions.html?intent=' + intent;
     }
   </script>
 
