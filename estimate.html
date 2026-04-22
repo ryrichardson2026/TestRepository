@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-WF65GPHQ"></script>
-
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);} 
@@ -28,6 +26,7 @@
       }
     })();
   </script>
+
 
   <style>
     :root {
@@ -316,7 +315,6 @@
       .footer-inner { flex-direction: column; }
     }
   </style>
-
 </head>
 <body>
   <header class="nav">
@@ -371,192 +369,189 @@
           <span class="progress-pill" id="p7"></span>
         </div>
 
-```
-    <div class="flow-step active" id="step1">
-      <div class="flow-title">What best matches your situation?</div>
-      <div class="flow-sub">Pick the one that feels closest to where you are right now.</div>
-      <div class="answers-grid cols-3">
-        <button class="answer-card flow-intent" type="button" data-value="replace">
-          <div class="answer-title">Replace my AC</div>
-          <div class="answer-sub">Swap out an older or failing system.</div>
-        </button>
-        <button class="answer-card flow-intent" type="button" data-value="add">
-          <div class="answer-title">Add AC</div>
-          <div class="answer-sub">Put cooling into a home that does not have it now.</div>
-        </button>
-        <button class="answer-card flow-intent" type="button" data-value="unsure">
-          <div class="answer-title">Not sure yet</div>
-          <div class="answer-sub">Get a starting point before talking to anyone.</div>
-        </button>
-      </div>
-      <div class="step-actions">
-        <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <div class="flow-step" id="step2">
-      <div class="flow-title">How big is your home?</div>
-      <div class="flow-sub">This helps narrow the system size and your price range.</div>
-      <div class="answers-grid cols-3">
-        <button class="answer-card flow-size" type="button" data-value="small"><div class="answer-title">Small</div><div class="answer-sub">Under 1,500 sq ft</div></button>
-        <button class="answer-card flow-size" type="button" data-value="medium"><div class="answer-title">Medium</div><div class="answer-sub">1,500–2,500 sq ft</div></button>
-        <button class="answer-card flow-size" type="button" data-value="large"><div class="answer-title">Large</div><div class="answer-sub">Over 2,500 sq ft</div></button>
-      </div>
-      <div class="step-actions">
-        <button class="btn btn-ghost" type="button" onclick="window.location.href='index.html'">← Start Over</button>
-        <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <div class="flow-step" id="step3">
-      <div class="flow-title">How well is your current home cooling?</div>
-      <div class="flow-sub">Choose the one that feels most true today.</div>
-      <div class="answers-grid cols-3" id="performanceGrid"></div>
-      <div class="step-actions">
-        <button class="btn btn-ghost" type="button" id="step3Back">Back</button>
-        <button class="btn btn-primary" type="button" id="toStep4" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <div class="flow-step" id="step4">
-      <div class="flow-title">Does your home have air vents (ductwork)?</div>
-      <div class="flow-sub">This helps narrow whether central AC, heat pump, or ductless is the better fit.</div>
-      <div class="answers-grid cols-3" id="ductsGrid"></div>
-      <div class="step-actions">
-        <button class="btn btn-ghost" type="button" id="step4Back">Back</button>
-        <button class="btn btn-primary" type="button" id="toStep6" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <!-- Step 6: replace intent only — age only (issue_type removed) -->
-    <div class="flow-step" id="step6">
-      <div class="flow-title" id="step6Title">A few details about your current system</div>
-      <div class="flow-sub" id="step6Sub">These help us give better direction for replacement pricing.</div>
-      <div class="answers-grid cols-3" id="replaceGrid"></div>
-      <div class="step-actions">
-        <button class="btn btn-ghost" type="button" id="step6Back">Back</button>
-        <button class="btn btn-primary" type="button" id="toStep7" disabled>Continue →</button>
-      </div>
-    </div>
-
-    <div class="flow-step" id="step7">
-      <div class="flow-title">What ZIP code is the project in?</div>
-      <div class="flow-sub">Snohomish &amp; King County ZIP codes only.</div>
-      <div class="city-select-wrap">
-        <input class="city-select" type="text" id="zipInput" inputmode="numeric" maxlength="5" placeholder="e.g. 98012" oninput="onZipInput(this)" style="text-align:center; font-size:20px; font-weight:700; letter-spacing:0.12em;" />
-        <div id="zipHint" style="text-align:center; font-size:13px; color:var(--navy-soft); margin-top:8px;">Snohomish &amp; King County ZIP codes only.</div>
-      </div>
-      <div class="step-actions">
-        <button class="btn btn-ghost" type="button" id="step7Back">Back</button>
-        <button class="btn btn-primary" type="button" id="seeResults" disabled>See My Results →</button>
-      </div>
-    </div>
-
-    <div class="flow-step" id="loadingStep">
-      <div class="loading-block">
-        <div class="loading-title">Building your local price range...</div>
-        <div class="loading-cycle"><div class="loading-cycle-text" id="loadingCycleText">Analyzing your inputs…</div></div>
-        <div class="loading-bar"><div class="loading-fill"></div></div>
-      </div>
-    </div>
-
-    <div class="flow-step" id="resultsStep">
-      <div class="results-stack">
-        <div class="results-card">
-          <div class="results-summary" id="resultSummary"></div>
-          <div class="results-label">Best starting option — <span id="resultCity"></span></div>
-          <div class="results-type" id="resultType">Central AC</div>
-          <div class="results-range" id="resultRange">$8,200 – $8,900</div>
-          <div class="results-labor" id="resultLabor">Estimated labor: $2,400 – $2,900</div>
-          <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
-          <div class="results-divider"></div>
-          <div class="mini-kicker">Why this range fits your home</div>
-          <div class="results-reasons" id="resultReasons"></div>
-          <div class="alt-block" id="altBlock">
-            <div class="mini-kicker">Also worth comparing</div>
-            <div class="alt-list" id="altList"></div>
+        <div class="flow-step active" id="step1">
+          <div class="flow-title">What best matches your situation?</div>
+          <div class="flow-sub">Pick the one that feels closest to where you are right now.</div>
+          <div class="answers-grid cols-3">
+            <button class="answer-card flow-intent" type="button" data-value="replace">
+              <div class="answer-title">Replace my AC</div>
+              <div class="answer-sub">Swap out an older or failing system.</div>
+            </button>
+            <button class="answer-card flow-intent" type="button" data-value="add">
+              <div class="answer-title">Add AC</div>
+              <div class="answer-sub">Put cooling into a home that does not have it now.</div>
+            </button>
+            <button class="answer-card flow-intent" type="button" data-value="unsure">
+              <div class="answer-title">Not sure yet</div>
+              <div class="answer-sub">Get a starting point before talking to anyone.</div>
+            </button>
           </div>
-          <div class="results-divider"></div>
-          <div class="results-includes-head">Usually includes</div>
-          <div class="results-includes">
-            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>System startup &amp; testing</div>
-            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1–3 days</div>
+          <div class="step-actions">
+            <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue →</button>
           </div>
-          <div class="results-not-included">Not typically included: permit fees · duct repairs/modifications · electrical upgrades · insulation or airflow fixes</div>
         </div>
 
-        <div class="quote-bridge">
-          <div class="quote-title">Most homeowners compare 3–5 quotes before deciding</div>
-          <button class="btn btn-primary" type="button" onclick="showLeadForm()">Get an exact quote →</button>
+        <div class="flow-step" id="step2">
+          <div class="flow-title">How big is your home?</div>
+          <div class="flow-sub">This helps narrow the system size and your price range.</div>
+          <div class="answers-grid cols-3">
+            <button class="answer-card flow-size" type="button" data-value="small"><div class="answer-title">Small</div><div class="answer-sub">Under 1,500 sq ft</div></button>
+            <button class="answer-card flow-size" type="button" data-value="medium"><div class="answer-title">Medium</div><div class="answer-sub">1,500–2,500 sq ft</div></button>
+            <button class="answer-card flow-size" type="button" data-value="large"><div class="answer-title">Large</div><div class="answer-sub">Over 2,500 sq ft</div></button>
+          </div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" onclick="window.location.href='index.html'">← Start Over</button>
+            <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue →</button>
+          </div>
+        </div>
 
-          <div class="lead-form-wrap" id="leadFormWrap">
-            <div class="lead-form-title">Get an exact quote — no obligation.</div>
-            <div class="lead-form-sub">We'll connect you with one local HVAC specialist. No spam. No multiple calls.</div>
-            <div class="lead-fields">
-              <div class="lead-field">
-                <label class="lead-label" for="leadFirstName">First name</label>
-                <input class="lead-input" type="text" id="leadFirstName" placeholder="First name" autocomplete="given-name" required oninput="updateSubmit()" />
-                <div class="lead-error" id="firstNameError"></div>
+        <div class="flow-step" id="step3">
+          <div class="flow-title">How well is your current home cooling?</div>
+          <div class="flow-sub">Choose the one that feels most true today.</div>
+          <div class="answers-grid cols-3" id="performanceGrid"></div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" id="step3Back">Back</button>
+            <button class="btn btn-primary" type="button" id="toStep4" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <div class="flow-step" id="step4">
+          <div class="flow-title">Does your home have air vents (ductwork)?</div>
+          <div class="flow-sub">This helps narrow whether central AC, heat pump, or ductless is the better fit.</div>
+          <div class="answers-grid cols-3" id="ductsGrid"></div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" id="step4Back">Back</button>
+            <button class="btn btn-primary" type="button" id="toStep6" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 6: replace intent only — age only (issue_type removed) -->
+        <div class="flow-step" id="step6">
+          <div class="flow-title" id="step6Title">A few details about your current system</div>
+          <div class="flow-sub" id="step6Sub">These help us give better direction for replacement pricing.</div>
+          <div class="answers-grid cols-3" id="replaceGrid"></div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" id="step6Back">Back</button>
+            <button class="btn btn-primary" type="button" id="toStep7" disabled>Continue →</button>
+          </div>
+        </div>
+
+        <div class="flow-step" id="step7">
+          <div class="flow-title">What ZIP code is the project in?</div>
+          <div class="flow-sub">Snohomish &amp; King County ZIP codes only.</div>
+          <div class="city-select-wrap">
+            <input class="city-select" type="text" id="zipInput" inputmode="numeric" maxlength="5" placeholder="e.g. 98012" oninput="onZipInput(this)" style="text-align:center; font-size:20px; font-weight:700; letter-spacing:0.12em;" />
+            <div id="zipHint" style="text-align:center; font-size:13px; color:var(--navy-soft); margin-top:8px;">Snohomish &amp; King County ZIP codes only.</div>
+          </div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" id="step7Back">Back</button>
+            <button class="btn btn-primary" type="button" id="seeResults" disabled>See My Results →</button>
+          </div>
+        </div>
+
+        <div class="flow-step" id="loadingStep">
+          <div class="loading-block">
+            <div class="loading-title">Building your local price range...</div>
+            <div class="loading-cycle"><div class="loading-cycle-text" id="loadingCycleText">Analyzing your inputs…</div></div>
+            <div class="loading-bar"><div class="loading-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="flow-step" id="resultsStep">
+          <div class="results-stack">
+            <div class="results-card">
+              <div class="results-summary" id="resultSummary"></div>
+              <div class="results-label">Best starting option — <span id="resultCity"></span></div>
+              <div class="results-type" id="resultType">Central AC</div>
+              <div class="results-range" id="resultRange">$8,200 – $8,900</div>
+              <div class="results-labor" id="resultLabor">Estimated labor: $2,400 – $2,900</div>
+              <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
+              <div class="results-divider"></div>
+              <div class="mini-kicker">Why this range fits your home</div>
+              <div class="results-reasons" id="resultReasons"></div>
+              <div class="alt-block" id="altBlock">
+                <div class="mini-kicker">Also worth comparing</div>
+                <div class="alt-list" id="altList"></div>
               </div>
-              <div class="lead-field">
-                <label class="lead-label" for="leadLastName">Last name</label>
-                <input class="lead-input" type="text" id="leadLastName" placeholder="Last name" autocomplete="family-name" required oninput="updateSubmit()" />
-                <div class="lead-error" id="lastNameError"></div>
+              <div class="results-divider"></div>
+              <div class="results-includes-head">Usually includes</div>
+              <div class="results-includes">
+                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>System startup &amp; testing</div>
+                <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1–3 days</div>
               </div>
-              <div class="lead-field">
-                <label class="lead-label" for="leadAddress">Service address</label>
-                <input class="lead-input" type="text" id="leadAddress" placeholder="Where the AC service is needed" autocomplete="street-address" required oninput="updateSubmit()" />
-                <div class="lead-error" id="addressError"></div>
-              </div>
-              <div class="lead-field">
-                <label class="lead-label" for="leadPhone">Phone number</label>
-                <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" required oninput="updateSubmit()" />
-                <div class="lead-error" id="phoneError"></div>
-              </div>
-              <div class="lead-field">
-                <label class="lead-label" for="leadEmail">Email address</label>
-                <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" required oninput="updateSubmit()" />
-                <div class="lead-error" id="emailError"></div>
-              </div>
-              <div class="lead-field">
-                <label class="lead-label">Do you own this home?</label>
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
-                  <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
-                    <input type="radio" name="ownership" value="yes" onchange="updateSubmit()" style="accent-color:var(--accent);"> Yes
-                  </label>
-                  <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
-                    <input type="radio" name="ownership" value="can_approve" onchange="updateSubmit()" style="accent-color:var(--accent);"> No, but I can approve the work
-                  </label>
-                  <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
-                    <input type="radio" name="ownership" value="no" onchange="updateSubmit()" style="accent-color:var(--accent);"> No
-                  </label>
+              <div class="results-not-included">Not typically included: permit fees · duct repairs/modifications · electrical upgrades · insulation or airflow fixes</div>
+            </div>
+
+            <div class="quote-bridge">
+              <div class="quote-title">Most homeowners compare 3–5 quotes before deciding</div>
+              <button class="btn btn-primary" type="button" onclick="showLeadForm()">Get an exact quote →</button>
+
+              <div class="lead-form-wrap" id="leadFormWrap">
+                <div class="lead-form-title">Get an exact quote — no obligation.</div>
+                <div class="lead-form-sub">We'll connect you with one local HVAC specialist. No spam. No multiple calls.</div>
+                <div class="lead-fields">
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadFirstName">First name</label>
+                    <input class="lead-input" type="text" id="leadFirstName" placeholder="First name" autocomplete="given-name" required oninput="updateSubmit()" />
+                    <div class="lead-error" id="firstNameError"></div>
+                  </div>
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadLastName">Last name</label>
+                    <input class="lead-input" type="text" id="leadLastName" placeholder="Last name" autocomplete="family-name" required oninput="updateSubmit()" />
+                    <div class="lead-error" id="lastNameError"></div>
+                  </div>
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadAddress">Service address</label>
+                    <input class="lead-input" type="text" id="leadAddress" placeholder="Where the AC service is needed" autocomplete="street-address" required oninput="updateSubmit()" />
+                    <div class="lead-error" id="addressError"></div>
+                  </div>
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadPhone">Phone number</label>
+                    <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" required oninput="updateSubmit()" />
+                    <div class="lead-error" id="phoneError"></div>
+                  </div>
+                  <div class="lead-field">
+                    <label class="lead-label" for="leadEmail">Email address</label>
+                    <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" required oninput="updateSubmit()" />
+                    <div class="lead-error" id="emailError"></div>
+                  </div>
+                  <div class="lead-field">
+                    <label class="lead-label">Do you own this home?</label>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
+                      <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
+                        <input type="radio" name="ownership" value="yes" onchange="updateSubmit()" style="accent-color:var(--accent);"> Yes
+                      </label>
+                      <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
+                        <input type="radio" name="ownership" value="can_approve" onchange="updateSubmit()" style="accent-color:var(--accent);"> No, but I can approve the work
+                      </label>
+                      <label style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; cursor:pointer;">
+                        <input type="radio" name="ownership" value="no" onchange="updateSubmit()" style="accent-color:var(--accent);"> No
+                      </label>
+                    </div>
+                    <div class="lead-error" id="ownershipError"></div>
+                  </div>
                 </div>
-                <div class="lead-error" id="ownershipError"></div>
+                <div class="consent-wrap">
+                  <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
+                  <label class="consent-text" for="consentCheck">I agree to be contacted by one local HVAC professional to discuss my project and estimate.</label>
+                </div>
+                <button class="lead-submit" id="leadSubmit" type="button" disabled onclick="submitLead()">Send My Request →</button>
+              </div>
+
+              <div class="thankyou-wrap" id="thankyouWrap">
+                <div class="thankyou-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="thankyou-title">You're all set.</div>
+                <div class="thankyou-body">A local pro will reach out shortly to discuss your project. Ask whether the quote includes permits, startup, and any duct or electrical updates.</div>
               </div>
             </div>
-            <div class="consent-wrap">
-              <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
-              <label class="consent-text" for="consentCheck">I agree to be contacted by one local HVAC professional to discuss my project and estimate.</label>
+
+            <div class="step-actions" style="justify-content:center;">
+              <button class="btn btn-ghost" type="button" onclick="restartFlow()">Start Over</button>
             </div>
-            <button class="lead-submit" id="leadSubmit" type="button" disabled onclick="submitLead()">Send My Request →</button>
           </div>
-
-          <div class="thankyou-wrap" id="thankyouWrap">
-            <div class="thankyou-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="thankyou-title">You're all set.</div>
-            <div class="thankyou-body">A local pro will reach out shortly to discuss your project. Ask whether the quote includes permits, startup, and any duct or electrical updates.</div>
-          </div>
-        </div>
-
-        <div class="step-actions" style="justify-content:center;">
-          <button class="btn btn-ghost" type="button" onclick="restartFlow()">Start Over</button>
         </div>
       </div>
     </div>
-  </div>
-</div>
-```
-
   </section>
 
   <footer class="footer">
@@ -1045,6 +1040,5 @@
       }
     });
   </script>
-
 </body>
 </html>
