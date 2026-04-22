@@ -5,7 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HVAC Cost Guide — AC Installation Cost Calculator</title>
-  <meta name="description" content="See what AC installation really costs in your area. Answer a few quick questions to see a realistic local price range for your home." />
+  <meta name="description" content="Local AC installation estimates for King and Snohomish County. Get a realistic price range in minutes." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg height='52' viewBox='0 0 56 52' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0%25' stop-color='%237b2ff7'/%3E%3Cstop offset='100%25' stop-color='%23f97316'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='36' width='8' height='12' rx='2' fill='url(%23b)'/%3E%3Crect x='15' y='28' width='8' height='20' rx='2' fill='url(%23b)'/%3E%3Crect x='26' y='20' width='8' height='28' rx='2' fill='url(%23b)'/%3E%3Crect x='37' y='12' width='8' height='36' rx='2' fill='url(%23b)'/%3E%3Cpath d='M48 6 Q56 6 56 14 L56 48 L48 48 Z' fill='url(%23b)'/%3E%3C/svg%3E" />
+  <meta property="og:title" content="Local AC Installation Estimates" />
+  <meta property="og:description" content="Real pricing ranges for the Greater Eastside and North Sound." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Local AC Installation Estimates" />
+  <meta name="twitter:description" content="Real pricing ranges for the Greater Eastside and North Sound." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -51,7 +58,6 @@
     button { font: inherit; }
     .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
 
-    /* NAV */
     .nav {
       position: sticky; top: 0; z-index: 200;
       background: rgba(255,255,255,0.96);
@@ -102,7 +108,6 @@
     .nav-overlay { position: fixed; inset: 0; top: 64px; z-index: 198; display: none; }
     .nav-overlay.open { display: block; }
 
-    /* HERO */
     .hero {
       padding: 44px 0 36px;
       background: linear-gradient(180deg, #ffffff, #fbfcff);
@@ -135,7 +140,6 @@
 
     .hero-question-label { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 14px; text-align: center; }
 
-    /* ANSWER CARDS */
     .answer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .answer-card {
       border: 1px solid rgba(84,13,110,0.14); border-radius: 22px;
@@ -164,7 +168,6 @@
       box-shadow: 0 10px 24px rgba(238,66,102,0.16);
     }
 
-    /* SECTIONS */
     .section { padding: 36px 0; text-align: center; }
     .section-head { margin-bottom: 22px; text-align: center; }
     .section-kicker {
@@ -173,12 +176,10 @@
     }
     .section h2 {
       font-family: "Fraunces", serif; font-size: clamp(1.7rem, 3vw, 2.4rem);
-      line-height: 1.04; letter-spacing: -0.03em; color: var(--navy);
-      margin-bottom: 8px;
+      line-height: 1.04; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 8px;
     }
     .section-lead { color: var(--navy-soft); max-width: 560px; font-size: 0.97rem; line-height: 1.65; margin: 0 auto; }
 
-    /* EXAMPLE ESTIMATE */
     .estimate-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: 22px; padding: 26px; box-shadow: var(--shadow-card);
@@ -195,7 +196,6 @@
     .estimate-item { display: flex; align-items: center; gap: 10px; color: var(--navy); font-size: 14px; font-weight: 600; }
     .estimate-check { width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* FAQ */
     .faq-list { display: grid; gap: 12px; max-width: 640px; margin: 0 auto; text-align: left; }
     .faq-item {
       background: var(--card); border: 1px solid var(--border);
@@ -204,7 +204,6 @@
     .faq-q { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 5px; }
     .faq-a { font-size: 14px; color: var(--navy-soft); line-height: 1.6; }
 
-    /* BOTTOM CTA */
     .bottom-cta-wrap {
       padding: 40px 0 48px;
       background: linear-gradient(180deg, var(--bg), #fff);
@@ -214,10 +213,11 @@
     .bottom-cta-wrap h2 {
       font-family: "Fraunces", serif; font-size: clamp(1.7rem, 3vw, 2.4rem);
       line-height: 1.04; letter-spacing: -0.03em; color: var(--navy);
-      margin-bottom: 10px; text-align: center;
+      margin-bottom: 10px;
     }
-    .bottom-cta-wrap p { color: var(--navy-soft); font-size: 1rem; margin-bottom: 22px; text-align: center; }
+    .bottom-cta-wrap p { color: var(--navy-soft); font-size: 1rem; margin-bottom: 22px; }
     .bottom-cta-wrap .btn { display: block; margin: 0 auto; width: fit-content; }
+
     .btn {
       appearance: none; border: none; cursor: pointer;
       border-radius: 999px; padding: 15px 28px;
@@ -228,14 +228,12 @@
     .btn-primary { background: var(--accent-2); color: #fff; box-shadow: 0 10px 24px rgba(238,66,102,0.2); }
     .btn-primary:hover { box-shadow: 0 14px 30px rgba(238,66,102,0.28); }
 
-    /* FOOTER */
     .footer { background: #fff; border-top: 1px solid var(--border); padding: 24px 0 40px; }
     .footer-inner {
       display: flex; justify-content: space-between;
       gap: 16px; flex-wrap: wrap; color: var(--navy-soft); font-size: 14px;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 1040px) {
       .answer-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -310,108 +308,98 @@
     <div class="container">
       <h1>Local AC Installation Estimates</h1>
       <p class="hero-sub">Real pricing ranges for the Greater Eastside and North Sound.</p>
-
-```
-  <div class="proof-chips">
-    <div class="proof-chip">
-      <span class="dot">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-      No Info Required
-    </div>
-    <div class="proof-chip">
-      <span class="dot">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        </svg>
-      </span>
-      Accurate Estimates
-    </div>
-    <div class="proof-chip">
-      <span class="dot">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-        </svg>
-      </span>
-      Local Quotes
-    </div>
-  </div>
-
-  <div class="hero-question-label">What best matches your situation?</div>
-
-  <div class="answer-grid">
-    <button class="answer-card" type="button" onclick="goToQuiz('add')">
-      <div class="answer-icon">
-        <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-          <path d="M20 58 L60 22 L100 58" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M30 52 L30 90 L90 90 L90 52" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <rect x="42" y="60" width="36" height="22" rx="5" stroke="#540d6e" stroke-width="2.5" fill="none"/>
-          <line x1="50" y1="68" x2="50" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
-          <line x1="57" y1="68" x2="57" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="94" cy="30" r="14" fill="none" stroke="#540d6e" stroke-width="2"/>
-          <line x1="94" y1="22" x2="94" y2="38" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
-          <line x1="86" y1="30" x2="102" y2="30" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+      <div class="proof-chips">
+        <div class="proof-chip">
+          <span class="dot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          No Info Required
+        </div>
+        <div class="proof-chip">
+          <span class="dot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          Accurate Estimates
+        </div>
+        <div class="proof-chip">
+          <span class="dot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          Local Quotes
+        </div>
       </div>
-      <div class="answer-title">Add AC to my home</div>
-      <div class="answer-sub">Install cooling where there isn't any today</div>
-      <div class="answer-cta">Start estimate →</div>
-    </button>
-
-    <button class="answer-card" type="button" onclick="goToQuiz('replace')">
-      <div class="answer-icon">
-        <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-          <rect x="18" y="32" width="64" height="44" rx="8" stroke="#14213d" stroke-width="3" fill="none"/>
-          <line x1="30" y1="46" x2="30" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="40" y1="46" x2="40" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="50" y1="46" x2="50" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="66" cy="54" r="6" fill="#ee4266"/>
-          <line x1="12" y1="82" x2="88" y2="82" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
-          <path d="M88 54 L104 54" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
-          <path d="M97 46 L106 54 L97 62" stroke="#ee4266" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
+      <div class="hero-question-label">What best matches your situation?</div>
+      <div class="answer-grid">
+        <button class="answer-card" type="button" onclick="goToQuiz('add')">
+          <div class="answer-icon">
+            <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+              <path d="M20 58 L60 22 L100 58" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M30 52 L30 90 L90 90 L90 52" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <rect x="42" y="60" width="36" height="22" rx="5" stroke="#540d6e" stroke-width="2.5" fill="none"/>
+              <line x1="50" y1="68" x2="50" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+              <line x1="57" y1="68" x2="57" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="94" cy="30" r="14" fill="none" stroke="#540d6e" stroke-width="2"/>
+              <line x1="94" y1="22" x2="94" y2="38" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+              <line x1="86" y1="30" x2="102" y2="30" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="answer-title">Add AC to my home</div>
+          <div class="answer-sub">Install cooling where there isn't any today</div>
+          <div class="answer-cta">Start estimate &#8594;</div>
+        </button>
+        <button class="answer-card" type="button" onclick="goToQuiz('replace')">
+          <div class="answer-icon">
+            <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+              <rect x="18" y="32" width="64" height="44" rx="8" stroke="#14213d" stroke-width="3" fill="none"/>
+              <line x1="30" y1="46" x2="30" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="40" y1="46" x2="40" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="50" y1="46" x2="50" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="66" cy="54" r="6" fill="#ee4266"/>
+              <line x1="12" y1="82" x2="88" y2="82" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+              <path d="M88 54 L104 54" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+              <path d="M97 46 L106 54 L97 62" stroke="#ee4266" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="answer-title">Replace my AC system</div>
+          <div class="answer-sub">Swap out an older or failing unit</div>
+          <div class="answer-cta">Start estimate &#8594;</div>
+        </button>
+        <button class="answer-card" type="button" onclick="goToQuiz('unsure')">
+          <div class="answer-icon">
+            <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+              <rect x="8" y="38" width="36" height="22" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+              <line x1="16" y1="46" x2="16" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+              <line x1="22" y1="46" x2="22" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+              <rect x="76" y="36" width="36" height="26" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+              <circle cx="94" cy="49" r="8" stroke="#540d6e" stroke-width="2" fill="none"/>
+              <circle cx="94" cy="49" r="3" fill="#540d6e"/>
+              <line x1="60" y1="30" x2="60" y2="90" stroke="#e0e8ee" stroke-width="2" stroke-dasharray="4 4"/>
+              <text x="60" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#ee4266">?</text>
+            </svg>
+          </div>
+          <div class="answer-title">Not sure yet</div>
+          <div class="answer-sub">Get guidance before making a decision</div>
+          <div class="answer-cta">Start estimate &#8594;</div>
+        </button>
       </div>
-      <div class="answer-title">Replace my AC system</div>
-      <div class="answer-sub">Swap out an older or failing unit</div>
-      <div class="answer-cta">Start estimate →</div>
-    </button>
-
-    <button class="answer-card" type="button" onclick="goToQuiz('unsure')">
-      <div class="answer-icon">
-        <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-          <rect x="8" y="38" width="36" height="22" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
-          <line x1="16" y1="46" x2="16" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
-          <line x1="22" y1="46" x2="22" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
-          <rect x="76" y="36" width="36" height="26" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
-          <circle cx="94" cy="49" r="8" stroke="#540d6e" stroke-width="2" fill="none"/>
-          <circle cx="94" cy="49" r="3" fill="#540d6e"/>
-          <line x1="60" y1="30" x2="60" y2="90" stroke="#e0e8ee" stroke-width="2" stroke-dasharray="4 4"/>
-          <text x="60" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#ee4266">?</text>
-        </svg>
-      </div>
-      <div class="answer-title">Not sure yet</div>
-      <div class="answer-sub">Get guidance before making a decision</div>
-      <div class="answer-cta">Start estimate →</div>
-    </button>
-  </div>
-</div>
-```
-
+    </div>
   </section>
-
-  <!-- EXAMPLE ESTIMATE -->
 
   <section class="section">
     <div class="container">
       <div class="estimate-card">
         <div class="estimate-label">Example cost range</div>
         <div class="estimate-title">Central AC Install</div>
-        <div class="estimate-range">$8,200 – $8,900</div>
-        <div class="estimate-labor">Estimated labor: $2,400 – $2,900</div>
+        <div class="estimate-range">$8,200 &#8211; $8,900</div>
+        <div class="estimate-labor">Estimated labor: $2,400 &#8211; $2,900</div>
         <div class="estimate-copy">Most homes with a standard setup fall near this range.</div>
         <div class="estimate-divider"></div>
         <div class="estimate-subhead">Usually includes</div>
@@ -430,16 +418,14 @@
           </div>
           <div class="estimate-item">
             <svg class="estimate-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Typical install: 1–2 days
+            Typical install: 1&#8211;2 days
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-
-  <section class="section" style="background: #f7f9fc;">
+  <section class="section" style="background:#f7f9fc;">
     <div class="container">
       <div class="section-head">
         <div class="section-kicker">FAQ</div>
@@ -470,20 +456,18 @@
     </div>
   </section>
 
-  <!-- BOTTOM CTA -->
-
   <section class="bottom-cta-wrap">
     <div class="container">
       <h2>See your AC installation cost range</h2>
       <p>Takes less than 2 minutes. No contact info required.</p>
-      <button class="btn btn-primary" type="button" onclick="goToQuiz('unsure')">Get My Estimate →</button>
+      <button class="btn btn-primary" type="button" onclick="goToQuiz('unsure')">Get My Estimate &#8594;</button>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div>© 2026 HVAC Cost Guide</div>
-      <div>Informational estimates only · <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf">Privacy Policy</a></div>
+      <div>&copy; 2026 HVAC Cost Guide</div>
+      <div>Informational estimates only &middot; <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf">Privacy Policy</a></div>
     </div>
   </footer>
 
