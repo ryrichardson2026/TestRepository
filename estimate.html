@@ -195,7 +195,6 @@
       background: #f7f9fc; border-radius: 8px;
       display: none;
     }
-    .results-summary:not(:empty) { display: inline-block; }
     .results-labor { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
     .results-divider { height: 1px; background: var(--border); margin: 16px 0; }
     .results-includes-head { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy-soft); margin-bottom: 10px; text-align: left; }
@@ -460,7 +459,6 @@
         <div class="flow-step" id="resultsStep">
           <div class="results-stack">
             <div class="results-card">
-              <div class="results-summary" id="resultSummary"></div>
               <div class="results-label">Best starting option — <span id="resultCity"></span></div>
               <div class="results-type" id="resultType">Central AC</div>
               <div class="results-range" id="resultRange">$8,200 – $8,900</div>
@@ -702,11 +700,14 @@
     }
 
     function fireWebhook(payload) {
+      console.log('Firing webhook:', JSON.stringify(payload));
       fetch(MAKE_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).catch(function(){});
+      })
+      .then(res => console.log('Webhook response:', res.status))
+      .catch(err => console.error('Webhook error:', err));
     }
 
     function determineSystem(state) {
@@ -804,7 +805,16 @@
       summaryParts.push(sizeLabels[state.size]);
       if (state.ducts) summaryParts.push(ductsLabels[state.ducts]);
 
-      document.getElementById('resultSummary').textContent = summaryParts.join(' · ');
+      const existingSummary = document.getElementById('resultSummary');
+      if (existingSummary) existingSummary.remove();
+      if (summaryParts.length) {
+        const pill = document.createElement('div');
+        pill.id = 'resultSummary';
+        pill.className = 'results-summary';
+        pill.textContent = summaryParts.join(' · ');
+        pill.style.display = 'inline-block';
+        document.getElementById('resultCity').closest('.results-card').insertBefore(pill, document.getElementById('resultCity').closest('.results-label'));
+      }
       document.getElementById('resultCity').textContent = cityText || 'Your area';
       document.getElementById('resultType').textContent = displayTypeMap[system];
       document.getElementById('resultRange').textContent = pricing.range;
