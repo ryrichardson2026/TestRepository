@@ -8,11 +8,11 @@
   <meta name="description" content="Local AC installation estimates for King and Snohomish County. Get a realistic price range in minutes." />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg height='52' viewBox='0 0 56 52' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0%25' stop-color='%237b2ff7'/%3E%3Cstop offset='100%25' stop-color='%23f97316'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='36' width='8' height='12' rx='2' fill='url(%23b)'/%3E%3Crect x='15' y='28' width='8' height='20' rx='2' fill='url(%23b)'/%3E%3Crect x='26' y='20' width='8' height='28' rx='2' fill='url(%23b)'/%3E%3Crect x='37' y='12' width='8' height='36' rx='2' fill='url(%23b)'/%3E%3Cpath d='M48 6 Q56 6 56 14 L56 48 L48 48 Z' fill='url(%23b)'/%3E%3C/svg%3E" />
   <meta property="og:title" content="Local AC Installation Estimates" />
-  <meta property="og:description" content="Real pricing ranges for King and Snohomish Counties" />
+  <meta property="og:description" content="Real pricing ranges for the Greater Eastside and North Sound." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Local AC Installation Estimates" />
-  <meta name="twitter:description" content="Get Real pricing ranges for King and Snohomish Counties." />
+  <meta name="twitter:description" content="Real pricing ranges for the Greater Eastside and North Sound." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -70,48 +70,21 @@
     }
     .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
     .nav-logo svg { display: block; }
-    .nav-hamburger {
-      background: none; border: none; cursor: pointer;
-      padding: 8px; display: flex; flex-direction: column; gap: 5px;
-    }
-    .nav-hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--navy); transition: all 0.2s; transform-origin: center;
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .nav-dropdown {
-      position: fixed; top: 64px; left: 0; right: 0;
-      background: #fff; border-bottom: 1px solid rgba(20,33,61,0.08);
-      box-shadow: 0 8px 24px rgba(20,33,61,0.08);
-      z-index: 199; display: none; padding: 8px 0 12px;
-    }
-    .nav-dropdown.open { display: block; }
-    .nav-dropdown-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 24px; font-size: 15px; font-weight: 600; color: var(--navy);
-      text-decoration: none; border: none; background: none;
-      width: 100%; cursor: pointer; transition: background 0.12s;
-    }
-    .nav-dropdown-item:hover { background: var(--bg); }
-    .nav-dropdown-item.active { color: var(--accent); }
-    .nav-dropdown-item.active::after {
-      content: ''; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--accent); flex-shrink: 0;
-    }
-    .nav-dropdown-item.soon { color: var(--navy-soft); cursor: default; }
-    .nav-dropdown-soon {
-      font-size: 10px; font-weight: 700; letter-spacing: 1px;
-      text-transform: uppercase; background: #fff7e8; color: var(--navy-soft); padding: 3px 7px;
-    }
     .nav-overlay { position: fixed; inset: 0; top: 64px; z-index: 198; display: none; }
-    .nav-overlay.open { display: block; }
 
     .hero {
-      padding: 44px 0 36px;
+      padding: 56px 0 44px;
       background: linear-gradient(180deg, #ffffff, #fbfcff);
       text-align: center;
+    }
+    .hero-mark {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 24px;
+    }
+    .hero-mark-icon { display: block; }
+    .hero-mark-label {
+      font-family: "Inter", sans-serif; font-size: 15px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy-soft);
     }
     .hero h1 {
       font-family: "Fraunces", serif;
@@ -238,7 +211,7 @@
       .answer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 720px) {
-      .hero { padding: 28px 0 24px; }
+      .hero { padding: 36px 0 28px; }
       .hero h1 { font-size: clamp(1.95rem, 8vw, 2.55rem); margin-bottom: 10px; }
       .hero-sub { font-size: 0.95rem; margin-bottom: 18px; }
       .proof-chips { gap: 8px; margin-bottom: 22px; }
@@ -262,50 +235,36 @@
 </head>
 <body>
 
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="nav-logo" href="index.html" aria-label="HVAC Cost Guide">
-        <svg height="38" viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-mark">
+        <svg class="hero-mark-icon" height="64" viewBox="0 0 56 52" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
+            <linearGradient id="hbarGrad" x1="0" y1="1" x2="0" y2="0">
               <stop offset="0%" stop-color="#7b2ff7"/>
               <stop offset="100%" stop-color="#f97316"/>
             </linearGradient>
-            <linearGradient id="swooshGrad" x1="0" y1="0" x2="1" y2="0">
+            <linearGradient id="hswooshGrad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#c026d3"/>
               <stop offset="100%" stop-color="#f97316"/>
             </linearGradient>
-            <linearGradient id="swoosh2Grad" x1="0" y1="0" x2="1" y2="0">
+            <linearGradient id="hswoosh2Grad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stop-color="#9333ea"/>
               <stop offset="100%" stop-color="#ec4899"/>
             </linearGradient>
           </defs>
-          <rect x="4" y="36" width="8" height="12" rx="2" fill="url(#barGrad)"/>
-          <rect x="15" y="28" width="8" height="20" rx="2" fill="url(#barGrad)"/>
-          <rect x="26" y="20" width="8" height="28" rx="2" fill="url(#barGrad)"/>
-          <rect x="37" y="12" width="8" height="36" rx="2" fill="url(#barGrad)"/>
-          <path d="M48 6 Q56 6 56 14 L56 48 L48 48 Z" fill="url(#barGrad)"/>
-          <path d="M2 34 Q18 20 46 26" stroke="url(#swoosh2Grad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
-          <path d="M8 26 Q28 4 52 10 Q58 11 56 6" stroke="url(#swooshGrad)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <rect x="4" y="36" width="8" height="12" rx="2" fill="url(#hbarGrad)"/>
+          <rect x="15" y="28" width="8" height="20" rx="2" fill="url(#hbarGrad)"/>
+          <rect x="26" y="20" width="8" height="28" rx="2" fill="url(#hbarGrad)"/>
+          <rect x="37" y="12" width="8" height="36" rx="2" fill="url(#hbarGrad)"/>
+          <path d="M48 6 Q56 6 56 14 L56 48 L48 48 Z" fill="url(#hbarGrad)"/>
+          <path d="M2 34 Q18 20 46 26" stroke="url(#hswoosh2Grad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+          <path d="M8 26 Q28 4 52 10 Q58 11 56 6" stroke="url(#hswooshGrad)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
           <circle cx="55" cy="6" r="3" fill="#f97316"/>
-          <text x="70" y="37" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.3" fill="#2d3a55">HVAC Cost Guide</text>
         </svg>
-      </a>
-      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <div class="nav-dropdown" id="nav-dropdown">
-    <a href="index.html" class="nav-dropdown-item active">AC Installation Calculator</a>
-    <div class="nav-dropdown-item soon">Heating Cost Calculator <span class="nav-dropdown-soon">Coming Soon</span></div>
-    <div class="nav-dropdown-item soon">Compare Quotes <span class="nav-dropdown-soon">Coming Soon</span></div>
-  </div>
-  <div class="nav-overlay" id="nav-overlay" onclick="closeMenu()"></div>
-
-  <section class="hero">
-    <div class="container">
+        <span class="hero-mark-label">HVAC Cost Guide</span>
+      </div>
+      <div class="section-kicker" style="margin-bottom:12px;">King &amp; Snohomish County</div>
       <h1>Local AC Installation Estimates</h1>
       <p class="hero-sub">Real pricing ranges for the Greater Eastside and North Sound.</p>
       <div class="proof-chips">
@@ -472,18 +431,6 @@
   </footer>
 
   <script>
-    function toggleMenu() {
-      const h = document.getElementById('nav-hamburger');
-      const d = document.getElementById('nav-dropdown');
-      const o = document.getElementById('nav-overlay');
-      const isOpen = d.classList.contains('open');
-      if (isOpen) { closeMenu(); } else { h.classList.add('open'); d.classList.add('open'); o.classList.add('open'); }
-    }
-    function closeMenu() {
-      document.getElementById('nav-hamburger').classList.remove('open');
-      document.getElementById('nav-dropdown').classList.remove('open');
-      document.getElementById('nav-overlay').classList.remove('open');
-    }
     function goToQuiz(intent) {
       if (typeof gtag !== 'undefined') {
         gtag('event', 'quiz_start', { intent: intent });
