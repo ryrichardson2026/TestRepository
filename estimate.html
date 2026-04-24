@@ -462,9 +462,9 @@
             <div class="results-card">
               <div class="results-label">Best starting option — <span id="resultCity"></span></div>
               <div class="results-type" id="resultType">Central AC</div>
-              <div class="results-range" id="resultRange">$8,200 – $8,900</div>
-              <div class="results-labor" id="resultLabor">Estimated labor: $2,400 – $2,900</div>
-              <div class="results-copy" id="resultCopy">This is a common range for homes like yours.</div>
+              <div class="results-range" id="resultRange">$7,500 – $10,500</div>
+              <div class="results-labor" id="resultLabor">Estimated labor: $1,200 – $2,800</div>
+              <div class="results-copy" id="resultCopy">This range updates based on your answers.</div>
               <div class="results-divider"></div>
               <div class="mini-kicker">Why this range fits your home</div>
               <div class="results-reasons" id="resultReasons"></div>
@@ -483,10 +483,10 @@
 
             <div class="quote-bridge">
               <div class="quote-title">Most homeowners compare 3–5 quotes before deciding</div>
-              <button class="btn btn-primary" type="button" onclick="showLeadForm()">Get an exact quote →</button>
+              <button class="btn btn-primary" type="button" onclick="showLeadForm()">Get a quote →</button>
 
               <div class="lead-form-wrap" id="leadFormWrap">
-                <div class="lead-form-title">Get an exact quote — no obligation.</div>
+                <div class="lead-form-title">Get a local quote — no obligation.</div>
                 <div class="lead-form-sub">We'll connect you with one local HVAC specialist. No spam. No multiple calls.</div>
                 <div class="lead-fields">
                   <div class="lead-field">
@@ -599,23 +599,25 @@
     };
 
     const PRICING = {
+      // Retail-facing install ranges aligned to the source pricing model.
+      // These are not contractor cost. They include typical equipment, materials, labor, startup, and normal install scope.
       central_ac: {
-        small:  { min: 9000,  max: 12500 },
-        medium: { min: 10200, max: 14500 },
-        large:  { min: 12000, max: 17000 },
-        laborPct: { min: 0.25, max: 0.35 }
+        small:  { min: 7000, max: 9800 },
+        medium: { min: 7800, max: 11000 },
+        large:  { min: 9500, max: 13500 },
+        laborPct: { min: 0.17, max: 0.24 }
       },
       heat_pump: {
-        small:  { min: 11000, max: 15500 },
-        medium: { min: 12500, max: 17500 },
-        large:  { min: 14500, max: 21000 },
-        laborPct: { min: 0.28, max: 0.38 }
+        small:  { min: 11500, max: 15500 },
+        medium: { min: 13000, max: 18500 },
+        large:  { min: 15500, max: 23000 },
+        laborPct: { min: 0.18, max: 0.25 }
       },
       mini_split: {
-        small:  { min: 6500,  max: 11000 },
-        medium: { min: 9000,  max: 15000 },
-        large:  { min: 12000, max: 22000 },
-        laborPct: { min: 0.30, max: 0.40 }
+        small:  { min: 5000, max: 8500 },
+        medium: { min: 7000, max: 12500 },
+        large:  { min: 9500, max: 17000 },
+        laborPct: { min: 0.18, max: 0.25 }
       }
     };
 
@@ -748,15 +750,68 @@
       return [];
     }
 
+    function roundToHundred(value) {
+      return Math.round(value / 100) * 100;
+    }
+
     function calculatePrice(system, state) {
-      let min = PRICING[system][state.size].min;
-      let max = PRICING[system][state.size].max;
-      const uncertain = state.intent === 'unsure' || state.ducts === 'not_sure';
-      if (uncertain) max = Math.round(max * 1.15);
-      if (state.ducts === 'partial') max = Math.round(max * 1.10);
-      if (state.cooling_performance === 'uneven') max = Math.round(max * 1.08);
-      const laborMin = Math.round(min * PRICING[system].laborPct.min);
-      const laborMax = Math.round(max * PRICING[system].laborPct.max);
+      const base = PRICING[system][state.size || 'medium'];
+      let min = base.min;
+      let max = base.max;
+
+      // Intent: adding AC often needs more line-set, electrical, or site prep than a like-for-like replacement.
+      if (state.intent === 'add') {
+        min += 500;
+        max += 1500;
+      }
+      if (state.intent === 'replace') {
+        max += 500;
+      }
+      if (state.intent === 'unsure') {
+        max += 1000;
+      }
+
+      // Cooling performance: worse performance increases the chance of hidden scope or a failing matched component.
+      if (state.cooling_performance === 'not_working') {
+        min += 300;
+        max += 900;
+      }
+      if (state.cooling_performance === 'poor') {
+        min += 200;
+        max += 700;
+      }
+      if (state.cooling_performance === 'uneven') {
+        max += 1000;
+      }
+      if (state.cooling_performance === 'fine') {
+        min -= 300;
+        max -= 500;
+      }
+
+      // Ductwork: partial/unknown ductwork is one of the biggest reasons quote ranges widen.
+      if (state.ducts === 'partial') {
+        min += 500;
+        max += 2000;
+      }
+      if (state.ducts === 'not_sure') {
+        max += 1000;
+      }
+
+      // Age: older systems often need more transition work, code updates, or matching component changes.
+      if (state.system_age === '10_15') {
+        max += 700;
+      }
+      if (state.system_age === '15_plus') {
+        min += 500;
+        max += 1500;
+      }
+
+      min = Math.max(3500, roundToHundred(min));
+      max = Math.max(min + 1500, roundToHundred(max));
+
+      const laborMin = roundToHundred(min * PRICING[system].laborPct.min);
+      const laborMax = roundToHundred(max * PRICING[system].laborPct.max);
+
       return {
         totalMin: min,
         totalMax: max,
@@ -821,9 +876,9 @@
       document.getElementById('resultRange').textContent = pricing.range;
       document.getElementById('resultLabor').textContent = 'Estimated labor: ' + pricing.labor;
 
-      let copy = buildCopy(system);
+      let copy = buildCopy(system) + ' This range includes typical equipment, materials, labor, startup, and normal install scope.';
       if (state.intent === 'unsure' || state.ducts === 'not_sure') {
-        copy += ' This range is a bit wider because a few home details are still being narrowed down.';
+        copy += ' This range is a bit wider because a few home details still need to be confirmed on site.';
       }
       if (state.system_age === 'under_10' && state.cooling_performance === 'fine') {
         copy += ' Since your system may still have life left, some homeowners in this position also compare repair or optimization before replacing.';
