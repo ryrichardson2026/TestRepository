@@ -365,8 +365,6 @@
           <span class="progress-pill" id="p3"></span>
           <span class="progress-pill" id="p4"></span>
           <span class="progress-pill" id="p5"></span>
-          <span class="progress-pill" id="p6"></span>
-          <span class="progress-pill" id="p7"></span>
         </div>
 
         <div class="flow-step active" id="step1">
@@ -408,7 +406,12 @@
         <div class="flow-step" id="step3">
           <div class="flow-title">How well is your current home cooling?</div>
           <div class="flow-sub">Choose the one that feels most true today.</div>
-          <div class="answers-grid cols-3" id="performanceGrid"></div>
+          <div class="answers-grid cols-3" id="performanceGrid">
+            <button class="answer-card" type="button" data-value="not_working" onclick="selectStaticOption('performanceGrid','cooling_performance','not_working','toStep4')"><div class="answer-title">Not cooling at all</div></button>
+            <button class="answer-card" type="button" data-value="poor" onclick="selectStaticOption('performanceGrid','cooling_performance','poor','toStep4')"><div class="answer-title">Struggles to keep up</div></button>
+            <button class="answer-card" type="button" data-value="uneven" onclick="selectStaticOption('performanceGrid','cooling_performance','uneven','toStep4')"><div class="answer-title">Some rooms are hot / uneven</div></button>
+            <button class="answer-card" type="button" data-value="fine" onclick="selectStaticOption('performanceGrid','cooling_performance','fine','toStep4')"><div class="answer-title">Works fine, just exploring options</div></button>
+          </div>
           <div class="step-actions">
             <button class="btn btn-ghost" type="button" id="step3Back">Back</button>
             <button class="btn btn-primary" type="button" id="toStep4" disabled>Continue →</button>
@@ -418,20 +421,14 @@
         <div class="flow-step" id="step4">
           <div class="flow-title">Does your home have air vents (ductwork)?</div>
           <div class="flow-sub">This helps narrow whether central AC, heat pump, or ductless is the better fit.</div>
-          <div class="answers-grid cols-3" id="ductsGrid"></div>
+          <div class="answers-grid cols-3" id="ductsGrid">
+            <button class="answer-card" type="button" data-value="yes" onclick="selectStaticOption('ductsGrid','ducts','yes','toStep7')"><div class="answer-title">Yes — vents throughout the home</div></button>
+            <button class="answer-card" type="button" data-value="partial" onclick="selectStaticOption('ductsGrid','ducts','partial','toStep7')"><div class="answer-title">Some rooms only</div></button>
+            <button class="answer-card" type="button" data-value="no" onclick="selectStaticOption('ductsGrid','ducts','no','toStep7')"><div class="answer-title">No ductwork</div></button>
+            <button class="answer-card" type="button" data-value="not_sure" onclick="selectStaticOption('ductsGrid','ducts','not_sure','toStep7')"><div class="answer-title">Not sure</div></button>
+          </div>
           <div class="step-actions">
             <button class="btn btn-ghost" type="button" id="step4Back">Back</button>
-            <button class="btn btn-primary" type="button" id="toStep6" disabled>Continue →</button>
-          </div>
-        </div>
-
-        <!-- Step 6: replace intent only — age only (issue_type removed) -->
-        <div class="flow-step" id="step6">
-          <div class="flow-title" id="step6Title">A few details about your current system</div>
-          <div class="flow-sub" id="step6Sub">These help us give better direction for replacement pricing.</div>
-          <div class="answers-grid cols-3" id="replaceGrid"></div>
-          <div class="step-actions">
-            <button class="btn btn-ghost" type="button" id="step6Back">Back</button>
             <button class="btn btn-primary" type="button" id="toStep7" disabled>Continue →</button>
           </div>
         </div>
@@ -566,7 +563,6 @@
       size: null,
       cooling_performance: null,
       ducts: null,
-      system_age: null,
       city: null,
       result_type: null,
       result_range: null,
@@ -588,12 +584,6 @@
         ['yes','Yes — vents throughout the home'],
         ['partial','Some rooms only'],
         ['no','No ductwork'],
-        ['not_sure','Not sure']
-      ],
-      system_age: [
-        ['under_10','Less than 10 years'],
-        ['10_15','10–15 years'],
-        ['15_plus','15+ years'],
         ['not_sure','Not sure']
       ]
     };
@@ -633,13 +623,11 @@
       mini_split: 'Ductless Mini Split, if duct access is limited or you want zoned comfort.'
     };
 
-    const steps = ['step1','step2','step3','step4','step5','step6','step7'];
-    // replaceStage now only has 2 stages: 0 = system_age, 1 = issue_type
-    let replaceStage = 0;
+    const steps = ['step1','step2','step3','step4','step7'];
 
     function updateProgress(stepName) {
       const idx = steps.indexOf(stepName);
-      ['p1','p2','p3','p4','p5','p6','p7'].forEach((id, i) => {
+      ['p1','p2','p3','p4','p5'].forEach((id, i) => {
         document.getElementById(id).classList.toggle('active', i === Math.max(0, idx));
       });
     }
@@ -648,6 +636,18 @@
       document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       if (steps.includes(id)) updateProgress(id);
+    }
+
+
+    function selectStaticOption(targetId, field, value, nextButtonId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      [...target.querySelectorAll('.answer-card')].forEach(c => c.classList.remove('selected'));
+      const selected = target.querySelector('[data-value="' + value + '"]');
+      if (selected) selected.classList.add('selected');
+      state[field] = value;
+      const next = document.getElementById(nextButtonId);
+      if (next) next.disabled = false;
     }
 
     function makeButtons(targetId, groupName, field) {
@@ -664,42 +664,10 @@
           btn.classList.add('selected');
           state[field] = value;
           if (field === 'cooling_performance') document.getElementById('toStep4').disabled = false;
-          if (field === 'ducts') document.getElementById('toStep6').disabled = false;
-          if (field === 'system_age') document.getElementById('toStep7').disabled = !replaceStageComplete();
+          if (field === 'ducts') document.getElementById('toStep7').disabled = false;
         });
         target.appendChild(btn);
       });
-    }
-
-    function renderReplaceStage() {
-      const grid = document.getElementById('replaceGrid');
-      const title = document.getElementById('step6Title');
-      const sub = document.getElementById('step6Sub');
-      grid.innerHTML = '';
-      document.getElementById('toStep7').disabled = true;
-
-      title.textContent = 'How old is your current system?';
-      sub.textContent = 'Age helps us frame replacement urgency and likely price range.';
-
-      OPTIONS.system_age.forEach(([value, label]) => {
-        const btn = document.createElement('button');
-        btn.className = 'answer-card';
-        btn.type = 'button';
-        btn.dataset.value = value;
-        btn.innerHTML = `<div class="answer-title">${label}</div>`;
-        if (state.system_age === value) btn.classList.add('selected');
-        btn.addEventListener('click', () => {
-          [...grid.querySelectorAll('.answer-card')].forEach(c => c.classList.remove('selected'));
-          btn.classList.add('selected');
-          state.system_age = value;
-          document.getElementById('toStep7').disabled = false;
-        });
-        grid.appendChild(btn);
-      });
-    }
-
-    function replaceStageComplete() {
-      return !!state.system_age;
     }
 
     function fireWebhook(payload) {
@@ -755,62 +723,84 @@
     }
 
     function calculatePrice(system, state) {
-      const base = PRICING[system][state.size || 'medium'];
-      let min = base.min;
-      let max = base.max;
+      const size = state.size || 'medium';
+      const base = PRICING[system][size];
+      const laborPct = PRICING[system].laborPct;
 
-      // Intent: adding AC often needs more line-set, electrical, or site prep than a like-for-like replacement.
-      if (state.intent === 'add') {
-        min += 500;
-        max += 1500;
-      }
-      if (state.intent === 'replace') {
-        max += 500;
-      }
-      if (state.intent === 'unsure') {
-        max += 1000;
+      // Pricing model: move the midpoint based on the user's answers, then tighten the spread.
+      // This prevents stacked modifiers from doubling the range while still reflecting real install uncertainty.
+      let midpoint = (base.min + base.max) / 2;
+      let shift = 0;
+
+      // Intent
+      if (state.intent === 'add') shift += 600;
+      if (state.intent === 'replace') shift += 100;
+      if (state.intent === 'unsure') shift += 300;
+
+      // Cooling performance
+      if (state.cooling_performance === 'not_working') shift += 500;
+      if (state.cooling_performance === 'poor') shift += 300;
+      if (state.cooling_performance === 'uneven') shift += 250;
+      if (state.cooling_performance === 'fine') shift -= 300;
+
+      // Ductwork
+      if (state.ducts === 'partial') shift += 400;
+      if (state.ducts === 'no') shift += 300;
+      if (state.ducts === 'not_sure') shift += 250;
+
+
+      midpoint += shift;
+
+      const baseSpread = base.max - base.min;
+      const answeredCount = [
+        state.intent,
+        state.size,
+        state.cooling_performance,
+        state.ducts
+      ].filter(Boolean).length;
+
+      // More answered questions = tighter confidence range.
+      let tighteningFactor = 0.78;
+      if (answeredCount >= 3) tighteningFactor = 0.68;
+      if (answeredCount >= 4) tighteningFactor = 0.62;
+
+      const spreadCaps = {
+        central_ac: { small: 2600, medium: 3200, large: 4200 },
+        heat_pump: { small: 4200, medium: 5600, large: 7000 },
+        mini_split: { small: 2800, medium: 3600, large: 5200 }
+      };
+
+      const minSpreads = {
+        central_ac: { small: 2200, medium: 2600, large: 3200 },
+        heat_pump: { small: 3600, medium: 4400, large: 5600 },
+        mini_split: { small: 2400, medium: 3000, large: 4200 }
+      };
+
+      let spread = baseSpread * tighteningFactor;
+      spread = Math.min(spread, spreadCaps[system][size]);
+      spread = Math.max(spread, minSpreads[system][size]);
+
+      let min = roundToHundred(midpoint - spread / 2);
+      let max = roundToHundred(midpoint + spread / 2);
+
+      // Keep final ranges inside realistic retail guardrails from the pricing source.
+      const guardrails = {
+        central_ac: { min: 6500, max: 13000 },
+        heat_pump: { min: 13000, max: 25000 },
+        mini_split: { min: 4500, max: 18000 }
+      };
+
+      min = Math.max(guardrails[system].min, min);
+      max = Math.min(guardrails[system].max, max);
+
+      // Preserve a useful range after clamping.
+      const minimumVisibleSpread = minSpreads[system][size];
+      if ((max - min) < minimumVisibleSpread) {
+        max = Math.min(guardrails[system].max, roundToHundred(min + minimumVisibleSpread));
       }
 
-      // Cooling performance: worse performance increases the chance of hidden scope or a failing matched component.
-      if (state.cooling_performance === 'not_working') {
-        min += 300;
-        max += 900;
-      }
-      if (state.cooling_performance === 'poor') {
-        min += 200;
-        max += 700;
-      }
-      if (state.cooling_performance === 'uneven') {
-        max += 1000;
-      }
-      if (state.cooling_performance === 'fine') {
-        min -= 300;
-        max -= 500;
-      }
-
-      // Ductwork: partial/unknown ductwork is one of the biggest reasons quote ranges widen.
-      if (state.ducts === 'partial') {
-        min += 500;
-        max += 2000;
-      }
-      if (state.ducts === 'not_sure') {
-        max += 1000;
-      }
-
-      // Age: older systems often need more transition work, code updates, or matching component changes.
-      if (state.system_age === '10_15') {
-        max += 700;
-      }
-      if (state.system_age === '15_plus') {
-        min += 500;
-        max += 1500;
-      }
-
-      min = Math.max(3500, roundToHundred(min));
-      max = Math.max(min + 1500, roundToHundred(max));
-
-      const laborMin = roundToHundred(min * PRICING[system].laborPct.min);
-      const laborMax = roundToHundred(max * PRICING[system].laborPct.max);
+      const laborMin = roundToHundred(min * laborPct.min);
+      const laborMax = roundToHundred(max * laborPct.max);
 
       return {
         totalMin: min,
@@ -830,7 +820,6 @@
       if (state.ducts === 'yes') reasons.push('Existing ductwork keeps central system options more manageable.');
       if (state.ducts === 'partial') reasons.push('Partial duct coverage can push final pricing higher if modifications are needed.');
       if (state.ducts === 'no') reasons.push('No ductwork shifts the recommendation toward ductless or non-central options.');
-      if (state.system_age === '15_plus') reasons.push('Older systems often make full replacement easier to justify.');
       if (state.intent === 'unsure') reasons.push(`This is a best-fit starting option for homeowners in ${cityText || 'your area'} still comparing systems.`);
       return reasons.slice(0, 4);
     }
@@ -880,9 +869,6 @@
       if (state.intent === 'unsure' || state.ducts === 'not_sure') {
         copy += ' This range is a bit wider because a few home details still need to be confirmed on site.';
       }
-      if (state.system_age === 'under_10' && state.cooling_performance === 'fine') {
-        copy += ' Since your system may still have life left, some homeowners in this position also compare repair or optimization before replacing.';
-      }
       document.getElementById('resultCopy').textContent = copy;
 
       const wrap = document.getElementById('resultReasons');
@@ -919,7 +905,6 @@
         size: state.size,
         cooling_performance: state.cooling_performance || '',
         ducts: state.ducts || '',
-        system_age: state.system_age || '',
         result_type: state.result_type || '',
         result_range: state.result_range || '',
         result_labor: state.result_labor || '',
@@ -972,30 +957,11 @@
       }
     });
     document.getElementById('toStep4').addEventListener('click', () => showStep('step4'));
-    document.getElementById('toStep6').addEventListener('click', () => {
-      if (state.intent === 'replace') {
-        replaceStage = 0;
-        renderReplaceStage();
-        showStep('step6');
-      } else {
-        state.system_age = '';
-        state.issue_type = '';
-        showStep('step7');
-      }
-    });
     document.getElementById('toStep7').addEventListener('click', () => showStep('step7'));
 
     document.getElementById('step3Back').addEventListener('click', () => showStep('step2'));
     document.getElementById('step4Back').addEventListener('click', () => state.intent === 'add' ? showStep('step2') : showStep('step3'));
-    document.getElementById('step6Back').addEventListener('click', () => {
-      if (replaceStage > 0) {
-        replaceStage -= 1;
-        renderReplaceStage();
-      } else {
-        showStep('step4');
-      }
-    });
-    document.getElementById('step7Back').addEventListener('click', () => state.intent === 'replace' ? showStep('step6') : showStep('step4'));
+    document.getElementById('step7Back').addEventListener('click', () => showStep('step4'));
     document.querySelectorAll('[data-back-step]').forEach(btn => btn.addEventListener('click', () => showStep(btn.dataset.backStep)));
 
     document.getElementById('seeResults').addEventListener('click', () => {
@@ -1092,10 +1058,14 @@
 
     const params = new URLSearchParams(window.location.search);
     const preIntent = params.get('intent');
+    document.addEventListener('DOMContentLoaded', () => {
+      makeButtons('performanceGrid','cooling_performance','cooling_performance');
+      makeButtons('ductsGrid','ducts','ducts');
+    });
+
     window.addEventListener('load', () => {
       makeButtons('performanceGrid','cooling_performance','cooling_performance');
       makeButtons('ductsGrid','ducts','ducts');
-      renderReplaceStage();
       if (preIntent) {
         state.intent = preIntent;
         document.querySelectorAll('.flow-intent').forEach(c => {
