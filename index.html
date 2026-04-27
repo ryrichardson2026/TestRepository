@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=GT-WF65GPHQ"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -101,7 +103,7 @@
       color: var(--accent); flex-shrink: 0;
     }
 
-    .hero-question-label { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 14px; text-align: center; }
+    .hero-question-label { font-family: "Fraunces", serif; font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.04; letter-spacing: -0.03em; font-weight: 700; color: var(--navy); margin-bottom: 14px; text-align: center; }
 
     .answer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .answer-card {
@@ -122,6 +124,10 @@
     .answer-icon { width: 76px; height: 76px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; }
     .answer-title { font-size: 17px; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 6px; }
     .answer-sub { font-size: 13px; line-height: 1.48; color: var(--navy-soft); max-width: 200px; margin: 0 auto; }
+    .answer-range {
+      font-size: 13px; font-weight: 700; color: var(--accent);
+      margin: 6px 0 10px; letter-spacing: 0.01em;
+    }
     .answer-cta {
       margin-top: auto; padding-top: 14px;
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -206,7 +212,7 @@
       .proof-chips { gap: 8px; margin-bottom: 22px; }
       .proof-chip { width: 100%; justify-content: flex-start; padding: 9px 12px; font-size: 13px; }
       .proof-chip .dot { width: 24px; height: 24px; }
-      .hero-question-label { font-size: 15px; margin-bottom: 12px; }
+      .hero-question-label { font-size: clamp(1.4rem, 5vw, 1.7rem); margin-bottom: 12px; }
       .answer-grid { grid-template-columns: 1fr; gap: 12px; }
       .answer-card { min-height: auto; padding: 16px 14px 14px; border-radius: 18px; }
       .answer-icon { width: 58px; height: 58px; margin-bottom: 8px; }
@@ -220,6 +226,7 @@
       .footer-inner { flex-direction: column; }
     }
   </style>
+
 </head>
 <body>
 
@@ -255,121 +262,93 @@
       <div class="section-kicker" style="margin-bottom:12px;">King &amp; Snohomish County</div>
       <h1>Local AC Installation Estimates</h1>
       <p class="hero-sub">Real pricing ranges for the Greater Eastside and North Sound.</p>
-      <div class="proof-chips">
-        <div class="proof-chip">
-          <span class="dot">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          No Info Required
-        </div>
-        <div class="proof-chip">
-          <span class="dot">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          Realistic Ranges
-        </div>
-        <div class="proof-chip">
-          <span class="dot">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </span>
-          Local Quotes
-        </div>
-      </div>
-      <div class="hero-question-label">What best matches your situation?</div>
-      <div class="answer-grid">
-        <button class="answer-card" type="button" onclick="goToQuiz('add')">
-          <div class="answer-icon">
-            <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-              <path d="M20 58 L60 22 L100 58" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M30 52 L30 90 L90 90 L90 52" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <rect x="42" y="60" width="36" height="22" rx="5" stroke="#540d6e" stroke-width="2.5" fill="none"/>
-              <line x1="50" y1="68" x2="50" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
-              <line x1="57" y1="68" x2="57" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="94" cy="30" r="14" fill="none" stroke="#540d6e" stroke-width="2"/>
-              <line x1="94" y1="22" x2="94" y2="38" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
-              <line x1="86" y1="30" x2="102" y2="30" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="answer-title">Add AC to my home</div>
-          <div class="answer-sub">Install cooling where there isn't any today</div>
-          <div class="answer-cta">Start estimate &#8594;</div>
-        </button>
-        <button class="answer-card" type="button" onclick="goToQuiz('replace')">
-          <div class="answer-icon">
-            <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-              <rect x="18" y="32" width="64" height="44" rx="8" stroke="#14213d" stroke-width="3" fill="none"/>
-              <line x1="30" y1="46" x2="30" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="40" y1="46" x2="40" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="50" y1="46" x2="50" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="66" cy="54" r="6" fill="#ee4266"/>
-              <line x1="12" y1="82" x2="88" y2="82" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
-              <path d="M88 54 L104 54" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
-              <path d="M97 46 L106 54 L97 62" stroke="#ee4266" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-          </div>
-          <div class="answer-title">Replace my AC system</div>
-          <div class="answer-sub">Swap out an older or failing unit</div>
-          <div class="answer-cta">Start estimate &#8594;</div>
-        </button>
-        <button class="answer-card" type="button" onclick="goToQuiz('unsure')">
-          <div class="answer-icon">
-            <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
-              <rect x="8" y="38" width="36" height="22" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
-              <line x1="16" y1="46" x2="16" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
-              <line x1="22" y1="46" x2="22" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
-              <rect x="76" y="36" width="36" height="26" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
-              <circle cx="94" cy="49" r="8" stroke="#540d6e" stroke-width="2" fill="none"/>
-              <circle cx="94" cy="49" r="3" fill="#540d6e"/>
-              <line x1="60" y1="30" x2="60" y2="90" stroke="#e0e8ee" stroke-width="2" stroke-dasharray="4 4"/>
-              <text x="60" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#ee4266">?</text>
-            </svg>
-          </div>
-          <div class="answer-title">Not sure yet</div>
-          <div class="answer-sub">Get guidance before making a decision</div>
-          <div class="answer-cta">Start estimate &#8594;</div>
-        </button>
-      </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="estimate-card">
-        <div class="estimate-label">Example cost range</div>
-        <div class="estimate-title">Central AC Install</div>
-        <div class="estimate-range">$7,500 &#8211; $10,500</div>
-        <div class="estimate-labor">Estimated labor: $1,200 &#8211; $2,800</div>
-        <div class="estimate-copy">Most installs fall somewhere in this range before we factor in your home.</div>
-        <div class="estimate-divider"></div>
-        <div class="estimate-subhead">Usually includes</div>
-        <div class="estimate-list">
-          <div class="estimate-item">
-            <svg class="estimate-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Equipment
-          </div>
-          <div class="estimate-item">
-            <svg class="estimate-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Labor
-          </div>
-          <div class="estimate-item">
-            <svg class="estimate-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Startup &amp; testing
-          </div>
-          <div class="estimate-item">
-            <svg class="estimate-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Typical install: 1&#8211;2 days
-          </div>
-        </div>
-      </div>
+```
+  <div class="proof-chips">
+    <div class="proof-chip">
+      <span class="dot">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      No Info Required
     </div>
+    <div class="proof-chip">
+      <span class="dot">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      Realistic Ranges
+    </div>
+    <div class="proof-chip">
+      <span class="dot">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </span>
+      Local Quotes
+    </div>
+  </div>
+  <div class="hero-question-label">What best matches your situation?</div>
+  <div class="answer-grid">
+    <button class="answer-card" type="button" onclick="goToQuiz('add')">
+      <div class="answer-icon">
+        <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+          <path d="M20 58 L60 22 L100 58" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M30 52 L30 90 L90 90 L90 52" stroke="#14213d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="42" y="60" width="36" height="22" rx="5" stroke="#540d6e" stroke-width="2.5" fill="none"/>
+          <line x1="50" y1="68" x2="50" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+          <line x1="57" y1="68" x2="57" y2="74" stroke="#540d6e" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="94" cy="30" r="14" fill="none" stroke="#540d6e" stroke-width="2"/>
+          <line x1="94" y1="22" x2="94" y2="38" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+          <line x1="86" y1="30" x2="102" y2="30" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="answer-title">Add AC to my home</div>
+      <div class="answer-range">Typical range: $5,000 &#8211; $23,000</div>
+      <div class="answer-cta">Get My Estimate &#8594;</div>
+    </button>
+    <button class="answer-card" type="button" onclick="goToQuiz('replace')">
+      <div class="answer-icon">
+        <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+          <rect x="18" y="32" width="64" height="44" rx="8" stroke="#14213d" stroke-width="3" fill="none"/>
+          <line x1="30" y1="46" x2="30" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="40" y1="46" x2="40" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="50" y1="46" x2="50" y2="62" stroke="#52607a" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="66" cy="54" r="6" fill="#ee4266"/>
+          <line x1="12" y1="82" x2="88" y2="82" stroke="#540d6e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M88 54 L104 54" stroke="#ee4266" stroke-width="3" stroke-linecap="round"/>
+          <path d="M97 46 L106 54 L97 62" stroke="#ee4266" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="answer-title">Replace my AC system</div>
+      <div class="answer-range">Typical range: $6,500 &#8211; $13,500</div>
+      <div class="answer-cta">Get My Estimate &#8594;</div>
+    </button>
+    <button class="answer-card" type="button" onclick="goToQuiz('unsure')">
+      <div class="answer-icon">
+        <svg width="76" height="76" viewBox="0 0 120 120" fill="none">
+          <rect x="8" y="38" width="36" height="22" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+          <line x1="16" y1="46" x2="16" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="22" y1="46" x2="22" y2="52" stroke="#52607a" stroke-width="2" stroke-linecap="round"/>
+          <rect x="76" y="36" width="36" height="26" rx="5" stroke="#14213d" stroke-width="2.5" fill="none"/>
+          <circle cx="94" cy="49" r="8" stroke="#540d6e" stroke-width="2" fill="none"/>
+          <circle cx="94" cy="49" r="3" fill="#540d6e"/>
+          <line x1="60" y1="30" x2="60" y2="90" stroke="#e0e8ee" stroke-width="2" stroke-dasharray="4 4"/>
+          <text x="60" y="86" text-anchor="middle" font-family="Fraunces, serif" font-size="28" font-weight="700" fill="#ee4266">?</text>
+        </svg>
+      </div>
+      <div class="answer-title">Not sure yet</div>
+      <div class="answer-sub">Get guidance before making a decision</div>
+      <div class="answer-cta">Get My Estimate &#8594;</div>
+    </button>
+  </div>
+</div>
+```
+
   </section>
 
   <section class="section" style="background:#f7f9fc;">
@@ -426,5 +405,6 @@
       window.location.href = 'estimate.html?intent=' + intent;
     }
   </script>
+
 </body>
 </html>
