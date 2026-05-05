@@ -870,7 +870,6 @@
       const phone = document.getElementById('leadPhone').value.trim();
       const email = document.getElementById('leadEmail').value.trim();
       const consent = document.getElementById('consentCheck').checked;
-      const consentSMS = document.getElementById('consentSMS').checked;
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       let valid = true;
       if (firstName.length < 2) { document.getElementById('firstNameError').textContent = 'Please enter your first name'; document.getElementById('firstNameError').classList.add('visible'); valid = false; }
