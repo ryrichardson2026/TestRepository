@@ -354,10 +354,7 @@
               <div class="answer-title">Add AC</div>
               <div class="answer-sub">Put cooling into a home that does not have it now.</div>
             </button>
-            <button class="answer-card flow-intent" type="button" data-value="unsure">
-              <div class="answer-title">Not sure yet</div>
-              <div class="answer-sub">Get a starting point before talking to anyone.</div>
-            </button>
+
           </div>
           <div class="step-actions">
             <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue &#8594;</button>
@@ -900,7 +897,7 @@
     window.addEventListener('load', () => {
       makeButtons('performanceGrid','cooling_performance','cooling_performance');
       makeButtons('ductsGrid','ducts','ducts');
-      if (preIntent) {
+      if (preIntent && ['add','replace'].includes(preIntent)) {
         state.intent = preIntent;
         document.querySelectorAll('.flow-intent').forEach(c => {
           if (c.dataset.value === preIntent) c.classList.add('selected');
