@@ -56,6 +56,63 @@
     .site-nav-links a.nav-active { color: var(--navy); font-weight: 700; }
     .site-nav-links .nav-cta { background: var(--accent-2); color: #fff !important; font-weight: 800; padding: 7px 14px; box-shadow: 0 4px 12px rgba(238,66,102,0.2); }
     .site-nav-links .nav-cta:hover { background: #d63057; }
+    .nav-toggle{
+  display:none;
+  width:42px;
+  height:42px;
+  border:none;
+  background:#fff;
+  border-radius:12px;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:4px;
+  box-shadow:0 2px 10px rgba(20,33,61,0.08);
+}
+
+.nav-toggle span{
+  width:18px;
+  height:2px;
+  background:var(--navy);
+  border-radius:999px;
+}
+
+  .site-nav-links{
+    position:absolute;
+    top:70px;
+    left:16px;
+    right:16px;
+    background:#fff;
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 14px 30px rgba(20,33,61,0.12);
+    border:1px solid rgba(20,33,61,0.08);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+    display:none;
+  }
+
+  .site-nav-links.show{
+    display:flex;
+  }
+
+  .site-nav-links a:not(.nav-cta){
+    display:block;
+    width:100%;
+    padding:10px 12px;
+    border-radius:10px;
+  }
+
+  .site-nav-links .nav-cta{
+    width:100%;
+    justify-content:center;
+    text-align:center;
+    margin-top:6px;
+  }
+
+}
     @media (max-width: 720px) { .site-nav-brand span { display: none; } .site-nav-links a:not(.nav-cta) { display: none; } }
     /* PAGE */
     .hero { padding: 56px 0 44px; background: rgba(255,255,255,0.82); text-align: center; }
@@ -81,8 +138,46 @@
     .section h2 { font-family: "Fraunces", serif; font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.04; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 8px; }
     .faq-list { display: grid; gap: 12px; max-width: 640px; margin: 0 auto; text-align: left; }
     .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow-soft); }
-    .faq-q { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 5px; }
-    .faq-a { font-size: 14px; color: var(--navy-soft); line-height: 1.6; }
+    .faq-question{
+  width:100%;
+  background:none;
+  border:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  cursor:pointer;
+  text-align:left;
+  font-size:15px;
+  font-weight:800;
+  color:var(--navy);
+}
+
+.faq-icon{
+  font-size:22px;
+  line-height:1;
+  color:var(--accent);
+  flex-shrink:0;
+  transition:transform .2s ease;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .25s ease;
+  color:var(--navy-soft);
+  font-size:14px;
+  line-height:1.6;
+}
+
+.faq-item.active .faq-answer{
+  max-height:220px;
+  margin-top:12px;
+}
+
+.faq-item.active .faq-icon{
+  transform:rotate(45deg);
+}
     .bottom-cta-wrap { padding: 40px 0 48px; background: #f7f9fc; border-top: 1px solid var(--border); text-align: center; }
     .bottom-cta-wrap h2 { font-family: "Fraunces", serif; font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.04; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 10px; }
     .bottom-cta-wrap p { color: var(--navy-soft); font-size: 1rem; margin-bottom: 22px; }
@@ -116,27 +211,61 @@
 <body>
 
   <nav class="site-nav">
-    <div class="container site-nav-inner">
-      <a href="https://ac.hvacinstallcosts.com" class="site-nav-brand">
-        <svg height="26" viewBox="0 0 56 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="navGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#7b2ff7"/><stop offset="100%" stop-color="#f97316"/></linearGradient></defs>
-          <rect x="4" y="36" width="8" height="12" rx="2" fill="url(#navGrad)"/>
-          <rect x="15" y="28" width="8" height="20" rx="2" fill="url(#navGrad)"/>
-          <rect x="26" y="20" width="8" height="28" rx="2" fill="url(#navGrad)"/>
-          <rect x="37" y="12" width="8" height="36" rx="2" fill="url(#navGrad)"/>
-          <path d="M48 6 Q56 6 56 14 L56 48 L48 48 Z" fill="url(#navGrad)"/>
-        </svg>
-        <span>HVAC Cost Guide</span>
-      </a>
-      <div class="site-nav-links">
-        <a href="https://ac.hvacinstallcosts.com" class="nav-active">Cooling Guide</a>
-        <a href="https://minisplit.hvacinstallcosts.com">Mini-Split</a>
-        <a href="https://heating.hvacinstallcosts.com">Heating Guide</a>
-        <a href="https://quotes.hvacinstallcosts.com" class="nav-cta">Compare Quotes →</a>
-      </div>
-    </div>
-  </nav>
 
+  <div class="container site-nav-inner">
+
+    <a href="https://ac.hvacinstallcosts.com" class="site-nav-brand">
+
+      <svg height="26" viewBox="0 0 56 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="navGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#7b2ff7"/>
+            <stop offset="100%" stop-color="#f97316"/>
+          </linearGradient>
+        </defs>
+
+        <rect x="4" y="36" width="8" height="12" rx="2" fill="url(#navGrad)"/>
+        <rect x="15" y="28" width="8" height="20" rx="2" fill="url(#navGrad)"/>
+        <rect x="26" y="20" width="8" height="28" rx="2" fill="url(#navGrad)"/>
+        <rect x="37" y="12" width="8" height="36" rx="2" fill="url(#navGrad)"/>
+        <path d="M48 6 Q56 6 56 14 L56 48 L48 48 Z" fill="url(#navGrad)"/>
+      </svg>
+
+      <span>HVAC Cost Guide</span>
+
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Open Menu">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+    <div class="site-nav-links">
+
+      <a href="https://ac.hvacinstallcosts.com" class="nav-active">
+        Cooling Guide
+      </a>
+
+      <a href="https://minisplit.hvacinstallcosts.com">
+        Mini-Split
+      </a>
+
+      <a href="https://heating.hvacinstallcosts.com">
+        Heating Guide
+      </a>
+
+      <a href="https://quotes.hvacinstallcosts.com" class="nav-cta">
+        Compare Quotes →
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>
   <section class="hero">
     <div class="container">
       <div class="hero-mark">
@@ -206,26 +335,139 @@
   </section>
 
   <section class="section" style="background:#f7f9fc;">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">FAQ</div>
-        <h2>Common questions</h2>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item"><div class="faq-q">Is this an exact quote?</div><div class="faq-a">No. This gives you a realistic local range based on homes and installs similar to yours.</div></div>
-        <div class="faq-item"><div class="faq-q">How do you build your pricing estimates?</div><div class="faq-a">Our ranges come from contractor quotes, pricing conversations, and local market research. The goal is a realistic starting point before you compare real quotes.</div></div>
-        <div class="faq-item"><div class="faq-q">Why can quotes vary so much?</div><div class="faq-a">System size, layout, ductwork, labor, and installer approach can change the total by thousands.</div></div>
-        <div class="faq-item"><div class="faq-q">Will I need to talk to someone right away?</div><div class="faq-a">No. You get your estimate first. Speaking with a contractor is optional.</div></div>
-        <div class="faq-item"><div class="faq-q">Should I still compare quotes?</div><div class="faq-a">Yes. This helps you understand what looks reasonable so you can compare with more confidence.</div></div>
-        <div class="faq-item"><div class="faq-q">What's included in a typical AC installation?</div><div class="faq-a">Labor, the outdoor condenser unit, indoor air handler or coil, refrigerant line set, electrical connections, and basic commissioning. Ductwork modifications, permits, and disposal of old equipment may be extra.</div></div>
-        <div class="faq-item"><div class="faq-q">How long does AC installation take?</div><div class="faq-a">Most standard replacements take one day. New installs with ductwork can run two to three days depending on home complexity.</div></div>
-        <div class="faq-item"><div class="faq-q">What's a reasonable number of quotes to get?</div><div class="faq-a">Three is the standard — enough to spot an outlier high or low without dragging out the process. Use your estimate range here as a sanity check before you start.</div></div>
-        <div class="faq-item"><div class="faq-q">Does home size determine system size?</div><div class="faq-a">Square footage is a starting point but not the whole picture. Ceiling height, insulation, window area, and sun exposure all affect what size system your home actually needs.</div></div>
-        <div class="faq-item"><div class="faq-q">Are there rebates available in King or Snohomish County?</div><div class="faq-a">Yes. Puget Sound Energy and Snohomish PUD both offer rebates on qualifying high-efficiency systems. Ask any contractor for current amounts — they change seasonally.</div></div>
-      </div>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">FAQ</div>
+      <h2>Common questions</h2>
     </div>
-  </section>
 
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Is this an exact quote?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          No. This gives you a realistic local range based on homes and installs similar to yours.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>How do you build your pricing estimates?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Our ranges come from contractor quotes, pricing conversations, and local market research. The goal is a realistic starting point before you compare real quotes.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Why can quotes vary so much?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          System size, layout, ductwork, labor, and installer approach can change the total by thousands.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Will I need to talk to someone right away?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          No. You get your estimate first. Speaking with a contractor is optional.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Should I still compare quotes?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Yes. This helps you understand what looks reasonable so you can compare with more confidence.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>What's included in a typical AC installation?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Labor, the outdoor condenser unit, indoor air handler or coil, refrigerant line set, electrical connections, and basic commissioning.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>How long does AC installation take?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Most standard replacements take one day. New installs with ductwork can run two to three days.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>What's a reasonable number of quotes to get?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Three is usually enough to compare pricing and spot major outliers.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Does home size determine system size?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Square footage is only one factor. Insulation, windows, ceiling height, and sun exposure also matter.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span>Are there rebates available in King or Snohomish County?</span>
+          <span class="faq-icon">+</span>
+        </button>
+
+        <div class="faq-answer">
+          Yes. Local utility rebates may be available for qualifying high-efficiency systems.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+  <script>
+
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.site-nav-links');
+
+navToggle.addEventListener('click', () => {
+
+  navMenu.classList.toggle('show');
+
+});
+
+</script>
   <section class="bottom-cta-wrap">
     <div class="container">
       <h2>See your AC installation cost range</h2>
@@ -247,5 +489,18 @@
       window.location.href = 'estimate.html?intent=' + intent;
     }
   </script>
+  <script>
+document.querySelectorAll('.faq-question').forEach(button => {
+
+  button.addEventListener('click', () => {
+
+    const item = button.parentElement;
+
+    item.classList.toggle('active');
+
+  });
+
+});
+</script>
 </body>
 </html>
