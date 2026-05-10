@@ -78,6 +78,12 @@
   border-radius:999px;
 }
 
+@media (max-width: 720px){
+
+  .nav-toggle{
+    display:flex;
+  }
+
   .site-nav-links{
     position:absolute;
     top:70px;
@@ -113,7 +119,6 @@
   }
 
 }
-    @media (max-width: 720px) { .site-nav-brand span { display: none; } .site-nav-links a:not(.nav-cta) { display: none; } }
     /* PAGE */
     .hero { padding: 56px 0 44px; background: rgba(255,255,255,0.82); text-align: center; }
     .hero-mark { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 24px; }
@@ -287,14 +292,12 @@
         <span class="hero-mark-label">HVAC Cost Guide</span>
       </div>
       <div class="section-kicker" style="margin-bottom:12px;">King &amp; Snohomish County</div>
-      <h1>See What AC Installation Costs Near You</h1>
-      <p class="hero-sub">Real pricing ranges for Greater King County and North Sound.</p>
+      <h1>What Should You Pay for AC Installation?</h1>
+      <p class="hero-sub">See Real Local Pricing</p>
       <div class="proof-chips">
         <div class="proof-chip"><span class="dot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>No Info Required</div>
         <div class="proof-chip"><span class="dot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Realistic Ranges</div>
-        <div class="proof-chip"><span class="dot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.686 2 6 4.686 6 8c0 4.418 6 12 6 12s6-7.582 6-12c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="8" r="2" stroke="currentColor" stroke-width="2"/></svg></span>Local Quotes</div>
-      </div>
-      <div class="hero-question-label">What best matches your situation?</div>
+              </div>
       <div class="answer-grid">
         <button class="answer-card" type="button" onclick="goToQuiz('add')">
           <div class="answer-icon">
@@ -311,7 +314,7 @@
           </div>
           <div class="answer-title">Add AC to my home</div>
           <div class="answer-range">Typical range: $5,000 &#8211; $23,000</div>
-          <div class="answer-cta">Get My Estimate &#8594;</div>
+          <div class="answer-cta">See My Price &#8594;</div>
         </button>
         <button class="answer-card" type="button" onclick="goToQuiz('replace')">
           <div class="answer-icon">
@@ -328,7 +331,7 @@
           </div>
           <div class="answer-title">Replace my AC system</div>
           <div class="answer-range">Typical range: $6,500 &#8211; $13,500</div>
-          <div class="answer-cta">Get My Estimate &#8594;</div>
+          <div class="answer-cta">See My Price &#8594;</div>
         </button>
       </div>
     </div>
