@@ -428,7 +428,6 @@
           <div class="results-type" id="resultType">Central AC</div>
           <div class="results-range" id="resultRange">$7,500 &#8211; $10,500</div>
           <div class="results-labor" id="resultLabor">Estimated labor: $1,200 &#8211; $2,800</div>
-          <div class="results-copy" id="resultCopy">This range updates based on your answers.</div>
           <div class="results-divider"></div>
           <div class="mini-kicker">Why this range fits your home</div>
           <div class="results-reasons" id="resultReasons"></div>
@@ -442,7 +441,27 @@
             <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>System startup &amp; testing</div>
             <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1&#8211;3 days</div>
           </div>
-          <div class="results-not-included">Not typically included: permit fees &middot; duct repairs/modifications &middot; electrical upgrades &middot; insulation or airflow fixes</div>
+          <div class="results-includes-head" style="margin-top:16px;">
+  May require additional work
+</div>
+
+<div class="results-includes">
+
+  <div class="results-include-item">
+    <svg class="reason-check" viewBox="0 0 24 24" fill="none">
+      <path d="M6 6L18 18M18 6L6 18" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+    Permit or electrical upgrades
+  </div>
+
+  <div class="results-include-item">
+    <svg class="reason-check" viewBox="0 0 24 24" fill="none">
+      <path d="M6 6L18 18M18 6L6 18" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+    Ductwork or airflow repairs
+  </div>
+
+</div>
         </div>
 
           <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border); text-align:center;">
@@ -727,11 +746,6 @@
       document.getElementById('resultRange').textContent = pricing.range;
       document.getElementById('resultLabor').textContent = 'Estimated labor: ' + pricing.labor;
 
-      let copy = buildCopy(system) + ' This range includes typical equipment, materials, labor, startup, and normal install scope.';
-      if (state.intent === 'unsure' || state.ducts === 'not_sure') {
-        copy += ' This range is a bit wider because a few home details still need to be confirmed on site.';
-      }
-      document.getElementById('resultCopy').textContent = copy;
 
       const wrap = document.getElementById('resultReasons');
       wrap.innerHTML = '';
