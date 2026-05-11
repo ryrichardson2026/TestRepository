@@ -345,6 +345,7 @@
           <span class="progress-pill" id="p5"></span>
         </div>
 
+```
     <div class="flow-step active" id="step1">
       <div class="flow-title">What best matches your situation?</div>
       <div class="flow-sub">Pick the one that feels closest to where you are right now.</div>
@@ -358,9 +359,6 @@
           <div class="answer-sub">Put cooling into a home that does not have it now.</div>
         </button>
 
-      </div>
-      <div class="step-actions">
-        <button class="btn btn-primary" type="button" id="toStep2" disabled>Continue &#8594;</button>
       </div>
       <div style="text-align:center; margin-top:12px;">
         <a href="index.html" style="font-size:13px; color:var(--navy-soft); font-weight:600;">&#8634; Start Over</a>
@@ -377,7 +375,6 @@
       </div>
       <div class="step-actions">
         <button class="btn btn-ghost" type="button" onclick="showStep('step1')">&#8592; Back</button>
-        <button class="btn btn-primary" type="button" id="toStep3" disabled>Continue &#8594;</button>
       </div>
     </div>
 
@@ -387,7 +384,6 @@
       <div class="answers-grid cols-3" id="performanceGrid"></div>
       <div class="step-actions">
         <button class="btn btn-ghost" type="button" id="step3Back">Back</button>
-        <button class="btn btn-primary" type="button" id="toStep4" disabled>Continue &#8594;</button>
       </div>
     </div>
 
@@ -397,7 +393,6 @@
       <div class="answers-grid cols-3" id="ductsGrid"></div>
       <div class="step-actions">
         <button class="btn btn-ghost" type="button" id="step4Back">Back</button>
-        <button class="btn btn-primary" type="button" id="toStep7" disabled>Continue &#8594;</button>
       </div>
     </div>
 
@@ -435,54 +430,18 @@
             <div class="mini-kicker">Also worth comparing</div>
             <div class="alt-list" id="altList"></div>
           </div>
-          <div class="results-divider"></div>
-          <div class="results-includes-head">Usually includes</div>
+
+          <div class="results-includes-head" style="margin-top:16px;">Typically not included</div>
           <div class="results-includes">
-            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>System startup &amp; testing</div>
-            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1&#8211;3 days</div>
+            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/></svg>Permit or electrical upgrades</div>
+            <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/></svg>Ductwork or airflow repairs</div>
           </div>
-          <div class="results-includes-head" style="margin-top:16px;">
-  May require additional work
-</div>
 
-<div class="results-includes">
 
-  <div class="results-include-item">
-    <svg class="reason-check" viewBox="0 0 24 24" fill="none">
-      <path d="M6 6L18 18M18 6L6 18" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/>
-    </svg>
-    Permit or electrical upgrades
-  </div>
-
-  <div class="results-include-item">
-    <svg class="reason-check" viewBox="0 0 24 24" fill="none">
-      <path d="M6 6L18 18M18 6L6 18" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/>
-    </svg>
-    Ductwork or airflow repairs
-  </div>
-
-</div>
-        </div><div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border); text-align:center;">
-
-  <div style="font-size:18px; font-weight:800; color:var(--navy); margin-bottom:6px;">
-    Ready for a real quote?
-  </div>
-
-  <div style="font-size:14px; color:var(--navy-soft); margin-bottom:16px;">
-    Connect with a local installer to compare pricing and availability.
-  </div>
-
-  <button class="btn btn-primary"
-    type="button"
-    onclick="showLeadForm()"
-    id="verifyBtn"
-    style="width:100%;">
-
-    Get My Quote &#8594;
-
-  </button>
-
-</div>
+          <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border); text-align:center;">
+            <div style="font-size:18px; font-weight:800; color:var(--navy); margin-bottom:6px;">Ready for a real quote?</div>
+            <div style="font-size:14px; color:var(--navy-soft); margin-bottom:16px;">Connect with a local installer to compare pricing and availability.</div>
+            <button class="btn btn-primary" type="button" onclick="showLeadForm()" id="verifyBtn" style="width:100%;">Get My Quote &#8594;</button>
           </div>
           <div id="leadFormWrap" style="display:none; margin-top:20px;">
             <div class="lead-fields">
@@ -522,6 +481,7 @@
     </div>
   </div>
 </div>
+```
 
   </section>
 
@@ -538,6 +498,27 @@
       city: null, result_type: null, result_range: null, result_labor: null, alternatives: []
     };
 
+
+    const COOLDOWN_MS = 24 * 60 * 60 * 1000;
+
+    function canSubmit(pageKey) {
+      const last = localStorage.getItem('lastSubmit_' + pageKey);
+      return !last || (Date.now() - parseInt(last)) > COOLDOWN_MS;
+    }
+
+    function recordSubmit(pageKey) {
+      localStorage.setItem('lastSubmit_' + pageKey, Date.now().toString());
+    }
+
+    function showCooldownMessage(submitBtnId) {
+      const btn = document.getElementById(submitBtnId);
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Request already submitted — we'll be in touch shortly.";
+        btn.style.opacity = '0.6';
+        btn.style.cursor = 'default';
+      }
+    }
     const MAKE_WEBHOOK = 'https://hook.us2.make.com/xpr6i1ussqp7ygbk8wxj4j73r8vky4h8';
 
     const OPTIONS = {
@@ -616,8 +597,10 @@
           [...target.querySelectorAll('.answer-card')].forEach(c => c.classList.remove('selected'));
           btn.classList.add('selected');
           state[field] = value;
-          if (field === 'cooling_performance') document.getElementById('toStep4').disabled = false;
-          if (field === 'ducts') document.getElementById('toStep7').disabled = false;
+          setTimeout(() => {
+            if (field === 'cooling_performance') showStep('step4');
+            if (field === 'ducts') showStep('step7');
+          }, 300);
         });
         target.appendChild(btn);
       });
@@ -761,6 +744,12 @@
       document.getElementById('resultRange').textContent = pricing.range;
       document.getElementById('resultLabor').textContent = 'Estimated labor: ' + pricing.labor;
 
+      let copy = buildCopy(system) + ' This range includes typical equipment, materials, labor, startup, and normal install scope.';
+      if (state.intent === 'unsure' || state.ducts === 'not_sure') {
+        copy += ' This range is a bit wider because a few home details still need to be confirmed on site.';
+      }
+      const resultCopyEl = document.getElementById('resultCopy');
+      if (resultCopyEl) resultCopyEl.textContent = copy;
 
       const wrap = document.getElementById('resultReasons');
       wrap.innerHTML = '';
@@ -770,6 +759,10 @@
         el.innerHTML = `<svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>${r}`;
         wrap.appendChild(el);
       });
+      const installEl = document.createElement('div');
+      installEl.className = 'reason';
+      installEl.innerHTML = '<svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Typical install time: 1–3 days';
+      wrap.appendChild(installEl);
 
       const altBlock = document.getElementById('altBlock');
       const altList = document.getElementById('altList');
@@ -825,7 +818,7 @@
         document.querySelectorAll('.flow-intent').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         state.intent = card.dataset.value;
-        document.getElementById('toStep2').disabled = false;
+        setTimeout(() => showStep('step2'), 300);
       });
     });
 
@@ -834,17 +827,13 @@
         document.querySelectorAll('.flow-size').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         state.size = card.dataset.value;
-        document.getElementById('toStep3').disabled = false;
+        setTimeout(() => {
+          if (state.intent === 'add') { state.cooling_performance = ''; showStep('step4'); }
+          else showStep('step3');
+        }, 300);
       });
     });
 
-    document.getElementById('toStep2').addEventListener('click', () => showStep('step2'));
-    document.getElementById('toStep3').addEventListener('click', () => {
-      if (state.intent === 'add') { state.cooling_performance = ''; showStep('step4'); }
-      else showStep('step3');
-    });
-    document.getElementById('toStep4').addEventListener('click', () => showStep('step4'));
-    document.getElementById('toStep7').addEventListener('click', () => showStep('step7'));
     document.getElementById('step3Back').addEventListener('click', () => showStep('step2'));
     document.getElementById('step4Back').addEventListener('click', () => state.intent === 'add' ? showStep('step2') : showStep('step3'));
     document.getElementById('step7Back').addEventListener('click', () => showStep('step4'));
@@ -870,7 +859,7 @@
         buildResults();
         fireWebhook(getPayloadBase('quiz_complete'));
         showStep('resultsStep');
-      }, 5200);
+      }, 4000);
     }
 
     function showLeadForm() {
@@ -897,6 +886,7 @@
     });
 
     function submitLead() {
+      if (!canSubmit('ac')) { showCooldownMessage('leadSubmit'); return; }
       const firstName = document.getElementById('leadFirstName').value.trim();
       const phone = document.getElementById('leadPhone').value.trim();
       const email = document.getElementById('leadEmail').value.trim();
@@ -909,6 +899,8 @@
       if (!consent) { valid = false; }
       if (!valid) return;
       fireWebhook({ ...getPayloadBase('lead_submit'), first_name: firstName, phone, email, consent: 'yes' });
+      recordSubmit('ac');
+      const acBtn = document.getElementById('leadSubmit'); if(acBtn){ acBtn.disabled=true; acBtn.textContent='Submitting…'; }
       if (typeof gtag !== 'undefined') {
         gtag('event', 'conversion', { send_to: 'AW-17039190320' });
         gtag('event', 'lead_submit', { zip: state.city, intent: state.intent });
@@ -936,7 +928,6 @@
         document.querySelectorAll('.flow-intent').forEach(c => {
           if (c.dataset.value === preIntent) c.classList.add('selected');
         });
-        document.getElementById('toStep2').disabled = false;
         showStep('step2');
       }
     });
