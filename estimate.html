@@ -233,10 +233,30 @@
     .lead-form-wrap {
       display: none; background: var(--white);
       border: 1.5px solid var(--accent); border-radius: 24px;
-      padding: 24px; box-shadow: 0 0 0 5px rgba(238,66,102,0.08), var(--shadow-card);
-      margin-top: 16px;
+      box-shadow: 0 0 0 5px rgba(238,66,102,0.08), var(--shadow-card);
+      margin-top: 16px; overflow: hidden;
     }
     .lead-form-wrap.visible { display: block; }
+
+    /* CHANGE 2: New dark header banner above the lead form fields */
+    .lead-form-header {
+      background: var(--navy);
+      padding: 16px 24px;
+      text-align: center;
+    }
+    .lead-form-header-eyebrow {
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+    }
+    .lead-form-header-title {
+      font-family: "Fraunces", serif;
+      font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .lead-form-header-title span { color: var(--highlight); }
+
+    .lead-form-body { padding: 24px; }
+
     .lead-form-title {
       font-family: "Fraunces", serif;
       font-size: 1.5rem; line-height: 1.04;
@@ -437,13 +457,22 @@
             <div class="results-include-item"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/></svg>Ductwork or airflow repairs</div>
           </div>
 
-
-          <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border); text-align:center;">
-            <div style="font-size:18px; font-weight:800; color:var(--navy); margin-bottom:16px;">Talk to a local installer today.</div>
-            <button style="width:100%; appearance:none; border:none; cursor:pointer; border-radius:999px; padding:15px 24px; font-size:15px; font-weight:800; background:#16a34a; color:#fff; box-shadow:0 12px 26px rgba(22,163,74,0.22);" type="button" onclick="showLeadForm()" id="verifyBtn">Verify My Quote &#8594;</button>
-</div>
+          <!-- CHANGE 1: CTA sub text darkened — color var(--navy), font-weight 600 -->
+          <div id="ctaBlock" style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border); text-align:center;">
+            <div style="font-size:18px; font-weight:800; color:var(--navy); margin-bottom:6px;">Ready for a quote?</div>
+            <div style="font-size:14px; color:var(--navy); font-weight:600; margin-bottom:16px;">Most homeowners compare 3+ quotes before deciding</div>
+            <button style="width:100%; appearance:none; border:none; cursor:pointer; border-radius:999px; padding:15px 24px; font-size:15px; font-weight:800; background:#16a34a; color:#fff; box-shadow:0 12px 26px rgba(22,163,74,0.22); transition:transform 0.16s ease, background 0.16s ease;" type="button" onclick="showLeadForm()" id="verifyBtn">Get a Real Quote &#8594;</button>
           </div>
-          <div id="leadFormWrap" style="display:none; margin-top:20px;">
+        </div>
+
+        <!-- CHANGE 2: Lead form now has dark navy header banner above the fields -->
+        <div id="leadFormWrap" style="display:none; margin-top:20px;" class="lead-form-wrap">
+          <div class="lead-form-header">
+            <div class="lead-form-header-eyebrow">Free &mdash; no obligation</div>
+            <div class="lead-form-header-title">Get a quote from a local <span>licensed installer</span></div>
+          </div>
+          <div class="lead-form-body">
+            <div class="lead-form-sub">A screened contractor in your area will reach out &mdash; usually within one business day.</div>
             <div class="lead-fields">
               <div class="lead-field">
                 <label class="lead-label" for="leadFirstName">First name</label>
@@ -465,17 +494,18 @@
               <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
               <label class="consent-text" for="consentCheck">I agree to be contacted about my HVAC quote.</label>
             </div>
-            <button class="lead-submit" id="leadSubmit" type="button" onclick="submitLead()">Get My Quote &#8594;</button>
+            <button id="leadSubmit" type="button" onclick="submitLead()" disabled style="width:100%; appearance:none; border:none; cursor:not-allowed; border-radius:999px; padding:15px; font-size:15px; font-weight:800; font-family:'Inter',sans-serif; background:#16a34a; color:#fff; box-shadow:0 12px 26px rgba(22,163,74,0.22); transition:transform 0.16s ease; opacity:0.45; margin-top:6px;">Submit &#8594;</button>
           </div>
-          <div style="border-top:1px solid var(--border); margin-top:20px; padding-top:16px; text-align:center;">
-            <a href="https://ac.hvacinstallcosts.com" style="font-size:13px; color:var(--navy-soft); font-weight:600;">&#8634; Start Over</a>
-          </div>
-          <div id="thankyouWrap" style="display:none; text-align:center; padding:16px 0; margin-top:16px;">
-            <div class="thankyou-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="thankyou-title">You&#8217;re all set.</div>
-            <div class="thankyou-body">A local pro will reach out shortly to discuss your project. Ask whether the quote includes permits, startup, and any duct or electrical updates.</div>
-          </div>
+        </div>
 
+        <div style="border-top:1px solid var(--border); margin-top:20px; padding-top:16px; text-align:center;">
+          <a href="https://ac.hvacinstallcosts.com" style="font-size:13px; color:var(--navy-soft); font-weight:600;">&#8634; Start Over</a>
+        </div>
+        <div id="thankyouWrap" style="display:none; text-align:center; padding:16px 0; margin-top:16px;">
+          <div class="thankyou-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="thankyou-title">You&#8217;re all set.</div>
+          <div class="thankyou-body">A local pro will reach out shortly to discuss your project. Ask whether the quote includes permits, startup, and any duct or electrical updates.</div>
+        </div>
 
       </div>
     </div>
@@ -861,9 +891,11 @@
     }
 
     function showLeadForm() {
-      document.getElementById('verifyBtn').style.display = 'none';
-      document.getElementById('leadFormWrap').style.display = 'block';
-      setTimeout(() => document.getElementById('leadFormWrap').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+      document.getElementById('ctaBlock').style.display = 'none';
+      const wrap = document.getElementById('leadFormWrap');
+      wrap.style.display = 'block';
+      wrap.classList.add('visible');
+      setTimeout(() => wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     }
 
     function updateSubmit() {
@@ -872,7 +904,11 @@
       const email = document.getElementById('leadEmail').value.trim();
       const consent = document.getElementById('consentCheck').checked;
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      document.getElementById('leadSubmit').disabled = !(firstName.length >= 2 && phone.length >= 10 && emailRe.test(email) && consent);
+      const ready = firstName.length >= 2 && phone.length >= 10 && emailRe.test(email) && consent;
+      const submitBtn = document.getElementById('leadSubmit');
+      submitBtn.disabled = !ready;
+      submitBtn.style.opacity = ready ? '1' : '0.45';
+      submitBtn.style.cursor = ready ? 'pointer' : 'not-allowed';
     }
 
     document.getElementById('leadPhone').addEventListener('input', function(e) {
