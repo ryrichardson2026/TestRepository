@@ -439,9 +439,9 @@
 
 
           <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--border); text-align:center;">
-            <div style="font-size:18px; font-weight:800; color:var(--navy); margin-bottom:6px;">Ready for a real quote?</div>
-            <div style="font-size:14px; color:var(--navy-soft); margin-bottom:16px;">Connect with a local installer to compare pricing and availability.</div>
-            <button class="btn btn-primary" type="button" onclick="showLeadForm()" id="verifyBtn" style="width:100%;">Get My Quote &#8594;</button>
+          <div style="font-size:18px; font-weight:800; color:var(--navy); margin-bottom:6px;" id="ctaHeadline">Your install likely runs $7,500 &#8211; $10,500.</div>
+          <div style="font-size:14px; color:var(--navy-soft); margin-bottom:16px;">AC installs are booking 3&#8211;4 weeks out.</div>
+          <button style="width:100%; appearance:none; border:none; cursor:pointer; border-radius:999px; padding:15px 24px; font-size:15px; font-weight:800; background:#16a34a; color:#fff; box-shadow:0 12px 26px rgba(22,163,74,0.22);" type="button" onclick="showLeadForm()" id="verifyBtn">Get My Quote &#8594;</button>
           </div>
           <div id="leadFormWrap" style="display:none; margin-top:20px;">
             <div class="lead-fields">
@@ -738,6 +738,7 @@
       if (existingSummary) existingSummary.remove();
 
       document.getElementById('resultCity').textContent = cityText || 'Your area';
+      document.getElementById('ctaHeadline').textContent = 'Your install likely runs ' + pricing.range + '.';
       document.getElementById('resultType').textContent = displayTypeMap[system];
       document.getElementById('resultRange').textContent = pricing.range;
       document.getElementById('resultLabor').textContent = 'Estimated labor: ' + pricing.labor;
