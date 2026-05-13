@@ -198,8 +198,14 @@
       box-shadow: var(--shadow-card); padding: 24px;
       text-align: center;
     }
-    .results-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; }
-    .results-type { font-family: "Fraunces", serif; font-size: 32px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 10px; color: var(--accent); }
+    .results-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-bottom: 10px; }
+    .results-type {
+      font-family: "Fraunces", serif; font-size: 32px; line-height: 1;
+      letter-spacing: -0.03em; margin-bottom: 10px;
+      background: linear-gradient(90deg, #7b2ff7, #f97316);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .results-range { font-size: 34px; font-weight: 800; line-height: 1; color: var(--purple); margin-bottom: 6px; }
     .mini-kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px; text-align: left; }
     .results-reasons { display: grid; gap: 10px; text-align: left; }
@@ -208,15 +214,20 @@
 
     /* collapsible detail toggle */
     .details-toggle {
-      font-size: 13px; font-weight: 600; color: var(--accent);
+      font-size: 13px; font-weight: 600; color: var(--navy-soft);
       cursor: pointer; background: none; border: none;
       padding: 0; margin: 10px auto 0; display: block;
       text-align: center; width: 100%;
     }
-    .details-toggle:hover { color: var(--accent-dark); }
+    .details-toggle:hover { color: var(--navy); }
     .details-section { margin-top: 10px; }
 
-    /* slide transition for form reveal */
+    /* availability dot */
+    .avail-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:4px;vertical-align:middle;position:relative;top:-1px;}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,0.5);}70%{box-shadow:0 0 0 6px rgba(22,163,74,0);}100%{box-shadow:0 0 0 0 rgba(22,163,74,0);}}
+    .avail-dot{animation:pulse 1.8s ease-out infinite;}
+    .avail-text{font-size:11px;font-weight:700;color:var(--green);letter-spacing:0.02em;}
+
     #leadFormWrap {
       overflow: hidden;
       max-height: 0;
@@ -444,6 +455,7 @@
           <div class="installer-inline">
             <img src="/assets/sapphire-logo.png" alt="Sapphire Heating and Air" class="installer-inline-logo" />
             <div class="installer-inline-content">
+              <div style="margin-bottom:4px;"><span class="avail-dot"></span><span class="avail-text">Accepting appointments</span></div>
               <div class="installer-inline-label" style="color:var(--accent);">Matched Local Installer</div>
               <div class="installer-inline-name">Sapphire Heating &amp; Air</div>
               <div class="installer-inline-meta"><span style="color:#f59e0b;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span style="color:#f59e0b; font-weight:700;">4.9</span> Rated &bull; Licensed &amp; Insured</div>
@@ -454,7 +466,7 @@
           <div id="ctaBlock" style="text-align:center;">
             <div style="font-size:18px; font-weight:800; color:var(--navy); margin-bottom:6px;">Ready for a quote?</div>
             <div style="font-size:14px; color:var(--navy-soft); margin-bottom:16px;">Most installs book out 2&#8211;3 weeks ahead.</div>
-            <button id="verifyBtn" style="width:100%; max-width:420px; appearance:none; border:none; cursor:pointer; border-radius:999px; padding:15px 24px; font-size:15px; font-weight:800; background:#16a34a; color:#fff; box-shadow:0 12px 26px rgba(22,163,74,0.22); transition:transform 0.16s ease;" type="button" onclick="showLeadForm()">Check Availability &#8594;</button>
+            <button id="verifyBtn" style="width:100%; max-width:420px; appearance:none; border:none; cursor:pointer; border-radius:999px; padding:15px 24px; font-size:15px; font-weight:800; background:#16a34a; color:#fff; box-shadow:0 12px 26px rgba(22,163,74,0.22); transition:transform 0.16s ease;" type="button" onclick="showLeadForm()">Get My Quote &#8594;</button>
           </div>
 
           <!-- form — inside card, slides open on CTA click -->
@@ -480,7 +492,7 @@
               <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
               <label class="consent-text" for="consentCheck">I agree to be contacted about my HVAC quote.</label>
             </div>
-            <button id="leadSubmit" type="button" onclick="submitLead()" disabled class="lead-submit">Check Availability &#8594;</button>
+            <button id="leadSubmit" type="button" onclick="submitLead()" disabled class="lead-submit">Get My Quote &#8594;</button>
           </div>
 
           <!-- thank you — inside card -->
