@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your Cooling System — HVAC Cost Guide</title>
+  <meta name="description" content="Get an instant cooling product recommendation based on your space and needs." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg height='52' viewBox='0 0 56 52' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0%25' stop-color='%237b2ff7'/%3E%3Cstop offset='100%25' stop-color='%23f97316'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='36' width='8' height='12' rx='2' fill='url(%23b)'/%3E%3Crect x='15' y='28' width='8' height='20' rx='2' fill='url(%23b)'/%3E%3Crect x='26' y='20' width='8' height='28' rx='2' fill='url(%23b)'/%3E%3Crect x='37' y='12' width='8' height='36' rx='2' fill='url(%23b)'/%3E%3Cpath d='M48 6 Q56 6 56 14 L56 48 L48 48 Z' fill='url(%23b)'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-WF65GPHQ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GT-WF65GPHQ');gtag('config','AW-17039190320');</script>
+  <style>
+    :root {
+      --navy:#14213d; --navy-soft:#5f6f89; --accent:#ee4266; --accent-dark:#c72b4f;
+      --highlight:#ffd23f; --purple:#540d6e; --green:#16a34a;
+      --white:#ffffff; --border:rgba(20,33,61,0.06); --border-strong:rgba(20,33,61,0.1);
+      --shadow-soft:0 8px 24px rgba(20,33,61,0.05),0 2px 6px rgba(20,33,61,0.04);
+      --shadow-card:0 16px 36px rgba(20,33,61,0.08),0 3px 10px rgba(20,33,61,0.05);
+      --shadow-hover:0 18px 40px rgba(20,33,61,0.1),0 4px 12px rgba(20,33,61,0.06);
+      --max:1120px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{overflow-x:hidden;}
+    body{font-family:"Inter",sans-serif;background:var(--white);color:var(--navy);line-height:1.5;-webkit-font-smoothing:antialiased;}
+    button{font:inherit;}
+    a{color:inherit;text-decoration:none;}
+    .container{width:min(var(--max),calc(100% - 32px));margin:0 auto;}
+
+    .nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(20,33,61,0.05);}
+    .nav-inner{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
+    .nav-logo svg{display:block;}
+    .nav-back{font-size:14px;font-weight:600;color:var(--navy-soft);}
+    .nav-back:hover{color:var(--navy);}
+
+    .page-header{padding:28px 0 0;background:linear-gradient(180deg,#ffffff,#fbfcff);}
+    .page-title{font-family:"Fraunces",serif;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.02;letter-spacing:-0.03em;color:var(--navy);max-width:700px;}
+
+    .question-flow{padding:30px 0 40px;background:linear-gradient(180deg,#ffffff,#fbfcff);}
+    .flow-card{max-width:860px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:30px;box-shadow:var(--shadow-card);padding:26px;overflow:hidden;}
+
+    .progress{display:flex;justify-content:center;gap:10px;margin-bottom:16px;}
+    .progress-pill{width:12px;height:12px;border-radius:999px;background:#e7ebf3;transition:all 0.22s ease;}
+    .progress-pill.active{width:34px;background:var(--accent);}
+
+    .flow-step{display:none;}
+    .flow-step.active{display:block;}
+    .flow-title{font-family:"Fraunces",serif;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.04;letter-spacing:-0.03em;text-align:center;margin-bottom:8px;}
+    .flow-sub{text-align:center;color:var(--navy-soft);font-size:0.98rem;margin-bottom:20px;max-width:620px;margin-left:auto;margin-right:auto;}
+
+    .answers-grid{display:grid;gap:14px;}
+    .answers-grid.cols-2{grid-template-columns:repeat(2,1fr);}
+    .answers-grid.cols-3{grid-template-columns:repeat(3,1fr);}
+    .answer-card{border:1px solid var(--border);border-radius:20px;background:var(--white);padding:18px 16px;cursor:pointer;text-align:center;transition:transform 0.18s ease,border-color 0.18s ease,box-shadow 0.18s ease,background 0.18s ease;box-shadow:var(--shadow-soft);}
+    .answer-card:hover{transform:translateY(-2px);border-color:rgba(238,66,102,0.28);box-shadow:var(--shadow-hover);}
+    .answer-card.selected{border-color:var(--accent);border-width:2px;box-shadow:0 0 0 5px rgba(238,66,102,0.16),var(--shadow-card);background:#fff0f3;}
+    .answer-title{font-size:17px;font-weight:800;line-height:1.22;margin-bottom:5px;}
+    .answer-sub{font-size:13px;color:var(--navy-soft);line-height:1.5;}
+
+    .city-select-wrap{margin-bottom:18px;}
+    .city-select{width:100%;padding:16px 20px;font-size:20px;font-weight:700;letter-spacing:0.12em;font-family:"Inter",sans-serif;color:var(--navy);background:var(--white);border:1.5px solid var(--border-strong);border-radius:16px;box-shadow:var(--shadow-soft);text-align:center;}
+    .city-select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(238,66,102,0.12);}
+
+    .step-actions{display:flex;justify-content:center;gap:12px;margin-top:18px;}
+    .btn{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:15px 24px;font-size:15px;font-weight:800;transition:transform 0.16s ease,background 0.16s ease;}
+    .btn:hover{transform:translateY(-1px);}
+    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 12px 26px rgba(238,66,102,0.2);}
+    .btn-primary:hover{background:var(--accent-dark);}
+    .btn-primary:disabled{opacity:0.45;cursor:not-allowed;transform:none;}
+    .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--navy);box-shadow:var(--shadow-soft);}
+
+    .loading-block{text-align:center;padding:24px 8px;}
+    .loading-title{font-family:"Fraunces",serif;font-size:1.95rem;line-height:1.04;letter-spacing:-0.03em;margin-bottom:22px;}
+    .loading-cycle{min-height:28px;margin-bottom:28px;}
+    .loading-cycle-text{font-size:15px;color:var(--navy-soft);font-weight:600;opacity:0;transition:opacity 0.4s ease;}
+    .loading-cycle-text.visible{opacity:1;}
+    .loading-bar{max-width:380px;margin:0 auto;height:10px;background:#edf1f7;border-radius:999px;overflow:hidden;}
+    .loading-fill{height:100%;width:40%;border-radius:999px;background:linear-gradient(90deg,var(--highlight),var(--accent));animation:shimmer 1.25s ease-in-out infinite;}
+    @keyframes shimmer{0%{transform:translateX(-80%);}100%{transform:translateX(220%);}}
+
+    .results-card{background:linear-gradient(180deg,#ffffff,#fcfcff);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow-card);padding:24px;}
+    .results-divider{height:1px;background:var(--border);margin:20px 0;}
+
+    .products-headline{font-family:"Fraunces",serif;font-size:clamp(1.5rem,3vw,2rem);line-height:1.04;letter-spacing:-0.03em;color:var(--navy);margin-bottom:6px;text-align:center;}
+    .products-sub{font-size:14px;color:var(--navy-soft);font-weight:600;line-height:1.5;max-width:520px;margin:0 auto 20px;text-align:center;}
+
+    /* PRODUCT CARDS — 2 per result */
+    .product-cards-grid{display:grid;gap:14px;}
+    .product-card{border:1px solid var(--border);border-radius:18px;background:var(--white);box-shadow:var(--shadow-soft);padding:20px;}
+    .product-card.alt-card{background:#fbfcff;border-style:dashed;}
+    .product-badge{display:inline-block;border-radius:999px;padding:4px 12px;font-size:11px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px;background:rgba(20,33,61,0.06);color:var(--navy-soft);}
+    .product-name{font-size:15px;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:4px;}
+    .product-coverage{font-size:13px;font-weight:600;color:var(--navy-soft);margin-bottom:3px;}
+    .product-rating{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+    .product-key{font-size:13px;color:var(--navy-soft);line-height:1.5;margin-bottom:14px;}
+    .product-cta{display:inline-flex;align-items:center;gap:6px;appearance:none;border:none;cursor:pointer;border-radius:999px;padding:10px 20px;font-size:13px;font-weight:800;font-family:"Inter",sans-serif;background:var(--accent);color:#fff;box-shadow:0 6px 14px rgba(238,66,102,0.2);transition:transform 0.16s ease,background 0.16s ease;text-decoration:none;}
+    .product-cta:hover{transform:translateY(-1px);background:var(--accent-dark);}
+    .product-cta.alt{background:#fff;border:1.5px solid var(--border-strong);color:var(--navy);box-shadow:var(--shadow-soft);}
+    .product-cta.alt:hover{border-color:rgba(20,33,61,0.2);}
+
+    .secondary-cta{margin-top:20px;padding:18px;border:1px solid var(--border);border-radius:18px;text-align:center;background:#fbfcff;}
+    .secondary-cta-label{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+    .secondary-cta-sub{font-size:13px;color:var(--navy-soft);margin-bottom:14px;line-height:1.5;}
+    .btn-green{appearance:none;border:none;cursor:pointer;border-radius:999px;padding:13px 24px;font-size:14px;font-weight:800;font-family:"Inter",sans-serif;background:var(--green);color:#fff;box-shadow:0 8px 18px rgba(22,163,74,0.18);transition:transform 0.16s ease;}
+    .btn-green:hover{transform:translateY(-1px);}
+
+    .slide-viewport{overflow:hidden;position:relative;width:100%;}
+    .slide-track{display:flex;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1);will-change:transform;width:200%;}
+    .slide-track.at-consultation{transform:translateX(-50%);}
+    .slide-panel{width:50%;flex-shrink:0;min-width:0;}
+
+    .consult-loading{text-align:center;padding:32px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px;}
+    .consult-loading-label{font-size:14px;font-weight:700;color:var(--navy-soft);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:18px;}
+    .consult-cycle-text{font-size:16px;font-weight:700;color:var(--navy);min-height:26px;transition:opacity 0.3s ease;margin-bottom:24px;}
+
+    .installer-inline{display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:16px;border:1px solid rgba(20,33,61,0.08);border-radius:16px;background:var(--white);text-align:left;}
+    .installer-inline-logo{width:44px;height:44px;border-radius:10px;object-fit:contain;flex-shrink:0;border:1px solid var(--border);background:#f0f4f8;}
+    .installer-inline-content{display:flex;flex-direction:column;gap:2px;min-width:0;}
+    .installer-inline-label{font-size:10px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--navy-soft);}
+    .installer-inline-name{font-size:15px;font-weight:800;color:var(--navy);}
+    .installer-inline-meta{font-size:12px;font-weight:600;color:var(--navy-soft);}
+
+    .lead-fields{display:grid;gap:12px;margin-bottom:14px;}
+    .lead-field{display:flex;flex-direction:column;gap:6px;}
+    .lead-label{font-size:13px;font-weight:700;color:var(--navy);}
+    .lead-input{padding:14px 16px;font-size:15px;font-family:"Inter",sans-serif;color:var(--navy);background:#f7f9fc;border:1.5px solid var(--border-strong);border-radius:12px;transition:border-color 0.16s ease,box-shadow 0.16s ease;}
+    .lead-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,66,102,0.1);background:#fff;}
+    .lead-error{display:none;font-size:12px;color:#ee4266;margin-top:4px;font-weight:600;}
+    .lead-error.visible{display:block;}
+    .consent-wrap{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+    .consent-check{width:20px;height:20px;flex-shrink:0;margin-top:2px;accent-color:var(--accent);cursor:pointer;}
+    .consent-text{font-size:13px;color:var(--navy-soft);line-height:1.5;}
+    .lead-submit{width:auto;min-width:260px;max-width:320px;appearance:none;border:none;cursor:pointer;border-radius:999px;padding:15px 24px;font-size:15px;font-weight:800;font-family:"Inter",sans-serif;background:var(--green);color:#fff;box-shadow:0 8px 18px rgba(22,163,74,0.18);transition:transform 0.16s ease;margin-top:6px;display:block;margin-left:auto;margin-right:auto;}
+    .lead-submit:hover:not(:disabled){transform:translateY(-1px);}
+    .lead-submit:disabled{opacity:0.45;cursor:not-allowed;}
+
+    .thankyou-icon{width:56px;height:56px;border-radius:999px;background:rgba(22,163,74,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+    .thankyou-title{font-family:"Fraunces",serif;font-size:1.9rem;letter-spacing:-0.03em;color:var(--navy);margin-bottom:8px;text-align:center;}
+    .thankyou-body{font-size:15px;color:var(--navy-soft);line-height:1.6;max-width:480px;margin:0 auto 16px;text-align:center;}
+    .thankyou-questions{text-align:left;max-width:480px;margin:0 auto;}
+    .thankyou-questions-head{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--navy-soft);margin-bottom:10px;}
+    .thankyou-question{display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px;}
+    .reason-check{width:18px;height:18px;flex-shrink:0;}
+
+    .footer{background:#fff;border-top:1px solid var(--border);padding:24px 0 40px;}
+    .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--navy-soft);font-size:14px;}
+
+    @media(max-width:1040px){.answers-grid.cols-3{grid-template-columns:1fr;}.answers-grid.cols-2{grid-template-columns:1fr;}}
+    @media(max-width:720px){
+      .flow-card{padding:20px 16px;border-radius:24px;}
+      .results-card{padding:20px;}
+      .footer-inner{flex-direction:column;}
+      .lead-submit{width:100%;min-width:0;max-width:none;}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="index.html" aria-label="HVAC Cost Guide">
+        <svg height="38" viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#7b2ff7"/><stop offset="100%" stop-color="#f97316"/></linearGradient>
+            <linearGradient id="swooshGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c026d3"/><stop offset="100%" stop-color="#f97316"/></linearGradient>
+            <linearGradient id="swoosh2Grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#ec4899"/></linearGradient>
+          </defs>
+          <rect x="4" y="36" width="8" height="12" rx="2" fill="url(#barGrad)"/>
+          <rect x="15" y="28" width="8" height="20" rx="2" fill="url(#barGrad)"/>
+          <rect x="26" y="20" width="8" height="28" rx="2" fill="url(#barGrad)"/>
+          <rect x="37" y="12" width="8" height="36" rx="2" fill="url(#barGrad)"/>
+          <path d="M48 6 Q56 6 56 14 L56 48 L48 48 Z" fill="url(#barGrad)"/>
+          <path d="M2 34 Q18 20 46 26" stroke="url(#swoosh2Grad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85"/>
+          <path d="M8 26 Q28 4 52 10 Q58 11 56 6" stroke="url(#swooshGrad)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <circle cx="55" cy="6" r="3" fill="#f97316"/>
+          <text x="70" y="37" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="22" font-weight="800" letter-spacing="-0.3" fill="#2d3a55">HVAC Cost Guide</text>
+        </svg>
+      </a>
+      <a class="nav-back" href="index.html">&#8634; Start Over</a>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container"><h1 class="page-title">Find your cooling system</h1></div>
+  </section>
+
+  <section class="question-flow">
+    <div class="container">
+      <div class="flow-card">
+
+        <div class="progress" id="progressBar"></div>
+
+        <!-- PORTABLE: STEP 1 — Space type -->
+        <div class="flow-step active" id="step_p1">
+          <div class="flow-title">What are you cooling?</div>
+          <div class="flow-sub">This helps us match the right capacity for your space.</div>
+          <div class="answers-grid cols-2">
+            <button class="answer-card" type="button" onclick="selectCard(this,'space_type','bedroom')">
+              <div class="answer-title">Bedroom / Office</div>
+              <div class="answer-sub">Smaller single room up to ~300 sq ft.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'space_type','living_room')">
+              <div class="answer-title">Living Room</div>
+              <div class="answer-sub">Medium space, 300–600 sq ft.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'space_type','garage')">
+              <div class="answer-title">Garage / Workshop</div>
+              <div class="answer-sub">Larger open space needing more capacity.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'space_type','whole_home')">
+              <div class="answer-title">Whole Home / Open Layout</div>
+              <div class="answer-sub">Large or open-plan space, 600+ sq ft.</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- PORTABLE: STEP 2 — ZIP -->
+        <div class="flow-step" id="step_p2">
+          <div class="flow-title">Where is the space located?</div>
+          <div class="city-select-wrap">
+            <input class="city-select" type="text" id="zipInputP" inputmode="numeric" maxlength="5" placeholder="e.g. 98012" oninput="onZipInput(this,'seeResultsP')" />
+            <div id="zipHintP" style="text-align:center;font-size:13px;color:var(--navy-soft);margin-top:8px;">Snohomish &amp; King County ZIP codes only.</div>
+          </div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" onclick="showStep('step_p1')">&#8592; Back</button>
+            <button class="btn btn-primary" type="button" id="seeResultsP" disabled onclick="runLoading('portable')">See Recommendations &#8594;</button>
+          </div>
+        </div>
+
+        <!-- DIY: STEP 1 — Property type -->
+        <div class="flow-step" id="step_d1">
+          <div class="flow-title">What type of property is it?</div>
+          <div class="flow-sub">This helps us understand what installation options are realistic.</div>
+          <div class="answers-grid cols-2">
+            <button class="answer-card" type="button" onclick="selectCard(this,'property','house')">
+              <div class="answer-title">House</div>
+              <div class="answer-sub">Single family home or townhouse.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'property','condo')">
+              <div class="answer-title">Condo / Apartment</div>
+              <div class="answer-sub">Unit in a multi-family building.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'property','garage')">
+              <div class="answer-title">Garage / Workshop</div>
+              <div class="answer-sub">Detached or attached work space.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'property','office')">
+              <div class="answer-title">Office / Commercial</div>
+              <div class="answer-sub">Business or professional space.</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- DIY: STEP 2 — Room size -->
+        <div class="flow-step" id="step_d2">
+          <div class="flow-title">How big is the space?</div>
+          <div class="flow-sub">Approximate is fine — this helps match the right unit capacity.</div>
+          <div class="answers-grid cols-3">
+            <button class="answer-card" type="button" onclick="selectCard(this,'size','small')">
+              <div class="answer-title">Under 300 sq ft</div>
+              <div class="answer-sub">Small bedroom or office.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'size','medium')">
+              <div class="answer-title">300 – 600 sq ft</div>
+              <div class="answer-sub">Medium room or workspace.</div>
+            </button>
+            <button class="answer-card" type="button" onclick="selectCard(this,'size','large')">
+              <div class="answer-title">600+ sq ft</div>
+              <div class="answer-sub">Large room or open layout.</div>
+            </button>
+          </div>
+          <div class="step-actions"><button class="btn btn-ghost" type="button" onclick="showStep('step_d1')">&#8592; Back</button></div>
+        </div>
+
+        <!-- DIY: STEP 3 — Modification (dynamic) -->
+        <div class="flow-step" id="step_d3">
+          <div class="flow-title">How much are you willing to modify the space?</div>
+          <div class="flow-sub">This determines which product types fit your situation.</div>
+          <div class="answers-grid cols-2" id="modGrid"></div>
+          <div class="step-actions"><button class="btn btn-ghost" type="button" onclick="showStep('step_d2')">&#8592; Back</button></div>
+        </div>
+
+        <!-- DIY: STEP 4 — ZIP -->
+        <div class="flow-step" id="step_d4">
+          <div class="flow-title">Where is the space located?</div>
+          <div class="city-select-wrap">
+            <input class="city-select" type="text" id="zipInputD" inputmode="numeric" maxlength="5" placeholder="e.g. 98012" oninput="onZipInput(this,'seeResultsD')" />
+            <div id="zipHintD" style="text-align:center;font-size:13px;color:var(--navy-soft);margin-top:8px;">Snohomish &amp; King County ZIP codes only.</div>
+          </div>
+          <div class="step-actions">
+            <button class="btn btn-ghost" type="button" onclick="showStep('step_d3')">&#8592; Back</button>
+            <button class="btn btn-primary" type="button" id="seeResultsD" disabled onclick="runLoading('diy')">See Recommendations &#8594;</button>
+          </div>
+        </div>
+
+        <!-- LOADING -->
+        <div class="flow-step" id="loadingStep">
+          <div class="loading-block">
+            <div class="loading-title">Finding your best options...</div>
+            <div class="loading-cycle"><div class="loading-cycle-text" id="loadingCycleText">Reviewing your cooling needs&#8230;</div></div>
+            <div class="loading-bar"><div class="loading-fill"></div></div>
+          </div>
+        </div>
+
+        <!-- RESULTS: slide viewport -->
+        <div class="flow-step" id="resultsStep">
+          <div class="slide-viewport">
+            <div class="slide-track" id="slideTrack">
+
+              <!-- PANEL A: Products -->
+              <div class="slide-panel">
+                <div class="results-card">
+                  <div class="products-headline">Recommended For Your Space</div>
+                  <div class="products-sub" id="productsSub">Based on your answers, these are the best fit for your setup.</div>
+                  <div class="product-cards-grid" id="productCardsGrid"></div>
+                  <div class="results-divider"></div>
+                  <div class="secondary-cta">
+                    <div class="secondary-cta-label">Need a professional installation instead?</div>
+                    <div class="secondary-cta-sub">A local specialist can assess your space and handle everything.</div>
+                    <button class="btn-green" type="button" onclick="startConsultation()">Get A Consultation &#8594;</button>
+                  </div>
+                  <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;text-align:center;">
+                    <a href="index.html" style="font-size:13px;color:var(--navy-soft);font-weight:600;">&#8634; Start Over</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PANEL B: Consultation -->
+              <div class="slide-panel">
+                <div id="consultLoading" class="results-card consult-loading">
+                  <div class="consult-loading-label">One moment</div>
+                  <div id="consultCycleText" class="consult-cycle-text">Reviewing your project&#8230;</div>
+                  <div class="loading-bar" style="width:100%;max-width:320px;"><div class="loading-fill"></div></div>
+                </div>
+                <div id="consultMatch" class="results-card" style="display:none;">
+                  <button onclick="goBackToProducts()" style="background:none;border:none;cursor:pointer;font-size:13px;font-weight:700;color:var(--navy-soft);display:flex;align-items:center;gap:6px;margin-bottom:16px;padding:0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l7 7M5 12l7-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Back to recommendations
+                  </button>
+                  <div style="font-family:'Fraunces',serif;font-size:28px;line-height:1.04;letter-spacing:-0.03em;margin-bottom:16px;text-align:center;background:linear-gradient(90deg,#7b2ff7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">We found a match</div>
+                  <div class="installer-inline">
+                    <img src="https://minisplit.hvacinstallcosts.com/assets/sapphire-logo.png" alt="Sapphire Heating and Air" class="installer-inline-logo" onerror="this.style.display='none'" />
+                    <div class="installer-inline-content">
+                      <div class="installer-inline-label">Local Licensed Installer</div>
+                      <div class="installer-inline-name">Sapphire Heating &amp; Air</div>
+                      <div class="installer-inline-meta" style="line-height:1.6;">Mini split &bull; Central AC &bull; Heat pumps</div>
+                      <div class="installer-inline-meta" style="margin-top:3px;"><span style="color:#f59e0b;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span style="color:#f59e0b;font-weight:700;">4.9</span> Rated &bull; Licensed &amp; Insured</div>
+                    </div>
+                  </div>
+                  <div id="leadFormWrap">
+                    <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:14px;">Request consultation</div>
+                    <div class="lead-fields">
+                      <div class="lead-field">
+                        <label class="lead-label" for="leadFirstName">First name</label>
+                        <input class="lead-input" type="text" id="leadFirstName" placeholder="First name" autocomplete="given-name" oninput="updateSubmit()" />
+                        <div class="lead-error" id="firstNameError"></div>
+                      </div>
+                      <div class="lead-field">
+                        <label class="lead-label" for="leadPhone">Phone number</label>
+                        <input class="lead-input" type="tel" id="leadPhone" placeholder="(206) 555-0100" autocomplete="tel" oninput="updateSubmit()" />
+                        <div class="lead-error" id="phoneError"></div>
+                      </div>
+                      <div class="lead-field">
+                        <label class="lead-label" for="leadEmail">Email address</label>
+                        <input class="lead-input" type="email" id="leadEmail" placeholder="you@email.com" autocomplete="email" oninput="updateSubmit()" />
+                        <div class="lead-error" id="emailError"></div>
+                      </div>
+                    </div>
+                    <div class="consent-wrap">
+                      <input class="consent-check" type="checkbox" id="consentCheck" onchange="updateSubmit()" />
+                      <label class="consent-text" for="consentCheck">I agree to be contacted about my cooling project.</label>
+                    </div>
+                    <button id="leadSubmit" type="button" onclick="submitLead()" disabled class="lead-submit">Submit &#8594;</button>
+                  </div>
+                  <div id="thankyouWrap" style="display:none;padding:16px 0;margin-top:8px;">
+                    <div class="thankyou-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <div class="thankyou-title">You&#8217;re all set.</div>
+                    <div class="thankyou-body">A local specialist will reach out to help you find the right cooling solution.</div>
+                    <div class="thankyou-questions">
+                      <div class="thankyou-questions-head">Ask them on the call</div>
+                      <div class="thankyou-question"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>What system size fits my space?</div>
+                      <div class="thankyou-question"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>What&#8217;s included in the installation quote?</div>
+                      <div class="thankyou-question"><svg class="reason-check" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Are there any rebates or financing options?</div>
+                    </div>
+                  </div>
+                  <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;text-align:center;">
+                    <a href="index.html" style="font-size:13px;color:var(--navy-soft);font-weight:600;">&#8634; Start Over</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>&#169; 2026 HVAC Cost Guide</div>
+      <div>Informational estimates only &middot; <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf">Privacy Policy</a></div>
+    </div>
+  </footer>
+
+  <script>
+  // ── PRODUCT DATA ────────────────────────────────────────────────────────────
+  const PRODUCTS = {
+    portable: [
+      { id:'p1', name:'Insignia 250 Sq. Ft. Portable Air Conditioner', brand:'Insignia', url:'https://www.bestbuy.com/product/insignia-250-sq-ft-6000-btu-portable-air-conditioner-white/J2FPJKPFLW/sku/6393188', sqft:'250', rating:4.5, retailer:'Best Buy', positioning:'Best Budget Portable AC', key:'Compact and affordable. Best for smaller bedrooms and offices.' },
+      { id:'p2', name:'TCL Q-Series 10,000 BTU Portable Air Conditioner', brand:'TCL', url:'https://www.bestbuy.com/product/tcl-450-sq-ft-10000-btu-q-series-ultra-quiet-dual-hose-inverter-smart-portable-air-conditioner-white/J36QYTHGYH/sku/6669250', sqft:'450', rating:4.3, retailer:'Best Buy', positioning:'Best Mid-Size Portable AC', key:'Quiet dual-hose design. Strong for living rooms and medium spaces.' },
+      { id:'p3', name:'Humhold 14000 BTU Portable Air Conditioner', brand:'Humhold', url:'https://humhold.com/es/products/14000-btu-portable-air-conditioners-with-heat-mode-remote-control-4-in-1-free-stand-smart-cooling-ac-unit-with-dehumidifier-heater-fan-cools-room-up-to-700-sq-ft-auto-swing-timer-white', sqft:'700', rating:4.4, retailer:'Humhold', positioning:'Best High-Capacity Portable AC', key:'Highest capacity portable option. Covers large rooms and open layouts up to 700 sq ft.' }
+    ],
+    window: [
+      { id:'w1', name:'TCL 6,000 BTU Window Air Conditioner', brand:'TCL', url:'https://www.target.com/p/tcl-6000-btu-window-air-conditioner-fan-and-dehumidifier-250sqft-remote-control-h6w23w/-/A-89771262', sqft:'250', rating:4.4, retailer:'Target', positioning:'Best Budget Window AC', key:'Simple and affordable. Good entry point for smaller spaces.' },
+      { id:'w2', name:'Midea U Smart Inverter Window Air Conditioner', brand:'Midea', url:'https://www.homedepot.com/p/Midea-8-000-BTU-U-Smart-Inverter-Window-AC-Cools-up-to-350-sq-ft-Dual-filtration-Remote-Timer-Wi-Fi-EnergyStar-in-White-MAW08U1QWT/336424813', sqft:'350', rating:4.6, retailer:'Home Depot', positioning:'Best Quiet Window AC', key:'Whisper-quiet U-shaped design with Wi-Fi and Energy Star rating.' },
+      { id:'w3', name:'LG 14,000 BTU Smart Window Air Conditioner', brand:'LG', url:'https://www.bestbuy.com/product/lg-700-sq-ft-14000-btu-smart-window-air-conditioner-white/J7G5655Z6P/sku/6547554', sqft:'700', rating:4.5, retailer:'Best Buy', positioning:'Best Large-Room Window AC', key:'High-capacity smart cooling for larger rooms and open spaces.' }
+    ],
+    minisplit: [
+      { id:'m1', name:'Senville LETO 12,000 BTU Mini Split', brand:'Senville', url:'https://www.amazon.com/dp/B00UV3LGPY', sqft:'550', rating:4.5, retailer:'Amazon', positioning:'Best Value DIY Mini Split', key:'Most popular entry-level DIY mini split. Strong homeowner reviews and broad availability.' },
+      { id:'m2', name:'MRCOOL Easy Pro 12K BTU DIY Mini Split', brand:'MRCOOL', url:'https://www.bestbuy.com/product/mrcool-easy-pro-12k-btu-diy-ductless-mini-split-air-conditioner-heat-pump-system-white/JJ8WZY2QF6/sku/12485543', sqft:'600', rating:4.5, retailer:'Best Buy', positioning:'Best Premium DIY Mini Split', key:'Easier installation with smart controls. Premium experience for confident DIYers.' },
+      { id:'m3', name:'MRCOOL DIY 24,000 BTU Mini Split', brand:'MRCOOL', url:'https://www.homedepot.com/p/MRCOOL-DIY-5th-Gen-24000-BTU-22-7-Seer2-2-Ton-Mini-Split-Heat-Pump-Complete-System-25-ft-Pre-Charged-Line-Set-230-Volt-R454B-DIY-24-HP-WM-230D25-O-CMB/335524456', sqft:'1000', rating:4.3, retailer:'Home Depot', positioning:'Best High-Capacity DIY Mini Split', key:'Higher-capacity option for garages, open layouts, and larger spaces.' }
+    ]
+  };
+
+  // ── PORTABLE ROUTING — always 2 products ───────────────────────────────────
+  // Primary + Alt based on space type
+  function getPortableProducts(space_type) {
+    const P = PRODUCTS.portable;
+    switch(space_type) {
+      case 'bedroom':    return [P[0], P[1]]; // Insignia primary, TCL alt
+      case 'living_room':return [P[1], P[0]]; // TCL primary, Insignia alt
+      case 'garage':     return [P[2], P[1]]; // Humhold primary, TCL alt
+      case 'whole_home': return [P[2], P[1]]; // Humhold primary, TCL alt
+      default:           return [P[1], P[0]];
+    }
+  }
+
+  // ── DIY ROUTING — always 2 products ───────────────────────────────────────
+  function getDIYProducts(property, size, modification) {
+    const W = PRODUCTS.window;
+    const M = PRODUCTS.minisplit;
+
+    // Garage + full → mini split (high capacity primary, value alt)
+    if (property === 'garage' && modification === 'full') return [M[2], M[0]];
+    // Garage + minor → portable isn't in DIY, surface window + mini split entry
+    if (property === 'garage' && modification === 'minor') return [W[2], M[0]];
+    // Condo — always window (full install blocked)
+    if (property === 'condo') {
+      if (size === 'small') return [W[0], W[1]];
+      return [W[1], W[2]];
+    }
+    // House or Office + minor → window AC
+    if (modification === 'minor') {
+      if (size === 'small')  return [W[0], W[1]];
+      if (size === 'medium') return [W[1], W[0]];
+      return [W[2], W[1]]; // large
+    }
+    // House or Office + full → mini split primary, window alt
+    if (modification === 'full') {
+      if (size === 'large')  return [M[2], W[2]]; // high cap mini split
+      if (size === 'medium') return [M[1], W[1]]; // premium mini split
+      return [M[0], W[0]];                        // value mini split
+    }
+    return [W[1], M[0]];
+  }
+
+  // ── STATE ──────────────────────────────────────────────────────────────────
+  const state = { intent:null, space_type:null, property:null, size:null, modification:null, city:null, primaryId:null, altId:null };
+  const COOLDOWN_MS = 24 * 60 * 60 * 1000;
+  const MAKE_WEBHOOK = 'https://hook.us2.make.com/ut8g68rnnhqxf9a56kj3rjzc71b73m4h';
+
+  function canSubmit(k) { const l = localStorage.getItem('lastSubmit_' + k); return !l || (Date.now() - parseInt(l)) > COOLDOWN_MS; }
+  function recordSubmit(k) { localStorage.setItem('lastSubmit_' + k, Date.now().toString()); }
+  function fireWebhook(payload) { fetch(MAKE_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }).catch(()=>{}); }
+
+  // ── PROGRESS PILLS ─────────────────────────────────────────────────────────
+  function buildProgress() {
+    const bar = document.getElementById('progressBar');
+    bar.innerHTML = '';
+    const count = state.intent === 'portable' ? 2 : 4;
+    for (let i = 0; i < count; i++) {
+      const pill = document.createElement('span');
+      pill.className = 'progress-pill';
+      pill.id = 'pill' + i;
+      bar.appendChild(pill);
+    }
+  }
+
+  function setActivePill(stepId) {
+    const portableSteps = ['step_p1','step_p2'];
+    const diySteps = ['step_d1','step_d2','step_d3','step_d4'];
+    const steps = state.intent === 'portable' ? portableSteps : diySteps;
+    const idx = steps.indexOf(stepId);
+    document.querySelectorAll('.progress-pill').forEach((p, i) => p.classList.toggle('active', i === idx));
+  }
+
+  // ── STEP NAV ───────────────────────────────────────────────────────────────
+  function showStep(id) {
+    document.querySelectorAll('.flow-step').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    setActivePill(id);
+  }
+
+  function selectCard(el, field, value) {
+    const grid = el.closest('.answers-grid');
+    [...grid.querySelectorAll('.answer-card')].forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    state[field] = value;
+
+    setTimeout(() => {
+      if (state.intent === 'portable') {
+        // portable: space_type → zip
+        if (field === 'space_type') showStep('step_p2');
+      } else {
+        // diy: property → size → mod → zip
+        if (field === 'property') { buildModGrid(); showStep('step_d2'); }
+        else if (field === 'size') showStep('step_d3');
+        else if (field === 'modification') showStep('step_d4');
+      }
+    }, 300);
+  }
+
+  // ── MOD GRID (dynamic by property) ────────────────────────────────────────
+  function buildModGrid() {
+    const grid = document.getElementById('modGrid');
+    grid.innerHTML = '';
+    const options = [];
+    if (state.property === 'garage') {
+      options.push(['minor', 'Minor install', 'Window or bracket mount. Minimal modification to the space.']);
+      options.push(['full',  'Full install',  'Wall penetration and basic wiring. Best for permanent cooling.']);
+    } else if (state.property === 'condo') {
+      options.push(['minor', 'Minor install', 'Window mount or small bracket only. No wall drilling.']);
+    } else {
+      options.push(['minor', 'Minor install', 'Window mount or small bracket. No wall drilling required.']);
+      options.push(['full',  'Full install',  'Wall drilling and basic electrical wiring. More permanent result.']);
+    }
+    options.forEach(([value, title, sub]) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-card';
+      btn.type = 'button';
+      btn.innerHTML = `<div class="answer-title">${title}</div><div class="answer-sub">${sub}</div>`;
+      btn.addEventListener('click', () => selectCard(btn, 'modification', value));
+      grid.appendChild(btn);
+    });
+  }
+
+  // ── ZIP ────────────────────────────────────────────────────────────────────
+  function onZipInput(el, btnId) {
+    el.value = el.value.replace(/\D/g, '').slice(0, 5);
+    const valid = /^\d{5}$/.test(el.value) && el.value.startsWith('98');
+    document.getElementById(btnId).disabled = !valid;
+    if (valid) state.city = el.value;
+    const hintId = el.id === 'zipInputP' ? 'zipHintP' : 'zipHintD';
+    const hint = document.getElementById(hintId);
+    if (el.value.length === 5 && !valid) { hint.textContent = 'Serving Snohomish & King County — enter a local ZIP.'; hint.style.color = '#ee4266'; }
+    else { hint.textContent = 'Snohomish & King County ZIP codes only.'; hint.style.color = ''; }
+  }
+
+  // ── LOADING ────────────────────────────────────────────────────────────────
+  function runLoading(path) {
+    showStep('loadingStep');
+    const msgs = ['Reviewing your cooling needs\u2026','Comparing options\u2026','Finding the best fit for your space\u2026'];
+    const el = document.getElementById('loadingCycleText');
+    let i = 0;
+    function showMsg(idx) { el.classList.remove('visible'); setTimeout(() => { el.textContent = msgs[idx]; el.classList.add('visible'); }, 300); }
+    showMsg(0);
+    const interval = setInterval(() => { i++; if (i < msgs.length) showMsg(i); else clearInterval(interval); }, 1400);
+    setTimeout(() => {
+      clearInterval(interval);
+      buildResults(path);
+      const zip = state.intent === 'portable' ? document.getElementById('zipInputP').value : document.getElementById('zipInputD').value;
+      state.city = zip;
+      fireWebhook({ event:'quiz_complete', route: state.intent, space_type: state.space_type||null, property: state.property||null, size: state.size||null, modification: state.modification||null, zip: state.city, primary_product: state.primaryId, alt_product: state.altId, intent:null, home_size:null, cooling_performance:null, ductwork:null, result_type:null, result_range:null, result_labor:null, timestamp: new Date().toISOString() });
+      showStep('resultsStep');
+    }, 4200);
+  }
+
+  // ── BUILD RESULTS ──────────────────────────────────────────────────────────
+  function buildResults(path) {
+    let pair;
+    if (path === 'portable') {
+      pair = getPortableProducts(state.space_type);
+    } else {
+      pair = getDIYProducts(state.property, state.size, state.modification);
+    }
+    state.primaryId = pair[0].id;
+    state.altId = pair[1].id;
+    const grid = document.getElementById('productCardsGrid');
+    grid.innerHTML = '';
+    renderCard(grid, pair[0], false);
+    renderCard(grid, pair[1], true);
+  }
+
+  function renderCard(container, p, isAlt) {
+    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
+    const card = document.createElement('div');
+    card.className = 'product-card' + (isAlt ? ' alt-card' : '');
+    card.innerHTML = `
+      <div class="product-badge">${p.positioning}</div>
+      <div class="product-name">${p.brand} — ${p.name}</div>
+      <div class="product-coverage">Cools up to ${p.sqft} sq ft</div>
+      <div class="product-rating"><span style="color:#f59e0b;">${stars}</span> ${p.rating} avg &bull; ${p.retailer}</div>
+      <div class="product-key">${p.key}</div>
+      <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="product-cta${isAlt ? ' alt' : ''}">View Product &#8594;</a>`;
+    container.appendChild(card);
+  }
+
+  // ── CONSULTATION SLIDE ─────────────────────────────────────────────────────
+  function startConsultation() {
+    document.getElementById('slideTrack').classList.add('at-consultation');
+    document.getElementById('consultLoading').style.display = 'flex';
+    document.getElementById('consultMatch').style.display = 'none';
+    const msgs = ['Reviewing your project\u2026','Checking local installer availability\u2026','Matching you with a cooling specialist\u2026'];
+    const el = document.getElementById('consultCycleText');
+    let i = 0;
+    function showMsg(idx) { el.style.opacity = '0'; setTimeout(() => { el.textContent = msgs[idx]; el.style.opacity = '1'; }, 200); }
+    showMsg(0);
+    const interval = setInterval(() => { i++; if (i < msgs.length) showMsg(i); else clearInterval(interval); }, 900);
+    setTimeout(() => {
+      clearInterval(interval);
+      document.getElementById('consultLoading').style.display = 'none';
+      document.getElementById('consultMatch').style.display = 'block';
+      const card = document.querySelector('.flow-card');
+      const rect = card.getBoundingClientRect();
+      if (rect.top < 0) window.scrollBy({ top: rect.top - 16, behavior: 'smooth' });
+    }, 3800);
+  }
+
+  function goBackToProducts() {
+    document.getElementById('slideTrack').classList.remove('at-consultation');
+  }
+
+  // ── FORM ───────────────────────────────────────────────────────────────────
+  function updateSubmit() {
+    const fn = document.getElementById('leadFirstName').value.trim();
+    const ph = document.getElementById('leadPhone').value.replace(/\D/g,'');
+    const em = document.getElementById('leadEmail').value.trim();
+    const co = document.getElementById('consentCheck').checked;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const ready = fn.length >= 2 && ph.length >= 10 && re.test(em) && co;
+    const btn = document.getElementById('leadSubmit');
+    btn.disabled = !ready; btn.style.opacity = ready ? '1' : '0.45';
+  }
+
+  document.getElementById('leadPhone').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g,'').slice(0,10);
+    if (v.length >= 7) v = '('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6);
+    else if (v.length >= 4) v = '('+v.slice(0,3)+') '+v.slice(3);
+    else if (v.length >= 1) v = '('+v;
+    e.target.value = v;
+  });
+
+  function setErr(id, msg) { const el = document.getElementById(id); if (el) { el.textContent = msg; el.classList.add('visible'); } }
+
+  function submitLead() {
+    if (!canSubmit('selector')) { const b = document.getElementById('leadSubmit'); if (b) { b.disabled=true; b.textContent="Already submitted — we'll be in touch."; b.style.opacity='0.6'; } return; }
+    const fn = document.getElementById('leadFirstName').value.trim();
+    const ph = document.getElementById('leadPhone').value.trim();
+    const em = document.getElementById('leadEmail').value.trim();
+    const co = document.getElementById('consentCheck').checked;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let valid = true;
+    if (fn.length < 2) { setErr('firstNameError','Please enter your first name'); valid = false; }
+    if (ph.replace(/\D/g,'').length < 10) { setErr('phoneError','Enter a valid 10-digit phone number'); valid = false; }
+    if (!re.test(em)) { setErr('emailError','Please enter a valid email address'); valid = false; }
+    if (!co || !valid) return;
+    fireWebhook({ event:'lead_submit', route: state.intent, space_type: state.space_type||null, property: state.property||null, size: state.size||null, modification: state.modification||null, zip: state.city, primary_product: state.primaryId, alt_product: state.altId, intent:null, home_size:null, cooling_performance:null, ductwork:null, result_type:null, result_range:null, result_labor:null, first_name:fn, phone:ph, email:em, consent:'yes', timestamp: new Date().toISOString() });
+    recordSubmit('selector');
+    const btn = document.getElementById('leadSubmit');
+    if (btn) { btn.disabled = true; btn.textContent = 'Submitting\u2026'; }
+    if (typeof gtag !== 'undefined') { gtag('event','conversion',{send_to:'AW-17039190320'}); gtag('event','lead_submit',{zip:state.city,route:state.intent}); }
+    document.getElementById('leadFormWrap').style.display = 'none';
+    document.getElementById('thankyouWrap').style.display = 'block';
+  }
+
+  // ── INIT ───────────────────────────────────────────────────────────────────
+  window.addEventListener('load', () => {
+    const params = new URLSearchParams(window.location.search);
+    const intent = params.get('intent');
+    state.intent = (intent === 'portable' || intent === 'diy') ? intent : 'diy';
+    buildProgress();
+    if (state.intent === 'portable') {
+      showStep('step_p1');
+    } else {
+      showStep('step_d1');
+    }
+  });
+  </script>
+
+</body>
+</html>
